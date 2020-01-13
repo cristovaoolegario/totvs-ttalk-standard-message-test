@@ -1,0 +1,137 @@
+{
+	"$schema": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/Position/v1/1_000/jsonschema/schemas/Position_1_000.json#",
+	"info": {
+		"description": "API para a entidade de Funções para os produtos TOTVS.",
+		"version": "1.000",
+		"title": "Position",
+		"contact": {
+			"name": "T-Talk",
+			"url": "API.Totvs.com.br",
+			"email": "comiteintegracao@totvs.com.br"
+		},
+		"x-totvs": {
+			"messageDocumentation": {
+				"name": "Position",
+				"description": "Cadastro de Funções",
+				"segment": "Recursos Humanos"
+			},
+			"productInformation": [
+				{
+					"product": "RM",
+					"contact": "wellington.vieira@totvs.com.br",
+					"note": "Folha de Pagamento",
+					"adapter": "FopCCustoData"
+				},
+				{
+					"product": "protheus",
+					"contact": "",
+					"description": "",
+					"adapter": ""
+				},
+				{
+					"product": "DataSul",
+					"contact": "",
+					"note": "",
+					"adapter": ""
+				}
+			]
+		}
+	},
+	"definitions": {
+		"PositionsInfo": {
+			"description": "Cadastro de Funções",
+			"type": "object",
+			"properties": {
+				"id": {
+					"description": "Código do coligada e código da função",
+					"type": "string",
+					"x-totvs": [
+						{
+							"product": "RM",
+							"available": true,
+							"note": "Código do coligada e código da função",
+							"field": "classes_id",
+							"type": "string",
+							"required": true
+						}
+					]
+				},
+				"CompanyCode": {
+					"type": "string",
+					"example": "1",
+					"description": "Código da Empresa",
+					"x-totvs": [
+						{
+							"product": "RM",
+							"field": "PFUNCAO.CODCOLIGADA",
+							"required": true,
+							"type": "integer",
+							"length": 2,
+							"available": true,
+							"canUpdate": false
+						}
+					]
+				},
+				"BranchId": {
+					"type": "string",
+					"description": "Código da Filial",
+					"x-totvs": [
+						{
+							"product": "RM",
+							"field": "Não exite na linha RM,",
+							"required": false
+						}
+					]
+				},
+				"PositionCode": {
+					"type": "string",
+					"example": "1",
+					"description": "Código da Função",
+					"x-totvs": [
+						{
+							"product": "RM",
+							"field": "PFUNCAO.CODIGO",
+							"required": true,
+							"type": "varchar",
+							"length": "tamanho máximo de 10",
+							"available": true,
+							"canUpdate": false
+						}
+					]
+				},
+				"Name": {
+					"type": "string",
+					"example": "Analista de Sistemas",
+					"description": "Nome da Função",
+					"x-totvs": [
+						{
+							"product": "RM",
+							"field": "PFUNCAO.NOME",
+							"required": false,
+							"type": "varchar",
+							"length": "tamanho máximo de 100",
+							"available": true,
+							"canUpdate": true
+						}
+					]
+				}
+			},
+			"Cbo": {
+				"type": "string",
+					"example": "08320",
+					"description": "CBO da Função",
+					"x-totvs": [
+						{
+							"product": "RM",
+							"field": "PFUNCAO.CBO",
+							"required": false,
+							"type": "varchar",
+							"length": "tamanho máximo de 8",
+							"available": true,
+							"canUpdate": true
+						}
+					]
+			}
+		}
+	}
+}
