@@ -1,0 +1,149 @@
+{
+	"openapi": "3.0.1",
+	"servers": [
+		{
+			"description": "API para a entidade Turnos de Trabalho (WorkingShift) para produtos TOTVS",
+			"url": "{{host}}/api/rh/v1",
+			"variables": {
+				"serverUrl": {
+					"default": "localhost"
+				},
+				"serverHttpPort": {
+					"default": "8051"
+				}
+			}
+		}
+	],
+	"info": {
+		"description": "API para a entidade Turnos de Trabalho (WorkingShift) para produtos TOTVS",
+		"version": "1.000",
+		"title": "Turnos de Trabalho",
+		"contact": {
+			"name": "T-Talk",
+			"url": "API.Totvs.com.br",
+			"email": "comiteintegracao@totvs.com.br"
+		},
+		"x-totvs": {
+			"messageDocumentation": {
+				"name": "WorkingShift",
+				"description": "Turnos de Trabalho",
+				"segment": "Recursos Humanos"
+			},
+			"productInformation": [
+				{
+					"product": "RM",
+					"contact": "rm_FW@totvs.com.br",
+                    "description": "Listagem de Turnos de Trabalho",
+                    "adapter" : "PtoHorarioData"
+                },
+                {
+					"product": "Protheus",
+					"contact": "rplyra@totvs.com.br",
+					"description": "Listagem de Turnos de Trabalho",
+                    "adapter" : ""
+				},
+				{
+					"product": "Datasul",
+					"contact": "triberh.progress.squad.pagadoria@totvs.com.br",
+					"description": "Listagem de Turnos de Trabalho",
+                    "adapter" : ""
+				}                
+			]
+		}
+	},
+	"paths": {
+		"/workingShift": {
+			"get": {
+				"tags": [
+					"WorkingShift"
+				],
+				"summary": "Retorna todas os Turnos de Trabalho cadastrados na base",
+				"x-totvs": {
+					"productInformation": [
+						{
+							"product": "RM",
+							"available": true,
+							"note": "Este verbo esta disponível com todos os parâmetros",
+							"minimalVersion": "12.1.28"
+						}
+					]
+				},
+				"description": "Retorna todos os Turnos de Trabalho",
+				"operationId": "getAll",
+				"parameters": [
+					{
+						"$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/parameters/Authorization"
+					},
+					{
+						"$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/parameters/Page"
+					},
+					{
+						"$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/parameters/PageSize"
+                    },
+                    {
+                        "$ref": "#/components/parameters/dateModified"
+                    }
+				],
+				"responses": {
+					"200": {
+						"description": "Operação realizada com sucesso",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/WorkingShift/v1/1_000/jsonschema/schemas/WorkingShift_1_000.json#/definitions/WorkingShiftInfo"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Erro na exibição dos registros",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/definitions/ErrorModel"
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"components": {
+		"parameters": {
+			"dateModified": {
+				"name": "dateModified",
+				"in": "query",
+				"required": false,
+				"description": "Data da ultima atualização do registro.",
+				"example": "YYYY-MM-DDThh:mm:ss",
+				"schema": {
+					"type": "string"
+				},
+				"x-totvs": {
+					"productInformation": [
+						{
+							"product": "Protheus",
+							"available": true,
+							"note": "",
+							"minimalVersion": ""
+						},
+						{
+							"product": "RM",
+							"available": true,
+							"note": "Data de atualização da ultima requisição.",
+							"minimalVersion": "12.1.28"
+						},
+						{
+							"product": "Datasul",
+							"available": true,
+							"note": "",
+							"minimalVersion": ""
+						}
+					]
+				}
+			}
+		},
+		"schemas": {}
+	}
+}
