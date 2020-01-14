@@ -23,10 +23,10 @@
 					"adapter": "FopCCustoData"
 				},
 				{
-					"product": "protheus",
-					"contact": "Marcia Moura",
-					"description": "",
-					"adapter": ""
+					"product": "Protheus",
+					"contact": "marcia.moura@totvs.com.br",
+					"description": "Product Owner RH - Protheus",
+					"adapter": "GPEA030API.PRW"
 				},
 				{
 					"product": "DataSul",
@@ -43,94 +43,195 @@
 			"type": "object",
 			"properties": {
 				"id": {
-					"description": "Código do coligada e código da função",
+					"description": "Chave única do registro dentro da entidade",
 					"type": "string",
-					"x-totvs": [
-						{
-							"product": "RM",
-							"available": true,
-							"note": "Código do coligada e código da função",
-							"field": "classes_id",
-							"type": "string",
-							"required": true
-						}
-					]
+          "x-totvs": [
+            {
+              "product": "RM",
+              "available": true,
+              "note": "Código do coligada e código da função",
+              "field": "pfuncao.codcoligada|pfuncao.codigo",
+              "type": "string",
+              "required": true
+            },
+            {
+              "product": "PROTHEUS",
+              "available": true,
+              "note": "Código da empresa + código da filial + código da função",
+              "field": "TMP.EMPRESA + SRJ.RJ_FILIAL + SRJ.RJ_FUNCAO",
+              "type": "string",
+              "required": true
+            },
+            {
+              "product": "DATASUL",
+              "available": true,
+              "note": "Código do coligada e código da função",
+              "field": "",
+              "type": "string",
+              "required": true
+            }
+          ]
 				},
-				"CompanyCode": {
+				"CompanyId": {
 					"type": "string",
 					"example": "1",
 					"description": "Código da Empresa",
-					"x-totvs": [
-						{
-							"product": "RM",
-							"field": "PFUNCAO.CODCOLIGADA",
-							"required": true,
-							"type": "integer",
-							"length": 2,
-							"available": true,
-							"canUpdate": false
-						}
-					]
+          "x-totvs": [
+            {
+              "product": "RM",
+              "field": "PFUNCAO.CODCOLIGADA",
+              "required": true,
+              "type": "integer",
+              "length": 2,
+              "available": true,
+              "canUpdate": false
+            },
+            {
+              "product": "PROTHEUS",
+              "field": "TMP.EMPRESA",
+              "required": true,
+              "type": "string",              
+              "available": true,
+              "canUpdate": false
+            },
+            {
+              "product": "DATASUL",
+              "field": "",
+              "required": true,
+              "type": "integer",
+              "length": 2,
+              "available": true,
+              "canUpdate": false
+            }
+          ]
 				},
 				"BranchId": {
 					"type": "string",
 					"description": "Código da Filial",
-					"x-totvs": [
-						{
-							"product": "RM",
-							"field": "Não exite na linha RM,",
-							"required": false
-						}
-					]
+          "x-totvs": [
+            {
+              "product": "RM",
+              "field": "Não exite na linha RM,",
+              "required": false
+            },
+            {
+              "product": "PROTHEUS",
+              "field": "RJ_FILIAL",
+              "required": true,
+              "type": "string",
+              "available": true,
+              "canUpdate": false
+            },
+            {
+              "product": "DATASUL",
+              "field": "",
+              "required": true,
+              "type": "integer",
+              "length": 2,
+              "available": true,
+              "canUpdate": false
+            }
+          ]
 				},
 				"PositionCode": {
 					"type": "string",
 					"example": "1",
 					"description": "Código da Função",
-					"x-totvs": [
-						{
-							"product": "RM",
-							"field": "PFUNCAO.CODIGO",
-							"required": true,
-							"type": "varchar",
-							"length": "tamanho máximo de 10",
-							"available": true,
-							"canUpdate": false
-						}
-					]
+          "x-totvs": [
+            {
+              "product": "RM",
+              "field": "PFUNCAO.CODIGO",
+              "required": true,
+              "type": "varchar",
+              "length": "tamanho máximo de 10",
+              "available": true,
+              "canUpdate": false
+            },
+            {
+              "product": "PROTHEUS",
+              "field": "RJ_FUNCAO",
+              "required": true,
+              "type": "varchar",
+              "available": true,
+              "canUpdate": false
+            },
+            {
+              "product": "DATASUL",
+              "field": "PFUNCAO.CODIGO",
+              "required": true,
+              "type": "varchar",
+              "length": "tamanho máximo de 10",
+              "available": true,
+              "canUpdate": false
+            }
+          ]
 				},
 				"Name": {
 					"type": "string",
 					"example": "Analista de Sistemas",
 					"description": "Nome da Função",
-					"x-totvs": [
-						{
-							"product": "RM",
-							"field": "PFUNCAO.NOME",
-							"required": false,
-							"type": "varchar",
-							"length": "tamanho máximo de 100",
-							"available": true,
-							"canUpdate": true
-						}
-					]
+          "x-totvs": [
+            {
+              "product": "RM",
+              "field": "PFUNCAO.NOME",
+              "required": false,
+              "type": "varchar",
+              "length": "tamanho máximo de 100",
+              "available": true,
+              "canUpdate": true
+            },
+            {
+              "product": "PROTHEUS",
+              "field": "RJ_DESC",
+              "required": true,
+              "type": "varchar",
+              "available": true,
+              "canUpdate": true
+            },
+            {
+              "product": "DATASUL",
+              "field": "PFUNCAO.NOME",
+              "required": false,
+              "type": "varchar",
+              "length": "tamanho máximo de 100",
+              "available": true,
+              "canUpdate": true
+            }
+          ]
 				}
 			},
 			"Cbo": {
 				"type": "string",
 					"example": "08320",
 					"description": "CBO da Função",
-					"x-totvs": [
-						{
-							"product": "RM",
-							"field": "PFUNCAO.CBO",
-							"required": false,
-							"type": "varchar",
-							"length": "tamanho máximo de 8",
-							"available": true,
-							"canUpdate": true
-						}
-					]
+        "x-totvs": [
+          {
+            "product": "RM",
+            "field": "PFUNCAO.CBO",
+            "required": false,
+            "type": "varchar",
+            "length": "tamanho máximo de 8",
+            "available": true,
+            "canUpdate": true
+          },
+          {
+            "product": "PROTHEUS",
+            "field": "RJ_CODCBO",
+            "required": false,
+            "type": "varchar",
+            "available": true,
+            "canUpdate": true
+          },
+          {
+            "product": "DATASUL",
+            "field": "PFUNCAO.CBO",
+            "required": false,
+            "type": "varchar",
+            "length": "tamanho máximo de 8",
+            "available": true,
+            "canUpdate": true
+          }
+        ]
 			}
 		}
 	}
