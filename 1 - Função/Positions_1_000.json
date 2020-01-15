@@ -47,13 +47,13 @@
 					"type": "string",
           "x-totvs": [
             {
-              "product": "RM",
-              "available": true,
-              "note": "Código do coligada e código da função",
-              "field": "pfuncao.codcoligada|pfuncao.codigo",
-              "type": "string",
-              "required": true
-            },
+				"product": "RM",
+				"available": true,
+				"note": "Código da coligada e código da função",
+				"field": "PFUNCAO.CODCOLIGADA|PFUNCAO.CODIGO",
+				"type": "string",
+				"required": true
+			},
             {
               "product": "PROTHEUS",
               "available": true,
@@ -207,7 +207,7 @@
         "x-totvs": [
           {
             "product": "RM",
-            "field": "PFUNCAO.CBO",
+            "field": "PFUNCAO.CBO2002",
             "required": false,
             "type": "varchar",
             "length": "tamanho máximo de 8",
