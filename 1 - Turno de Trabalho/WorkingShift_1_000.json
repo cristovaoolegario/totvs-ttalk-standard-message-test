@@ -1,0 +1,145 @@
+{
+	"$schema": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/WorkingShift/v1/1_000/jsonschema/schemas/WorkingShift_1_000.json#",
+	"info": {
+		"description": "API para a entidade Turnos de Trabalho (WorkingShift) para produtos TOTVS",
+		"version": "1.000",
+		"title": "Turnos de Trabalho",
+		"contact": {
+			"name": "T-Talk",
+			"url": "API.Totvs.com.br",
+			"email": "comiteintegracao@totvs.com.br"
+		},
+		"x-totvs": {
+			"messageDocumentation": {
+				"name": "WorkingShift",
+				"description": "Turnos de Trabalho",
+				"segment": "Recursos Humanos"
+			},
+			"productInformation": [
+				{
+					"product": "RM",
+					"contact": "Donaldson Araujo Nunes <donaldson.nunes@totvs.com.br>",
+                    "description": "Listagem de Cadastro de Horários",
+                    "adapter" : "PtoHorarioData"
+                },
+                {
+					"product": "Protheus",
+					"contact": "rplyra@totvs.com.br",
+					"description": "Listagem de Turnos de Trabalho",
+                    "adapter" : ""
+				},
+				{
+					"product": "Datasul",
+					"contact": "triberh.progress.squad.pagadoria@totvs.com.br",
+					"description": "Listagem de Turnos de Trabalho",
+                    "adapter" : ""
+				}                
+			]
+		}
+	},
+	"definitions": {
+		"WorkingShiftInfo": {
+			"type": "object",
+			"description": "Informações dos Turnos de Trabalho",
+			"properties": {
+				"id": {
+					"description": "Código Identificador do Turno de trabalho",
+					"type": "string",
+					"x-totvs": [
+						{
+                            "product": "RM",
+                            "field": "AHORARIO.CODCOLIGADA|AHORARIO.CODIGO",
+                            "available": true,
+                            "type": "varchar",
+							"required": true
+						}
+					]
+				},
+				"CompanyCode": {
+					"type": "string",
+					"example": "01",
+					"description": "Código da Empresa",
+					"x-totvs": [
+						{
+							"product": "RM",
+							"field": "AHORARIO.CODCOLIGADA",
+                            "available": true,                            
+							"type": "integer",
+							"length": 2,							
+							"required": true,
+							"canUpdate": false
+						}
+					]
+				},
+				"BranchId": {
+					"type": "string",
+                    "description": "Código da Filial",
+                    "example": "1",
+					"x-totvs": [
+						{
+							"product": "RM",
+							"field": "não possui campo físico na tabela",
+							"required": true,
+							"type": "",
+							"length": "",
+							"note": "",
+							"available": true,
+							"canUpdate": false
+						}
+					]
+				},
+				"WorkingShiftCode": {
+					"type": "string",					
+                    "description": "Código do Turno de trabalho",
+                    "example": "0001",
+					"x-totvs": [
+						{
+							"product": "RM",
+                            "field": "AHORARIO.CODIGO",
+                            "required": true,                            
+                            "note": "Código do Horário",							
+                            "type": "varchar",
+                            "length": 10,
+                            "available": true,
+                            "canUpdate": false
+						}
+					]
+				},
+				"Name": {
+					"type": "string",
+                    "description": "Nome do Tipo de Turno de trabalho",
+                    "example" : "Horário 08:00 12:00 14:00 18:00 sem Intervalo de Refeição.",
+					"x-totvs": [
+						{
+                            "product": "RM",
+                            "field": "AHORARIO.DESCRICAO",
+                            "required": false,                            
+                            "note": "Descrição do Horário",							
+                            "type": "varchar",
+                            "length": 100,
+                            "available": true,
+                            "canUpdate": false
+                        }
+					]
+				},
+				"MonthlyWorkLoad": {
+					"type": "string",					
+                    "description": "Carga de trabalho mensal",
+                    "example": "40:00",
+					"x-totvs": [
+						{
+							"product": "RM",
+                            "field": "Não possui campo físico na tabela.",
+                            "required": false,                            
+                            "note": "É equivalente ao campo calculado 'Número de Horas'.",							
+                            "type": "varchar",
+                            "length": 6,
+                            "available": true,
+                            "canUpdate": false
+						}
+					]
+				}				
+			}
+		}
+	}
+}
