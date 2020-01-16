@@ -1,0 +1,150 @@
+{
+	"$schema": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/PayRollCostCenter/v1/1_000/jsonschema/schemas/PayRollCostCenter_1_000.json#",
+	"info": {
+		"description": "Centros de Custo da Folha de Pagamento para produtos TOTVS",
+		"version": "1.000",
+		"title": "PayRollCostCenter",
+		"contact": {
+			"name": "T-Talk",
+			"url": "https://api.totvs.com.br",
+			"email": "comiteintegracao@totvs.com.br"
+		},
+		"x-totvs": {
+			"messageDocumentation": {
+				"name": "CostCenter",
+				"description": "Dados da folha de pagamento pertinente ao cadastro de Centros de Custo",
+				"segment": "Manufatura"
+			},
+			"productInformation": [
+				{
+					"product": "Protheus",
+					"contact": "rplyra@totvs.com.br",
+					"description": " ",
+					"adapter": ""
+				},
+				{
+					"product": "RM",
+					"contact": "wellington.vieira@totvs.com.br",
+					"description": "Dados da folha de pagamento pertinente ao cadastro de Centros de Custo",
+					"adapter": "FopCCustoData"
+				},
+				{
+					"product": "Datasul",
+					"contact": "",
+					"description": "",
+					"adapter": ""
+				}
+			]			
+		}
+	},
+	"definitions": {
+		"PagedPayRollCostCenter": {
+			"type": "object",
+			"allOf": [
+				{
+					"$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/definitions/Paging"
+				},
+				{
+					"$ref": "#/definitions/PayRollCostCenterInfo"
+				}
+			]
+		},
+		"PayRollCostCenters": {
+			"type": "object",
+			"properties": {
+				"items": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/PayRollCostCenterInfo"
+					}
+				}
+			}
+		},
+		"PayRollCostCenterInfo": {
+			"description": "Cadastro de Centro de Custo da Folha de Pagamento",
+			"type": "object",
+			"properties": {
+				"id": {
+					"description": "Código Identificador do Centro de Custo da Folha de Pagamento",
+					"type": "string",
+					"x-totvs": [
+						{
+                            "product": "RM",
+                            "field": "PCCUSTO.CODCOLIGADA|PCCUSTO.CODCCUSTO",
+                            "available": true,
+                            "type": "varchar",
+							"required": true
+						}
+					]
+				},
+				"CompanyCode": {
+					"type": "string",
+					"example": "01",
+					"description": "Código da Empresa",
+					"x-totvs": [
+						{
+							"product": "RM",
+							"field": "PCCUSTO.CODCOLIGADA",
+                            "available": true,                            
+							"type": "integer",
+							"length": 2,							
+							"required": true,
+							"canUpdate": false
+						}
+					]
+				},
+				"BranchId": {
+					"type": "string",
+                    "description": "Código da Filial",
+                    "example": "1",
+					"x-totvs": [
+						{
+							"product": "RM",
+							"field": "não possui campo físico na tabela",
+							"required": true,
+							"type": "",
+							"length": "",
+							"note": "",
+							"available": true,
+							"canUpdate": false
+						}
+					]
+				},
+				"Code": {
+					"type": "string",					
+                    "description": "Código do Centro de Custo da Folha de Pagamento",
+                    "example": "01",
+					"x-totvs": [
+						{
+							"product": "RM",
+                            "field": "PCCUSTO.CODCCUSTO",
+                            "required": true,                            
+                            "note": "Código do Centro de Custo da Folha de Pagamento ",							
+                            "type": "varchar",
+                            "length": 25,
+                            "available": true,
+                            "canUpdate": false
+						}
+					]
+				},
+				"Name": {
+					"type": "string",
+                    "description": "Nome do Centro de Custo da Folha de Pagamento",
+                    "example" : "Administrativo",
+					"x-totvs": [
+						{
+                            "product": "RM",
+                            "field": "PCCUSTO.NOME",
+                            "required": false,                            
+                            "note": "Nome do Centro de Custo da Folha de Pagamento",
+                            "type": "varchar",
+                            "length": 60,
+                            "available": true,
+                            "canUpdate": false
+                        }
+					]
+				}
+			}
+		}
+	}
+}
