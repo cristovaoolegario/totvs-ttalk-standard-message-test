@@ -1,0 +1,149 @@
+{
+	"openapi": "3.0.1",
+	"servers": [
+		{
+			"description": "API para a entidade Tipos de Afastamento (LeaveOfAbsenceTypes) para produtos TOTVS",
+			"url": "{{host}}/api/rh/v1",
+			"variables": {
+				"serverUrl": {
+					"default": "localhost"
+				},
+				"serverHttpPort": {
+					"default": "8051"
+				}
+			}
+		}
+	],
+	"info": {
+		"description": "API para a entidade Tipos de Afastamento (LeaveOfAbsenceTypes) para produtos TOTVS",
+		"version": "1.000",
+		"title": "Tipos de afastamento",
+		"contact": {
+			"name": "T-Talk",
+			"url": "API.Totvs.com.br",
+			"email": "comiteintegracao@totvs.com.br"
+		},
+		"x-totvs": {
+			"messageDocumentation": {
+				"name": "LeaveOfAbsenceTypes",
+				"description": "Tipos de Afastamento",
+				"segment": "Recursos Humanos"
+			},
+			"productInformation": [
+				{
+					"product": "RM",
+					"contact": "rm_FW@totvs.com.br",
+                    "description": "Listagem de Tipos de Afastamento",
+                    "adapter" : "FopParamsESocialAfastData"
+                },
+                {
+					"product": "Protheus",
+					"contact": "rplyra@totvs.com.br",
+					"description": "Listagem de Tipos de Afastamento",
+                    "adapter" : ""
+				},
+				{
+					"product": "Datasul",
+					"contact": "triberh.progress.squad.pagadoria@totvs.com.br",
+					"description": "Listagem de Tipos de Afastamento",
+                    "adapter" : ""
+				}                
+			]
+		}
+	},
+	"paths": {
+		"/leaveOfAbsenceTypes": {
+			"get": {
+				"tags": [
+					"LeaveOfAbsenceTypes"
+				],
+				"summary": "Retorna todas os Tipos de Afastamento cadastrados na base",
+				"x-totvs": {
+					"productInformation": [
+						{
+							"product": "RM",
+							"available": true,
+							"note": "Este verbo esta disponível com todos os parâmetros",
+							"minimalVersion": "12.1.28"
+						}
+					]
+				},
+				"description": "Retorna todos os tipos de afastamento",
+				"operationId": "getAll",
+				"parameters": [
+					{
+						"$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/parameters/Authorization"
+					},
+					{
+						"$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/parameters/Page"
+					},
+					{
+						"$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/parameters/PageSize"
+                    },
+                    {
+                        "$ref": "#/components/parameters/dateModified"
+                    }
+				],
+				"responses": {
+					"200": {
+						"description": "Operação realizada com sucesso",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/LeaveOfAbsenceTypes/v1/1_000/jsonschema/schemas/LeaveOfAbsenceTypes_1_000.json#/definitions/LeaveOfAbsenceTypesInfo"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Erro na exibição dos registros",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/definitions/ErrorModel"
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"components": {
+		"parameters": {
+			"dateModified": {
+				"name": "dateModified",
+				"in": "query",
+				"required": false,
+				"description": "Data da ultima atualização do registro.",
+				"example": "YYYY-MM-DDThh:mm:ss",
+				"schema": {
+					"type": "string"
+				},
+				"x-totvs": {
+					"productInformation": [
+						{
+							"product": "Protheus",
+							"available": true,
+							"note": "",
+							"minimalVersion": ""
+						},
+						{
+							"product": "RM",
+							"available": true,
+							"note": "Data de atualização da ultima requisição.",
+							"minimalVersion": "12.1.28"
+						},
+						{
+							"product": "Datasul",
+							"available": true,
+							"note": "",
+							"minimalVersion": ""
+						}
+					]
+				}
+			}
+		},
+		"schemas": {}
+	}
+}

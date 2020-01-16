@@ -1,0 +1,143 @@
+{
+	"$schema": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/LeaveOfAbsenceTypes/v1/1_000/jsonschema/schemas/LeaveOfAbsenceTypes_1_000.json#",
+	"info": {
+		"description": "API para a entidade Tipos de Afastamento (LeaveOfAbsenceTypes) para produtos TOTVS",
+		"version": "1.000",
+		"title": "Tipos de afastamento",
+		"contact": {
+			"name": "T-Talk",
+			"url": "API.Totvs.com.br",
+			"email": "comiteintegracao@totvs.com.br"
+		},
+		"x-totvs": {
+			"messageDocumentation": {
+				"name": "LeaveOfAbsenceTypes",
+				"description": "Tipos de Afastamento",
+				"segment": "Recursos Humanos"
+			},
+			"productInformation": [
+				{
+					"product": "RM",
+					"contact": "rm_FW@totvs.com.br",
+                    "description": "Listagem de Tipos de Afastamento",
+                    "adapter" : "FopParamsESocialAfastData"
+                },
+                {
+					"product": "Protheus",
+					"contact": "rplyra@totvs.com.br",
+					"description": "Listagem de Tipos de Afastamento",
+                    "adapter" : ""
+				},
+				{
+					"product": "Datasul",
+					"contact": "triberh.progress.squad.pagadoria@totvs.com.br",
+					"description": "Listagem de Tipos de Afastamento",
+                    "adapter" : ""
+				}                
+			]
+		}
+	},
+	"definitions": {
+		"LeaveOfAbsenceTypesInfo": {
+			"type": "object",
+			"description": "Informações dos Tipos de Afastamento",
+			"properties": {
+				"id": {
+					"description": "Código do afastamento",
+					"type": "string",
+					"x-totvs": [
+						{
+                            "product": "RM",
+                            "field": "PCODAFAST.CODCLIENTE",
+                            "available": true,
+                            "note": "Código do afastamento",							
+                            "type": "varchar",
+                            "length": 1,
+							"required": true
+						}
+					]
+				},
+				"CompanyCode": {
+					"type": "string",
+					"example": "1",
+					"description": "Código da Empresa",
+					"x-totvs": [
+						{
+							"product": "RM",
+							"field": "não possui campo físico na tabela",
+							"required": true,
+							"type": "",
+							"length": "",
+							"note": "",
+							"available": true,
+							"canUpdate": false
+						}
+					]
+				},
+				"BranchId": {
+					"type": "string",
+					"description": "Código da Filial",
+					"x-totvs": [
+						{
+							"product": "RM",
+							"field": "não possui campo físico na tabela",
+							"required": true,
+							"type": "",
+							"length": "",
+							"note": "",
+							"available": true,
+							"canUpdate": false
+						}
+					]
+				},
+				"LeaveOfAbsenceCode": {
+					"type": "string",
+					"example": "1",
+					"description": "Código do Tipo de Afastamento",
+					"x-totvs": [
+						{
+							"product": "RM",
+                            "field": "PCODAFAST.CODCLIENTE",
+                            "available": true,
+                            "note": "Código do afastamento",							
+                            "type": "varchar",
+                            "length": 1,
+							"required": true
+						}
+					]
+				},
+				"Name": {
+					"type": "string",
+					"description": "Nome do Tipo de Afastamento",
+					"x-totvs": [
+						{
+                            "product": "RM",
+                            "field": "PCODAFAST.DESCRICAO",
+                            "available": true,
+                            "note": "Descrição do Tipo de Afastamento",							
+                            "type": "varchar",
+                            "length": 50,
+							"required": true
+                        }
+					]
+				},
+				"EsocialLeaveCode": {
+					"type": "string",
+					"example": "01",
+					"description": "Código de Afastamento do Esocial",
+					"x-totvs": [
+						{
+							"product": "RM",
+							"field": "PESOCIALMOTAFAS.CODCLIENTE",
+							"required": true,
+							"type": "varchar",
+							"length": "tamanho máximo de 10",
+							"available": true,
+							"canUpdate": true
+						}
+					]
+				}				
+			}
+		}
+	}
+}
