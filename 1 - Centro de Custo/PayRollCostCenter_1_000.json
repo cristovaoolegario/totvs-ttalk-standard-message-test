@@ -30,8 +30,8 @@
 				},
 				{
 					"product": "Datasul",
-					"contact": "",
-					"description": "",
+					"contact": "fabio.abrao@totvs.com.br",
+					"description": "Product Owner RH - Datasul",
 					"adapter": ""
 				}
 			]			
@@ -84,7 +84,7 @@
             },
             {
               "product": "DATASUL",
-              "field": "",
+              "field": "RH_ESTAB.CDN_EMPRESA|RH_CCUSTO.COD_RH_CCUSTO",
               "available": true,
               "type": "varchar",
               "required": true
@@ -115,10 +115,10 @@
             },
             {
               "product": "DATASUL",
-              "field": "",
+              "field": "RH_ESTAB.CDN_EMPRESA",
               "available": true,
-              "type": "",
-              "length": 0,
+              "type": "character",
+              "length": 3,
               "required": true,
               "canUpdate": false
             }
@@ -150,10 +150,10 @@
             },
             {
               "product": "DATASUL",
-              "field": "",
+              "field": "RH_ESTAB.CDN_ESTAB",
               "required": true,
-              "type": "",
-              "length": "",
+              "type": "character",
+              "length": "5",
               "note": "",
               "available": true,
               "canUpdate": false
@@ -186,11 +186,11 @@
             },
             {
               "product": "DATASUL",
-              "field": "",
+              "field": "RH_CCUSTO.COD_RH_CCUSTO",
               "required": true,
               "note": "",
-              "type": "varchar",
-              "length": 0,
+              "type": "character",
+              "length": 20,
               "available": true,
               "canUpdate": false
             }
@@ -222,11 +222,11 @@
             },
             {
               "product": "DATASUL",
-              "field": "",
+              "field": "RH_CCUSTO.DES_RH_CCUSTO",
               "required": false,
               "note": "Nome do Centro de Custo da Folha de Pagamento",
-              "type": "",
-              "length": 0,
+              "type": "character",
+              "length": 40,
               "available": true,
               "canUpdate": false
             }
