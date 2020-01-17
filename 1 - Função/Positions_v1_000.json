@@ -129,7 +129,10 @@
               "application/json": {
                 "schema": {
                   "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/definitions/ErrorModel"
-                },
+                }
+              }
+            }
+          },
                 "500": {
                   "description": "Erro no acesso ao EndPoint.",
                   "content": {
@@ -137,11 +140,6 @@
                       "schema": {
                         "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/definitions/ErrorModel"
                       }
-
-                    }
-                  }
-                }
-              }
             }
           }
         },

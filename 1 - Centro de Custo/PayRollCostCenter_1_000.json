@@ -13,14 +13,14 @@
 			"messageDocumentation": {
 				"name": "CostCenter",
 				"description": "Dados da folha de pagamento pertinente ao cadastro de Centros de Custo",
-				"segment": "Manufatura"
+				"segment": "Recursos Humanos"
 			},
 			"productInformation": [
 				{
 					"product": "Protheus",
-					"contact": "rplyra@totvs.com.br",
-					"description": " ",
-					"adapter": ""
+					"contact": "marcia.moura@totvs.com.br",
+					"description": "Product Owner RH - Protheus",
+					"adapter": "GPEA002API.PRW"
 				},
 				{
 					"product": "RM",
@@ -67,82 +67,170 @@
 				"id": {
 					"description": "Código Identificador do Centro de Custo da Folha de Pagamento",
 					"type": "string",
-					"x-totvs": [
-						{
-                            "product": "RM",
-                            "field": "PCCUSTO.CODCOLIGADA|PCCUSTO.CODCCUSTO",
-                            "available": true,
-                            "type": "varchar",
-							"required": true
-						}
-					]
+          "x-totvs": [
+            {
+              "product": "RM",
+              "field": "PCCUSTO.CODCOLIGADA|PCCUSTO.CODCCUSTO",
+              "available": true,
+              "type": "varchar",
+              "required": true
+            },
+            {
+              "product": "PROTHEUS",
+              "field": "TMP.EMP|CTT_FILIAL|CTT_CUSTO",
+              "available": true,
+              "type": "varchar",
+              "required": true
+            },
+            {
+              "product": "DATASUL",
+              "field": "",
+              "available": true,
+              "type": "varchar",
+              "required": true
+            }
+          ]
 				},
 				"CompanyCode": {
 					"type": "string",
 					"example": "01",
 					"description": "Código da Empresa",
-					"x-totvs": [
-						{
-							"product": "RM",
-							"field": "PCCUSTO.CODCOLIGADA",
-                            "available": true,                            
-							"type": "integer",
-							"length": 2,							
-							"required": true,
-							"canUpdate": false
-						}
-					]
+          "x-totvs": [
+            {
+              "product": "RM",
+              "field": "PCCUSTO.CODCOLIGADA",
+              "available": true,
+              "type": "integer",
+              "length": 2,
+              "required": true,
+              "canUpdate": false
+            },
+            {
+              "product": "PROTHEUS",
+              "field": "TMP.EMP",
+              "available": true,
+              "type": "string",
+              "required": true,
+              "canUpdate": false
+            },
+            {
+              "product": "DATASUL",
+              "field": "",
+              "available": true,
+              "type": "",
+              "length": 0,
+              "required": true,
+              "canUpdate": false
+            }
+          ]
 				},
 				"BranchId": {
 					"type": "string",
                     "description": "Código da Filial",
                     "example": "1",
-					"x-totvs": [
-						{
-							"product": "RM",
-							"field": "não possui campo físico na tabela",
-							"required": true,
-							"type": "",
-							"length": "",
-							"note": "",
-							"available": true,
-							"canUpdate": false
-						}
-					]
+          "x-totvs": [
+            {
+              "product": "RM",
+              "field": "não possui campo físico na tabela",
+              "required": true,
+              "type": "",
+              "length": "",
+              "note": "",
+              "available": true,
+              "canUpdate": false
+            },
+            {
+              "product": "PROTHEUS",
+              "field": "CTT_FILIAL",
+              "required": true,
+              "type": "string",
+              "note": "",
+              "available": true,
+              "canUpdate": false
+            },
+            {
+              "product": "DATASUL",
+              "field": "",
+              "required": true,
+              "type": "",
+              "length": "",
+              "note": "",
+              "available": true,
+              "canUpdate": false
+            }
+          ]
 				},
 				"Code": {
 					"type": "string",					
                     "description": "Código do Centro de Custo da Folha de Pagamento",
                     "example": "01",
-					"x-totvs": [
-						{
-							"product": "RM",
-                            "field": "PCCUSTO.CODCCUSTO",
-                            "required": true,                            
-                            "note": "Código do Centro de Custo da Folha de Pagamento ",							
-                            "type": "varchar",
-                            "length": 25,
-                            "available": true,
-                            "canUpdate": false
-						}
-					]
+          "x-totvs": [
+            {
+              "product": "RM",
+              "field": "PCCUSTO.CODCCUSTO",
+              "required": true,
+              "note": "Código do Centro de Custo da Folha de Pagamento ",
+              "type": "varchar",
+              "length": 25,
+              "available": true,
+              "canUpdate": false
+            },
+            {
+              "product": "PROTHEUS",
+              "field": "CTT_CUSTO",
+              "required": true,
+              "note": "Código do Centro de Custo da Folha de Pagamento ",
+              "type": "varchar",
+              "available": true,
+              "canUpdate": false
+            },
+            {
+              "product": "DATASUL",
+              "field": "",
+              "required": true,
+              "note": "",
+              "type": "varchar",
+              "length": 0,
+              "available": true,
+              "canUpdate": false
+            }
+          ]
 				},
 				"Name": {
 					"type": "string",
-                    "description": "Nome do Centro de Custo da Folha de Pagamento",
-                    "example" : "Administrativo",
-					"x-totvs": [
-						{
-                            "product": "RM",
-                            "field": "PCCUSTO.NOME",
-                            "required": false,                            
-                            "note": "Nome do Centro de Custo da Folha de Pagamento",
-                            "type": "varchar",
-                            "length": 60,
-                            "available": true,
-                            "canUpdate": false
-                        }
-					]
+          "description": "Nome do Centro de Custo da Folha de Pagamento",
+          "example" : "Administrativo",
+          "x-totvs": [
+            {
+              "product": "RM",
+              "field": "PCCUSTO.NOME",
+              "required": false,
+              "note": "Nome do Centro de Custo da Folha de Pagamento",
+              "type": "varchar",
+              "length": 60,
+              "available": true,
+              "canUpdate": false
+            },
+            {
+              "product": "PROTHEUS",
+              "field": "CTT_DESC01",
+              "required": false,
+              "note": "Nome do Centro de Custo da Folha de Pagamento",
+              "type": "string",
+              "available": true,
+              "canUpdate": false
+            },
+            {
+              "product": "DATASUL",
+              "field": "",
+              "required": false,
+              "note": "Nome do Centro de Custo da Folha de Pagamento",
+              "type": "",
+              "length": 0,
+              "available": true,
+              "canUpdate": false
+            }
+          ]
 				}
 			}
 		}

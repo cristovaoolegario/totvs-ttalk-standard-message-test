@@ -1,244 +1,254 @@
 {
-	"openapi": "3.0.1",
-	"servers": [
-		{
-			"description": "API para cadastro de Centros de Custo da Folha de Pagamento para produtos TOTVS",
-			"url": "{{host}}/api/rh/v1",
-			"variables": {
-				"serverUrl": {
-					"default": "localhost"
-				},
-				"serverHttpPort": {
-					"default": "8051"
-				}
-			}
-		}
-	],
-	"info": {
-		"description": "API para cadastro de Centros de Custo da Folha de Pagamento para produtos TOTVS",
-		"version": "1.000",
-		"title": "Centros de Custo da Folha de Pagamento",
-		"contact": {
-			"name": "T-Talk",
-			"url": "https://api.totvs.com.br",
-			"email": "comiteintegracao@totvs.com.br"
-		},
-		"x-totvs": {
-			"messageDocumentation": {
-				"name": "Listagem de Centros de Custo da Folha de Pagamento",
-				"description": "Dados da folha de pagamento pertinente ao cadastro de Centros de Custo",
-				"segment": "Recursos Humanos"
-			},
-			"productInformation": [
-				{
-					"product": "Protheus",
-					"contact": "rplyra@totvs.com.br",
-					"description": " ",
-					"adapter": ""
-				},
-				{
-					"product": "RM",
-					"contact": "wellington.vieira@totvs.com.br",
-					"description": "Dados da folha de pagamento pertinente ao cadastro de Centros de Custo",
-					"adapter": "FopCCustoData"
-				},
-				{
-					"product": "Datasul",
-					"contact": "",
-					"description": "",
-					"adapter": ""
-				}
-			]
-		}
-	},
-	"paths": {
-		"/PayRollCostCenter": {
-			"get": {
-				"tags": [
-					"PayRollCostCenter"
-				],
-				"summary": "Retorna todos os registros da entidade de Centro de Custo da Folha de Pagamento",
-				"x-totvs": {
-					"productInformation": [
-						{
-							"product": "Protheus",
-							"available": true,
-							"note": "Este verbo esta disponivel com todos os parametros",
-							"minimalVersion": ""
-						},
-						{
-							"product": "RM",
-							"available": true,
-							"note": "Este verbo esta disponivel com todos os parametros",
-							"minimalVersion": "12.1.28"
-						},
-						{
-							"product": "Datasul",
-							"available": true,
-							"note": "Este verbo esta disponivel com todos os parametros",
-							"minimalVersion": ""
-						}
-					]
-				},
-				"description": "Retorna todos os registros da entidade de Centro de Custo da Folha de Pagamento cadastrados no sistema",
-				"operationId": "getPayRollCostCenter",
-				"parameters": [
-					{
-						"$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/parameters/Authorization"
-					},
-					{
-						"$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/parameters/Page"
-					},
-					{
-						"$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/parameters/PageSize"
-                    },
-                    {
-						"$ref": "#/components/parameters/dateModified"
-                    },
-                    {
-						"$ref": "#/components/parameters/companyId"
-					},
-					{
-						"$ref": "#/components/parameters/branchId"
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "Operação realizada com sucesso.",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/schemas/PayRollCostCenter_1_000.json#/definitions/PayRollCostCenters"
-								}
-							}
-						}
-                    },
-                    "400": {
-						"description": "Erro no momento da listagem dos registros de Centro de Custo da Folha de Pagamento.",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/definitions/ErrorModel"
-								}
-							}
-						}
-                    },
-                    "404": {
-						"description": "Nenhum registro localizado.",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/definitions/ErrorModel"
-								}
-							}
-						}
-					}
-				}
-			}
+  "openapi": "3.0.1",
+  "servers": [
+    {
+      "description": "API para cadastro de Centros de Custo da Folha de Pagamento para produtos TOTVS  - Mensagem global utilizando o conceito REST/JSON",
+      "url": "{{host}}/api/rh/v1",
+      "variables": {
+        "serverUrl": {
+          "default": "localhost"
+        },
+        "serverHttpPort": {
+          "default": "8051"
         }
+      }
+    }
+  ],
+  "info": {
+    "description": "API para cadastro de Centros de Custo da Folha de Pagamento para produtos TOTVS - Mensagem global utilizando o conceito REST/JSON",
+    "version": "1.000",
+    "title": "Centros de Custo da Folha de Pagamento",
+    "contact": {
+      "name": "T-Talk",
+      "url": "https://api.totvs.com.br",
+      "email": "comiteintegracao@totvs.com.br"
     },
-	"components": {
-		"parameters": {
-			"dateModified": {
-				"name": "datemodified",
-				"in": "query",
-				"required": false,
-				"description": "Data da ultima atualização do registro.",
-				"example": "YYYY-MM-DDThh:mm:ssZ",
-				"schema": {
-					"type": "string"
-				},
-				"x-totvs": {
-					"productInformation": [
-						{
-							"product": "Protheus",
-							"available": false,
-							"note": "Data de atualização da ultima requisição.",
-							"minimalVersion": "12.1.25"
-						},
-						{
-							"product": "RM",
-							"available": false,
-							"note": "Data de atualização da ultima requisição.",
-							"minimalVersion": "12.1.25"
-						},
-						{
-							"product": "Datasul",
-							"available": false,
-							"note": "Data de atualização da ultima requisição.",
-							"minimalVersion": "12.1.25"
-						}
-					]
-				}
+    "x-totvs": {
+      "messageDocumentation": {
+        "name": "Listagem de Centros de Custo da Folha de Pagamento",
+        "description": "Dados da folha de pagamento pertinente ao cadastro de Centros de Custo",
+        "segment": "Recursos Humanos"
+      },
+      "productInformation": [
+        {
+          "product": "Protheus",
+          "contact": "marcia.moura@totvs.com.br",
+          "description": "Dados da folha de pagamento pertinente ao cadastro de Centros de Custo",
+          "adapter": "GPEA002API.PRW"
+        },
+        {
+          "product": "RM",
+          "contact": "wellington.vieira@totvs.com.br",
+          "description": "Dados da folha de pagamento pertinente ao cadastro de Centros de Custo",
+          "adapter": "FopCCustoData"
+        },
+        {
+          "product": "Datasul",
+          "contact": "",
+          "description": "",
+          "adapter": ""
+        }
+      ]
+    }
+  },
+  "paths": {
+    "/PayRollCostCenter": {
+      "get": {
+        "tags": [
+          "PayRollCostCenter"
+        ],
+        "summary": "Retorna todos os registros da entidade Centro de Custo da Folha de Pagamento",
+        "x-totvs": {
+          "productInformation": [
+            {
+              "product": "Protheus",
+              "available": true,
+              "note": "Este verbo esta disponivel com todos os parametros",
+              "minimalVersion": ""
             },
-            "companyId": {
-				"name": "companyid",
-				"description": "Código da Empresa",
-				"type": "string",
-				"schema": {
-					"type": "string"
-				},
-				"x-totvs": [
-					{
-						"product": "Protheus",
-						"field": "",
-						"required": true,
-						"note": "será recebido o código da empresa, relacionado para ",
-						"available": true,
-						"canUpdate": false
-					},
-					{
-						"product": "RM",
-						"field": "",
-						"required": false,
-						"note": "será recebido o código da empresa, relacionado para ",
-						"available": true,
-						"canUpdate": false
-					},
-					{
-						"product": "Datasul",
-						"field": "",
-						"required": false,
-						"note": "será recebido o código da empresa, relacionado para ",
-						"available": true,
-						"canUpdate": false
-					}
-				]
-			},
-			"branchId": {
-				"description": "Código da Filial",
-				"type": "string",
-				"schema": {
-					"type": "string"
-				},
-				"x-totvs": [
-					{
-						"product": "Protheus",
-						"field": "",
-						"required": true,
-						"note": "Será recebido o código da variável",
-						"available": true,
-						"canUpdate": false
-					},
-					{
-						"product": "RM",
-						"field": "",
-						"required": false,
-						"note": "Não Será tratado pelo RM",
-						"available": true,
-						"canUpdate": false
-					},
-					{
-						"product": "Datasul",
-						"field": "",
-						"required": false,
-						"note": "Será recebido o código da variável",
-						"available": true,
-						"canUpdate": false
-					}
-				]
-			}
-		},
-		"schemas": {}
-	}
+            {
+              "product": "RM",
+              "available": true,
+              "note": "Este verbo esta disponivel com todos os parametros",
+              "minimalVersion": "12.1.28"
+            },
+            {
+              "product": "Datasul",
+              "available": true,
+              "note": "Este verbo esta disponivel com todos os parametros",
+              "minimalVersion": ""
+            }
+          ]
+        },
+        "description": "Retorna todos os registros da entidade Centro de Custo da Folha de Pagamento cadastrados no sistema",
+        "operationId": "getPayRollCostCenter",
+        "parameters": [
+          {
+            "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/parameters/Authorization"
+          },
+          {
+            "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/parameters/Page"
+          },
+          {
+            "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/parameters/PageSize"
+          },
+          {
+            "$ref": "#/components/parameters/dateModified"
+          },
+          {
+            "$ref": "#/components/parameters/companyId"
+          },
+          {
+            "$ref": "#/components/parameters/branchId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operação realizada com sucesso.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/schemas/PayRollCostCenter_1_000.json#/definitions/PayRollCostCenters"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro no momento da listagem dos registros de Centro de Custo da Folha de Pagamento.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/definitions/ErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Nenhum registro localizado.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/definitions/ErrorModel"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro no acesso ao EndPoint.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/definitions/ErrorModel"
+                }
+              }
+            }
+          },
+          "components": {
+            "parameters": {
+              "dateModified": {
+                "name": "datemodified",
+                "in": "query",
+                "required": false,
+                "description": "Data da ultima atualização do registro.",
+                "example": "YYYY-MM-DDThh:mm:ssZ",
+                "schema": {
+                  "type": "string"
+                },
+                "x-totvs": {
+                  "productInformation": [
+                    {
+                      "product": "Protheus",
+                      "available": false,
+                      "note": "Data de atualização da ultima requisição.",
+                      "minimalVersion": "12.1.25"
+                    },
+                    {
+                      "product": "RM",
+                      "available": false,
+                      "note": "Data de atualização da ultima requisição.",
+                      "minimalVersion": "12.1.25"
+                    },
+                    {
+                      "product": "Datasul",
+                      "available": false,
+                      "note": "Data de atualização da ultima requisição.",
+                      "minimalVersion": "12.1.25"
+                    }
+                  ]
+                }
+              },
+              "companyId": {
+                "name": "companyid",
+                "description": "Código da Empresa",
+                "type": "string",
+                "schema": {
+                  "type": "string"
+                },
+                "x-totvs": [
+                  {
+                    "product": "Protheus",
+                    "field": "",
+                    "required": true,
+                    "note": "será recebido o código da empresa para filtro no queryresult",
+                    "available": true,
+                    "canUpdate": false
+                  },
+                  {
+                    "product": "RM",
+                    "field": "",
+                    "required": false,
+                    "note": "será recebido o código da empresa, relacionado para ",
+                    "available": true,
+                    "canUpdate": false
+                  },
+                  {
+                    "product": "Datasul",
+                    "field": "",
+                    "required": false,
+                    "note": "será recebido o código da empresa, relacionado para ",
+                    "available": true,
+                    "canUpdate": false
+                  }
+                ]
+              },
+              "branchId": {
+                "description": "Código da Filial",
+                "type": "string",
+                "schema": {
+                  "type": "string"
+                },
+                "x-totvs": [
+                  {
+                    "product": "Protheus",
+                    "field": "",
+                    "required": true,
+                    "note": "Será recebido o código da filial, para filtro no queryresult",
+                    "available": true,
+                    "canUpdate": false
+                  },
+                  {
+                    "product": "RM",
+                    "field": "",
+                    "required": false,
+                    "note": "Não Será tratado pelo RM",
+                    "available": false,
+                    "canUpdate": false
+                  },
+                  {
+                    "product": "Datasul",
+                    "field": "",
+                    "required": false,
+                    "note": "Será recebido o código da variável",
+                    "available": true,
+                    "canUpdate": false
+                  }
+                ]
+              }
+            },
+            "schemas": {}
+          }
+        }
+      }
+    }
+  }
 }
