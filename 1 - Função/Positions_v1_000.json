@@ -44,9 +44,9 @@
         },
         {
           "product": "Datasul",
-          "contact": "",
-          "description": "",
-          "adapter": ""
+          "contact": "fabio.abrao@totvs.com.br",
+          "description": "Dados da folha de pagamento pertinente ao cadastro de Funções.",
+          "adapter": "fpefd561"
         }
       ]
     }
@@ -76,7 +76,7 @@
               "product": "Datasul",
               "available": true,
               "note": "Este verbo esta disponivel com todos os parametros",
-              "minimalVersion": ""
+              "minimalVersion": "12.1.28"
             }
           ]
         },
@@ -172,7 +172,7 @@
                     "product": "Datasul",
                     "available": false,
                     "note": "Data de atualização da ultima requisição.",
-                    "minimalVersion": "12.1.25"
+                    "minimalVersion": "12.1.28"
                   }
                 ]
               }
@@ -204,7 +204,7 @@
                 {
                   "product": "Datasul",
                   "field": "",
-                  "required": false,
+                  "required": true,
                   "note": "será recebido o código da empresa, relacionado para ",
                   "available": true,
                   "canUpdate": false
@@ -238,7 +238,7 @@
                   "product": "Datasul",
                   "field": "",
                   "required": false,
-                  "note": "Será recebido o código da variável",
+                  "note": "Não será recebido pelo DataSul",
                   "available": true,
                   "canUpdate": false
                 }
