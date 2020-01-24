@@ -23,13 +23,13 @@
 					"adapter": "FopCCustoData"
 				},
 				{
-					"product": "Protheus",
+					"product": "PROTHEUS",
 					"contact": "marcia.moura@totvs.com.br",
-					"description": "Product Owner RH - Protheus",
+					"description": "Funções de Trabalho",
 					"adapter": "GPEA030API.PRW"
 				},
 				{
-					"product": "DataSul",
+					"product": "DATASUL",
 					"contact": "",
 					"note": "",
 					"adapter": ""
@@ -47,17 +47,16 @@
 					"type": "string",
           "x-totvs": [
             {
-				"product": "RM",
-				"available": true,
-				"note": "Código da coligada e código da função",
-				"field": "PFUNCAO.CODCOLIGADA|PFUNCAO.CODIGO",
-				"type": "string",
-				"required": true
-			},
+              "product": "RM",
+              "available": true,
+              "field": "PFUNCAO.CODCOLIGADA|PFUNCAO.CODIGO",
+              "type": "string",
+              "required": true
+			      },
             {
               "product": "PROTHEUS",
               "available": true,
-              "note": "Código da empresa + código da filial + código da função",
+ 
               "field": "TMP.EMPRESA + SRJ.RJ_FILIAL + SRJ.RJ_FUNCAO",
               "type": "string",
               "required": true
@@ -65,7 +64,6 @@
             {
               "product": "DATASUL",
               "available": true,
-              "note": "Código do coligada e código da função",
               "field": "",
               "type": "string",
               "required": true
@@ -110,13 +108,14 @@
 					"description": "Código da Filial",
           "x-totvs": [
             {
-              "product": "RM",
-              "field": "Não exite na linha RM,",
+			  "product": "RM",  
+              "field": "",
+			  "note": "não possui campo físico na tabela",
               "required": false
             },
             {
               "product": "PROTHEUS",
-              "field": "RJ_FILIAL",
+              "field": "SRJ.RJ_FILIAL",
               "required": true,
               "type": "string",
               "available": true,
