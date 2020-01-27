@@ -19,8 +19,8 @@
     "version": "1.000",
     "title": "Funções",
     "contact": {
-      "name": "T-Talk",
-      "url": "https://api.totvs.com.br",
+    "name": "T-Talk",
+    "url": "https://api.totvs.com.br",
       "email": "comiteintegracao@totvs.com.br"
     },
     "x-totvs": {
@@ -242,10 +242,11 @@
                   "available": true,
                   "canUpdate": false
                 }
-              ]
-            }
-          },
-          "schemas": {}
+                ]
+              }
+            },
+            "schemas": {}
+          }
         }
       }
     }

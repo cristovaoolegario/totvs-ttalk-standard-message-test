@@ -26,7 +26,7 @@
 					"product": "PROTHEUS",
 					"contact": "marcia.moura@totvs.com.br",
 					"description": "Listagem de Turnos de Trabalho",
-                    "adapter" : "GPEA080API.PRW"
+                    "adapter" : "PONA080API.PRW"
 				},
 				{
 					"product": "DATASUL",
