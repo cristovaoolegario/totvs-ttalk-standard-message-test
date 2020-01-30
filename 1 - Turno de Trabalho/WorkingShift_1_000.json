@@ -30,7 +30,7 @@
 				},
 				{
 					"product": "DATASUL",
-					"contact": "triberh.progress.squad.pagadoria@totvs.com.br",
+					"contact": "fabio.abrao@totvs.com.br",
 					"description": "Listagem de Turnos de Trabalho",
                     "adapter" : ""
 				}                
@@ -62,7 +62,7 @@
 						},
 						{
                             "product": "DATASUL",
-                            "field": "",
+                            "field": "turno_trab_categ_sal.cdn_empresa|turno_trab.cdn_turno_trab",
                             "available": true,
                             "type": "varchar",
 							"required": true
@@ -93,9 +93,10 @@
 						},
 						{
 							"product": "DATASUL",
-							"field": "",
+							"field": "turno_trab_categ_sal.cdn_empresa",
                             "available": true,                            
-							"type": "",
+							"type": "string",
+							"length": 3,
 							"required": true,
 							"canUpdate": false
 						}
@@ -122,9 +123,10 @@
 						},
 						{
 							"product": "DATASUL",
-							"field": "",
+							"field": "turno_trab_categ_sal.cdn_estab",
 							"required": true,
-							"type": "",
+							"type": "string",
+							"length": 3,
 							"available": true,
 							"canUpdate": false
 						}
@@ -154,9 +156,10 @@
 						},
 						{
 							"product": "DATASUL",
-                            "field": "",
+                            "field": "turno_trab.cdn_turno_trab",
                             "required": true,                            
-                            "type": "varchar",
+                            "type": "integer",
+							"length": 4,
                             "available": true,
                             "canUpdate": false
 						}
@@ -186,9 +189,9 @@
                         },
 												{
                             "product": "DATASUL",
-                            "field": "",
+                            "field": "turno_trab.des_turno_trab",
                             "required": false,                            
-                            "type": "varchar",
+                            "type": "string",							
                             "available": true,
                             "canUpdate": false
                         }
@@ -219,10 +222,9 @@
 						},
 						{
 							"product": "DATASUL",
-                            "field": "",
+                            "field": "turno_trab.qtd_hrs_padr_mes_rh",
                             "required": false,                            
-                            "type": "varchar",
-                            "length": 6,
+                            "type": "decimal",                            
                             "available": true,
                             "canUpdate": false
 						}
