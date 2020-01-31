@@ -38,7 +38,29 @@
     }
   },
   "definitions": {
-    "PositionsInfo": {
+    "PagedPositions": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/definitions/Paging"
+        },
+        {
+          "$ref": "#/definitions/Positions"
+        }
+      ]
+    },
+    "Positions": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PositionInfo"
+          }
+        }
+      }
+    },
+    "PositionInfo": {
       "description": "Cadastro de Funções",
       "type": "object",
       "properties": {
@@ -107,7 +129,7 @@
           "description": "Código da Filial",
           "x-totvs": [
             {
-              "product": "RM",              
+              "product": "RM",
               "note": "não possui campo físico na tabela",
               "required": false,
               "available": false,
