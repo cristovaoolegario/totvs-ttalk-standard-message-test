@@ -44,9 +44,9 @@
 				},
 				{
 					"product": "Datasul",
-					"contact": "triberh.progress.squad.pagadoria@totvs.com.br",
+					"contact": "fabio.abrao@totvs.com.br",
 					"description": "Listagem de Tipos de Afastamento",
-                    "adapter" : ""
+                    "adapter" : "fpefd561"
 				}                
 			]
 		}
@@ -62,6 +62,12 @@
 					"productInformation": [
 						{
 							"product": "RM",
+							"available": true,
+							"note": "Este verbo esta disponível com todos os parâmetros",
+							"minimalVersion": "12.1.28"
+						},
+						{
+							"product": "DATASUL",
 							"available": true,
 							"note": "Este verbo esta disponível com todos os parâmetros",
 							"minimalVersion": "12.1.28"
@@ -82,7 +88,10 @@
                     },
                     {
                         "$ref": "#/components/parameters/dateModified"
-                    }
+                    },
+					{
+                        "$ref": "#/components/parameters/companyId"
+                    }					
 				],
 				"responses": {
 					"200": {
@@ -137,11 +146,44 @@
 						{
 							"product": "Datasul",
 							"available": true,
-							"note": "",
-							"minimalVersion": ""
+							"note": "Data de atualização da ultima requisição.",
+							"minimalVersion": "12.1.28"
 						}
 					]
 				}
+			},
+			"compayId":{
+				"name": "companyId",
+				"in": "query",
+				"required": true,
+				"description": "Código da Empresa",
+				"example": "",
+				"schema": {
+					"type": "string"
+				},
+				"x-totvs": {
+					"productInformation": [
+						{
+							"product": "Protheus",
+							"available": true,
+							"note": "",
+							"minimalVersion": ""
+						},
+						{
+							"product": "RM",
+							"available": true,
+							"note": "",
+							"minimalVersion": ""
+						},
+						{
+							"product": "Datasul",
+							"available": true,
+							"note": "será recebido o código da empresa, relacionado para",
+							"minimalVersion": "12.1.28"
+						}
+					]
+				}
+			
 			}
 		},
 		"schemas": {}

@@ -1,63 +1,83 @@
 {
-	"$schema": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/Position/v1/1_000/jsonschema/schemas/Position_1_000.json#",
-	"info": {
-		"description": "API para a entidade de Funções para os produtos TOTVS.",
-		"version": "1.000",
-		"title": "Position",
-		"contact": {
-			"name": "T-Talk",
-			"url": "https://api.totvs.com.br",
-			"email": "comiteintegracao@totvs.com.br"
-		},
-		"x-totvs": {
-			"messageDocumentation": {
-				"name": "Position",
-				"description": "Cadastro de Funções",
-				"segment": "Recursos Humanos"
-			},
-			"productInformation": [
-				{
-					"product": "RM",
-					"contact": "wellington.vieira@totvs.com.br",
-					"note": "Folha de Pagamento",
-					"adapter": "FopCCustoData"
-				},
-				{
-					"product": "Protheus",
-					"contact": "marcia.moura@totvs.com.br",
-					"description": "Product Owner RH - Protheus",
-					"adapter": "GPEA030API.PRW"
-				},
-				{
-					"product": "DataSul",
-					"contact": "fabio.abrao@totvs.com.br",
-					"note": "Product Owner RH - DataSul",
-					"adapter": "fpefd561"
-				}
-			]
-		}
-	},
-	"definitions": {
-		"PositionsInfo": {
-			"description": "Cadastro de Funções",
-			"type": "object",
-			"properties": {
-				"id": {
-					"description": "Chave única do registro dentro da entidade",
-					"type": "string",
+  "$schema": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/Position/V1/1_000/jsonschema/schemas/Position_1_000.json#",
+  "info": {
+    "description": "API para a entidade de Funções para os produtos TOTVS.",
+    "version": "1.000",
+    "title": "Position",
+    "contact": {
+      "name": "T-Talk",
+      "url": "https://api.totvs.com.br",
+      "email": "comiteintegracao@totvs.com.br"
+    },
+    "x-totvs": {
+      "messageDocumentation": {
+        "name": "Position",
+        "description": "Cadastro de Funções",
+        "segment": "Recursos Humanos"
+      },
+      "productInformation": [
+        {
+          "product": "RM",
+          "contact": "wellington.vieira@totvs.com.br",
+          "note": "Folha de Pagamento",
+          "adapter": "PositionController"
+        },
+        {
+          "product": "PROTHEUS",
+          "contact": "marcia.moura@totvs.com.br",
+          "description": "Funções de Trabalho",
+          "adapter": "GPEA030API.PRW"
+        },
+        {
+          "product": "DATASUL",
+          "contact": "fabio.abrao@totvs.com.br",
+          "description": "Product Owner RH - Datasul",
+          "adapter": "fpefd561"
+        }
+      ]
+    }
+  },
+  "definitions": {
+    "PagedPositions": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/definitions/Paging"
+        },
+        {
+          "$ref": "#/definitions/Positions"
+        }
+      ]
+    },
+    "Positions": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PositionInfo"
+          }
+        }
+      }
+    },
+    "PositionInfo": {
+      "description": "Cadastro de Funções",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Chave única do registro dentro da entidade",
+          "type": "string",
           "x-totvs": [
             {
-				"product": "RM",
-				"available": true,
-				"note": "Código da coligada e código da função",
-				"field": "PFUNCAO.CODCOLIGADA|PFUNCAO.CODIGO",
-				"type": "string",
-				"required": true
-			},
+              "product": "RM",
+              "available": true,
+              "field": "PFUNCAO.CODCOLIGADA|PFUNCAO.CODIGO",
+              "type": "string",
+              "required": true
+            },
             {
               "product": "PROTHEUS",
               "available": true,
-              "note": "Código da empresa + código da filial + código da função",
               "field": "TMP.EMPRESA + SRJ.RJ_FILIAL + SRJ.RJ_FUNCAO",
               "type": "string",
               "required": true
@@ -71,11 +91,11 @@
               "required": true
             }
           ]
-				},
-				"CompanyId": {
-					"type": "string",
-					"example": "1",
-					"description": "Código da Empresa",
+        },
+        "CompanyId": {
+          "type": "string",
+          "example": "1",
+          "description": "Código da Empresa",
           "x-totvs": [
             {
               "product": "RM",
@@ -90,7 +110,7 @@
               "product": "PROTHEUS",
               "field": "TMP.EMPRESA",
               "required": true,
-              "type": "string",              
+              "type": "string",
               "available": true,
               "canUpdate": false
             },
@@ -104,19 +124,21 @@
               "canUpdate": false
             }
           ]
-				},
-				"BranchId": {
-					"type": "string",
-					"description": "Código da Filial",
+        },
+        "BranchId": {
+          "type": "string",
+          "description": "Código da Filial",
           "x-totvs": [
             {
               "product": "RM",
-              "field": "Não exite na linha RM,",
-              "required": false
+              "note": "não possui campo físico na tabela",
+              "required": false,
+              "available": false,
+              "canUpdate": false
             },
             {
               "product": "PROTHEUS",
-              "field": "RJ_FILIAL",
+              "field": "SRJ.RJ_FILIAL",
               "required": true,
               "type": "string",
               "available": true,
@@ -132,11 +154,11 @@
               "canUpdate": false
             }
           ]
-				},
-				"PositionCode": {
-					"type": "string",
-					"example": "1",
-					"description": "Código da Função",
+        },
+        "PositionCode": {
+          "type": "string",
+          "example": "1",
+          "description": "Código da Função",
           "x-totvs": [
             {
               "product": "RM",
@@ -165,11 +187,11 @@
               "canUpdate": false
             }
           ]
-				},
-				"Name": {
-					"type": "string",
-					"example": "Analista de Sistemas",
-					"description": "Nome da Função",
+        },
+        "Name": {
+          "type": "string",
+          "example": "Analista de Sistemas",
+          "description": "Nome da Função",
           "x-totvs": [
             {
               "product": "RM",
@@ -198,41 +220,41 @@
               "canUpdate": true
             }
           ]
-				}
-			},
-			"Cbo": {
-				"type": "string",
-					"example": "08320",
-					"description": "CBO da Função",
-        "x-totvs": [
-          {
-            "product": "RM",
-            "field": "PFUNCAO.CBO2002",
-            "required": false,
-            "type": "varchar",
-            "length": "tamanho máximo de 8",
-            "available": true,
-            "canUpdate": true
-          },
-          {
-            "product": "PROTHEUS",
-            "field": "RJ_CODCBO",
-            "required": false,
-            "type": "varchar",
-            "available": true,
-            "canUpdate": true
-          },
-          {
-            "product": "DATASUL",
-            "field": "CARGO_BASIC.COD_CLASSIF_OCUPAC",
-            "required": false,
-            "type": "character",
-            "length": "6",
-            "available": true,
-            "canUpdate": true
-          }
-        ]
-			}
-		}
-	}
+        },
+        "Cbo": {
+          "type": "string",
+          "example": "08320",
+          "description": "CBO da Função",
+          "x-totvs": [
+            {
+              "product": "RM",
+              "field": "PFUNCAO.CBO2002",
+              "required": false,
+              "type": "varchar",
+              "length": "tamanho máximo de 8",
+              "available": true,
+              "canUpdate": true
+            },
+            {
+              "product": "PROTHEUS",
+              "field": "RJ_CODCBO",
+              "required": false,
+              "type": "varchar",
+              "available": true,
+              "canUpdate": true
+            },
+            {
+              "product": "DATASUL",
+              "field": "CARGO_BASIC.COD_CLASSIF_OCUPAC",
+              "required": false,
+              "type": "character",
+              "length": "6",
+              "available": true,
+              "canUpdate": true
+            }
+          ]
+        }
+      }
+    }
+  }
 }

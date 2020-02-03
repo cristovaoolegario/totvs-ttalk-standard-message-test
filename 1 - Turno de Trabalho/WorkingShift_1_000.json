@@ -3,10 +3,10 @@
 	"info": {
 		"description": "API para a entidade Turnos de Trabalho (WorkingShift) para produtos TOTVS",
 		"version": "1.000",
-		"title": "Turnos de Trabalho",
+		"title": "WorkingShift",
 		"contact": {
 			"name": "T-Talk",
-			"url": "API.Totvs.com.br",
+			"url": "https://api.totvs.com.br",
 			"email": "comiteintegracao@totvs.com.br"
 		},
 		"x-totvs": {
@@ -23,14 +23,14 @@
                     "adapter" : "PtoHorarioData"
                 },
                 {
-					"product": "Protheus",
-					"contact": "rplyra@totvs.com.br",
+					"product": "PROTHEUS",
+					"contact": "marcia.moura@totvs.com.br",
 					"description": "Listagem de Turnos de Trabalho",
-                    "adapter" : ""
+                    "adapter" : "PONA080API.PRW"
 				},
 				{
-					"product": "Datasul",
-					"contact": "triberh.progress.squad.pagadoria@totvs.com.br",
+					"product": "DATASUL",
+					"contact": "fabio.abrao@totvs.com.br",
 					"description": "Listagem de Turnos de Trabalho",
                     "adapter" : ""
 				}                
@@ -39,11 +39,11 @@
 	},
 	"definitions": {
 		"WorkingShiftInfo": {
+		  "description": "Listagem de Turnos de Trabalho",
 			"type": "object",
-			"description": "Informações dos Turnos de Trabalho",
 			"properties": {
 				"id": {
-					"description": "Código Identificador do Turno de trabalho",
+					"description": "Chave única do registro dentro da entidade",
 					"type": "string",
 					"x-totvs": [
 						{
@@ -52,10 +52,24 @@
                             "available": true,
                             "type": "varchar",
 							"required": true
+						},
+						{
+                            "product": "PROTHEUS",
+                            "field": "TMP.EMPRESA + SR6.R6_FILIAL + SR6.R6_TURNO",
+                            "available": true,
+                            "type": "varchar",
+							"required": true
+						},
+						{
+                            "product": "DATASUL",
+                            "field": "turno_trab_categ_sal.cdn_empresa|turno_trab.cdn_turno_trab",
+                            "available": true,
+                            "type": "varchar",
+							"required": true
 						}
 					]
 				},
-				"CompanyCode": {
+				"CompanyId": {
 					"type": "string",
 					"example": "01",
 					"description": "Código da Empresa",
@@ -68,6 +82,23 @@
 							"length": 2,							
 							"required": true,
 							"canUpdate": false
+						},
+						{
+							"product": "PROTHEUS",
+							"field": "TMP.EMPRESA",
+                            "available": true,                            
+							"type": "string",
+							"required": true,
+							"canUpdate": false
+						},
+						{
+							"product": "DATASUL",
+							"field": "turno_trab_categ_sal.cdn_empresa",
+                            "available": true,                            
+							"type": "string",
+							"length": 3,
+							"required": true,
+							"canUpdate": false
 						}
 					]
 				},
@@ -77,12 +108,25 @@
                     "example": "1",
 					"x-totvs": [
 						{
-							"product": "RM",
-							"field": "não possui campo físico na tabela",
+							"product": "RM",  
+                            "field": "",
+							"note": "não possui campo físico na tabela",
+							"required": false		
+						},
+						{
+							"product": "PROTHEUS",
+							"field": "SR6.R6_FILIAL",
 							"required": true,
-							"type": "",
-							"length": "",
-							"note": "",
+							"type": "string",
+							"available": true,
+							"canUpdate": false
+						},
+						{
+							"product": "DATASUL",
+							"field": "turno_trab_categ_sal.cdn_estab",
+							"required": true,
+							"type": "string",
+							"length": 3,
 							"available": true,
 							"canUpdate": false
 						}
@@ -97,9 +141,25 @@
 							"product": "RM",
                             "field": "AHORARIO.CODIGO",
                             "required": true,                            
-                            "note": "Código do Horário",							
                             "type": "varchar",
                             "length": 10,
+                            "available": true,
+                            "canUpdate": false
+						},
+						{
+							"product": "PROTHEUS",
+                            "field": "SR6.R6_TURNO",
+                            "required": true,                            
+                            "type": "varchar",
+                            "available": true,
+                            "canUpdate": false
+						},
+						{
+							"product": "DATASUL",
+                            "field": "turno_trab.cdn_turno_trab",
+                            "required": true,                            
+                            "type": "integer",
+							"length": 4,
                             "available": true,
                             "canUpdate": false
 						}
@@ -107,16 +167,31 @@
 				},
 				"Name": {
 					"type": "string",
-                    "description": "Nome do Tipo de Turno de trabalho",
+                    "description": "Descrição do Horário",
                     "example" : "Horário 08:00 12:00 14:00 18:00 sem Intervalo de Refeição.",
 					"x-totvs": [
 						{
                             "product": "RM",
                             "field": "AHORARIO.DESCRICAO",
                             "required": false,                            
-                            "note": "Descrição do Horário",							
                             "type": "varchar",
                             "length": 100,
+                            "available": true,
+                            "canUpdate": false
+                        },
+												{
+                            "product": "PROTHEUS",
+                            "field": "SR6.R6_DESC",
+                            "required": false,                            
+                            "type": "varchar",
+                            "available": true,
+                            "canUpdate": false
+                        },
+												{
+                            "product": "DATASUL",
+                            "field": "turno_trab.des_turno_trab",
+                            "required": false,                            
+                            "type": "string",							
                             "available": true,
                             "canUpdate": false
                         }
@@ -134,6 +209,22 @@
                             "note": "É equivalente ao campo calculado 'Número de Horas'.",							
                             "type": "varchar",
                             "length": 6,
+                            "available": true,
+                            "canUpdate": false
+						},
+												{
+							"product": "PROTHEUS",
+                            "field": "SR6.R6_RHNORMA",
+                            "required": false,                            
+                            "type": "integer",
+                            "available": true,
+                            "canUpdate": false
+						},
+						{
+							"product": "DATASUL",
+                            "field": "turno_trab.qtd_hrs_padr_mes_rh",
+                            "required": false,                            
+                            "type": "decimal",                            
                             "available": true,
                             "canUpdate": false
 						}

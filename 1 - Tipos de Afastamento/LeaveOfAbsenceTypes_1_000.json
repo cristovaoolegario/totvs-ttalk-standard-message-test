@@ -30,9 +30,9 @@
 				},
 				{
 					"product": "Datasul",
-					"contact": "triberh.progress.squad.pagadoria@totvs.com.br",
+					"contact": "fabio.abrao@totvs.com.br",
 					"description": "Listagem de Tipos de Afastamento",
-                    "adapter" : ""
+                    "adapter" : "fpefd561"
 				}                
 			]
 		}
@@ -54,6 +54,16 @@
                             "type": "varchar",
                             "length": 1,
 							"required": true
+						},
+						{
+							"product": "DATASUL",
+							"field" : "rh_estab.cdn_empresa | sit_afast.cdn_sit_afast_func",
+							"available": true,
+							"note": "Código do afastamento",							
+                            "type": "varchar",
+                            "length": 1,
+							"required": true
+						
 						}
 					]
 				},
@@ -69,6 +79,16 @@
 							"type": "",
 							"length": "",
 							"note": "",
+							"available": true,
+							"canUpdate": false
+						},
+						{
+							"product": "DATASUL",
+							"field": "",
+							"required": true,
+							"type": "string",
+							"length": "",
+							"note": "será recebido o código da empresa, relacionado para",
 							"available": true,
 							"canUpdate": false
 						}
@@ -87,6 +107,16 @@
 							"note": "",
 							"available": true,
 							"canUpdate": false
+						},
+						{
+							"product": "DATASUL",
+							"field": "não possui campo físico na tabela",
+							"required": false,
+							"type": "",
+							"length": "",
+							"note": "Não Será tratadp pelo DATASUL",
+							"available": true,
+							"canUpdate": false
 						}
 					]
 				},
@@ -103,6 +133,15 @@
                             "type": "varchar",
                             "length": 1,
 							"required": true
+						},
+						{
+							"product": "DATASUL",
+                            "field": "sit_afast.cdn_sit_afast_func",
+                            "available": true,
+                            "note": "Código do afastamento",							
+                            "type": "string",
+                            "length": "5",
+							"required": true
 						}
 					]
 				},
@@ -118,6 +157,15 @@
                             "type": "varchar",
                             "length": 50,
 							"required": true
+                        },
+						{
+                            "product": "DATASUL",
+                            "field": "sit_afast.des_sit_afast_func",
+                            "available": true,
+                            "note": "Descrição do Tipo de Afastamento",							
+                            "type": "varchar",
+                            "length": 30,
+							"required": true
                         }
 					]
 				},
@@ -132,6 +180,15 @@
 							"required": true,
 							"type": "varchar",
 							"length": "tamanho máximo de 10",
+							"available": true,
+							"canUpdate": true
+						},
+						{
+							"product": "DATASUL",
+							"field": "sped_sit_afast.cod_motiv_afast",
+							"required": true,
+							"type": "varchar",
+							"length": "tamanho máximo de 3",
 							"available": true,
 							"canUpdate": true
 						}

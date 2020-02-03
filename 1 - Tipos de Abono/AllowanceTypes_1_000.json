@@ -20,6 +20,11 @@
 					"product": "RM",
 					"contact": "rm_FW@totvs.com.br",
 					"description": "Listagem dos tipos de abonos"
+				},
+				{
+					"product": "DataSul",
+					"contact": "fabio.abrao@totvs.com.br",
+					"description": "Listagem dos tipos de abonos"
 				}
 			]
 		}
@@ -48,7 +53,7 @@
 			"type": "object",
 			"properties": {
 				"CompanyCode": {
-					"type": "integer",
+					"type": "string",
 					"example": "1",
 					"description": "Código da Empresa",
 					"x-totvs": [
@@ -58,7 +63,16 @@
 							"required": true,
 							"type": "integer",
 							"available": true,
+							"length": 1,
 							"canUpdate": false
+						},
+						{
+							"product": "DataSul",
+							"field": "RH_ESTAB.CDN_EMPRESA",
+							"required": true,
+							"type": "character",
+							"length": 3,
+							"available": true
 						}
 					]
 				},
@@ -72,8 +86,16 @@
 							"field": "AABONO.CODIGO",
 							"required": true,
 							"type": "string",
-							"available": true,
-							"canUpdate": false
+							"length": 5,
+							"available": true
+						},
+						{
+							"product": "DataSul",
+							"field": "SIT_AFAST.CDN_SIT_AFAST_FUNC",
+							"required": true,
+							"type": "intger",
+							"length": 5,
+							"available": true
 						}
 					]
 				},
@@ -87,78 +109,16 @@
 							"field": "AABONO.DESCRICAO",
 							"required": false,
 							"type": "string",
-							"available": true,
-							"canUpdate": true
-						}
-					]
-				},
-				"IncludeWorkedHours": {
-					"type": "integer",
-					"description": "Inclui horas trabalhadas",
-					"x-totvs": [
+							"length": 30,
+							"available": true
+						},
 						{
-							"product": "RM",
-							"field": "AABONO.INCLUIHORASTRAB",
-							"required": false,
-							"type": "integer",
-							"available": true,
-							"canUpdate": true
-						}
-					]
-				},
-				"AllowanceTypeDSR": {
-					"type": "integer",
-					"description": "Tipo de abono DSR",
-					"x-totvs": [
-						{
-							"product": "RM",
-							"field": "AABONO.TIPOABONODSR",
-							"required": false,
-							"type": "integer",
-							"available": true,
-							"canUpdate": true
-						}
-					]
-				},
-				"AllowanceDaysLimit": {
-					"type": "integer",
-					"description": "Limite de dias de abono",
-					"x-totvs": [
-						{
-							"product": "RM",
-							"field": "AABONO.LIMDIASABONO",
-							"required": false,
-							"type": "integer",
-							"available": true,
-							"canUpdate": true
-						}
-					]
-				},
-				"Period": {
-					"type": "integer",
-					"description": "Período",
-					"x-totvs": [
-						{
-							"product": "RM",
-							"field": "AABONO.PERIODO",
-							"required": false,
-							"type": "integer",
-							"available": true,
-							"canUpdate": true
-						}
-					]
-				},
-				"ActiveInPortal": {
-					"type": "integer",
-					"description": "Ativo no portal",
-					"x-totvs": [
-						{
-							"product": "RM",
-							"field": "AABONO.ATIVOPORTAL",
-							"required": false,
-							"type": "integer",
-							"available": true,
-							"canUpdate": true
+							"product": "DataSul",
+							"field": "SIT_AFAST.DES_SIT_AFAST_FUNC",
+							"required": true,
+							"type": "character",
+							"length": 30,
+							"available": true
 						}
 					]
 				},
@@ -173,6 +133,36 @@
 							"field": "allowancetype_id",
 							"type": "string",
 							"required": true
+						},
+						{
+							"product": "DataSul",
+							"available": true,
+							"note": "Código do Tipo de Abono",
+							"field": "RH_ESTAB.CDN_EMPRESA | SIT_AFAST.CDN_SIT_AFAST_FUNC",
+							"type": "string",
+							"required": true
+						}
+					]
+				},
+				"BranchId": {
+					"type": "string",
+					"description": "Código da Filial",
+					"x-totvs": [
+						{
+							"product": "RM",
+							"available": true,
+							"note": "Código da Filial",
+							"field": "allowancetype_id",
+							"type": "string",
+							"required": true
+						},
+						{
+							"product": "DataSul",
+							"available": true,
+							"note": "Código da Filial",
+							"field": "RH_ESTAB.CDN_ESTAB",
+							"type": "character",
+							"length": 5
 						}
 					]
 				}
