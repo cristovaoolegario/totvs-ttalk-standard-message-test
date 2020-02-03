@@ -1,8 +1,8 @@
 {
-  "$schema": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/Classes/v1/1_000/jsonschema/schemas/Classes_1_000.json#",
+  "$schema": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/Classes/V1/1_000/jsonschema/schemas/Classes_1_000.json#",
   "info": {
     "description": "API para a entidade turmas (Classes) para os produtos TOTVS.",
-    "version": "1.000",
+    "version": "2.000",
     "title": "Turmas",
     "contact": {
       "name": "T-Talk",
@@ -18,27 +18,49 @@
       "productInformation": [
         {
           "product": "RM",
-          "contact": "wellington.vieira@totvs.com.br",
-          "note": "Folha de Pagamento",
-          "adapter": "FopCCustoData"
+          "contact": "donaldson.nunes@totvs.com.br",
+          "description": "Listagem de Turmas",
+          "adapter": "ClassesController"
         },
         {
           "product": "PROTHEUS",
           "contact": "marcia.moura@totvs.com.br",
-          "description": "Funções de Trabalho",
+          "description": "Listagem de Treinamentos",
           "adapter": "TRMA050API.PRW"
         },
         {
-          "product": "DATASUL",
-          "contact": "",
-          "note": "",
+          "product": "DataSul",
+          "contact": "fabio.abrao@totvs.com.br",
+          "description": "Listagem de Treinamentos",
           "adapter": ""
         }
       ]
     }
   },
   "definitions": {
-    "ClassesInfo": {
+    "PagedClasses": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/definitions/Paging"
+        },
+        {
+          "$ref": "#/definitions/Classes"
+        }
+      ]
+    },
+    "Classes": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ClassInfo"
+          }
+        }
+      }
+    },
+    "ClassInfo": {
       "description": "Cadastro de Turmas",
       "type": "object",
       "properties": {
@@ -56,7 +78,6 @@
             {
               "product": "PROTHEUS",
               "available": true,
-
               "field": "TMP.EMPRESA + RA1.RA1_FILIAL + RA1.RA1_CURSO",
               "type": "string",
               "required": true
@@ -197,40 +218,40 @@
               "canUpdate": true
             }
           ]
+        },
+        "EsocialTrainingCode": {
+          "type": "string",
+          "example": "08320",
+          "description": "Código eSocial",
+          "x-totvs": [
+            {
+              "product": "RM",
+              "field": "",
+              "required": false,
+              "type": "varchar",
+              "length": "",
+              "available": true,
+              "canUpdate": true
+            },
+            {
+              "product": "PROTHEUS",
+              "field": "RA2.RA2_ESOC",
+              "required": false,
+              "type": "varchar",
+              "available": true,
+              "canUpdate": true
+            },
+            {
+              "product": "DATASUL",
+              "field": "",
+              "required": false,
+              "type": "varchar",
+              "length": "",
+              "available": true,
+              "canUpdate": true
+            }
+          ]
         }
-      },
-      "EsocialTrainingCode": {
-        "type": "string",
-        "example": "08320",
-        "description": "Código eSocial",
-        "x-totvs": [
-          {
-            "product": "RM",
-            "field": "",
-            "required": false,
-            "type": "varchar",
-            "length": "",
-            "available": true,
-            "canUpdate": true
-          },
-          {
-            "product": "PROTHEUS",
-            "field": "RA2.RA2_ESOC",
-            "required": false,
-            "type": "varchar",
-            "available": true,
-            "canUpdate": true
-          },
-          {
-            "product": "DATASUL",
-            "field": "",
-            "required": false,
-            "type": "varchar",
-            "length": "",
-            "available": true,
-            "canUpdate": true
-          }
-        ]
       }
     }
   }
