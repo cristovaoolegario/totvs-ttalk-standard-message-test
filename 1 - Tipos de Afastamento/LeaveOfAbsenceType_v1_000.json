@@ -33,26 +33,26 @@
 				{
 					"product": "RM",
 					"contact": "rm_FW@totvs.com.br",
-                    "description": "Listagem de Tipos de Afastamento",
-                    "adapter" : "FopParamsESocialAfastData"
-                },
-                {
+					"description": "Listagem de Tipos de Afastamento",
+					"adapter": "LeaveOfAbsenceTypesController"
+				},
+				{
 					"product": "Protheus",
 					"contact": "rplyra@totvs.com.br",
 					"description": "Listagem de Tipos de Afastamento",
-                    "adapter" : ""
+					"adapter": ""
 				},
 				{
 					"product": "Datasul",
 					"contact": "fabio.abrao@totvs.com.br",
 					"description": "Listagem de Tipos de Afastamento",
-                    "adapter" : "fpefd561"
-				}                
+					"adapter": "fpefd561"
+				}
 			]
 		}
 	},
 	"paths": {
-		"/leaveOfAbsenceTypes": {
+		"/leaveofabsencetypes": {
 			"get": {
 				"tags": [
 					"LeaveOfAbsenceTypes"
@@ -85,13 +85,13 @@
 					},
 					{
 						"$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/parameters/PageSize"
-                    },
-                    {
-                        "$ref": "#/components/parameters/dateModified"
-                    },
+					},
 					{
-                        "$ref": "#/components/parameters/companyId"
-                    }					
+						"$ref": "#/components/parameters/dateModified"
+					},
+					{
+						"$ref": "#/components/parameters/companyId"
+					}
 				],
 				"responses": {
 					"200": {
@@ -99,13 +99,33 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/LeaveOfAbsenceTypes/v1/1_000/jsonschema/schemas/LeaveOfAbsenceTypes_1_000.json#/definitions/LeaveOfAbsenceTypesInfo"
+									"$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/LeaveOfAbsenceTypes/V1/1_000/jsonschema/schemas/LeaveOfAbsenceTypes_1_000.json#/definitions/PagedLeaveOfAbsenceTypes"
 								}
 							}
 						}
 					},
 					"400": {
 						"description": "Erro na exibição dos registros",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/definitions/ErrorModel"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Nenhum registro localizado.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/definitions/ErrorModel"
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Erro no acesso ao EndPoint.",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -125,7 +145,7 @@
 				"in": "query",
 				"required": false,
 				"description": "Data da ultima atualização do registro.",
-				"example": "YYYY-MM-DDThh:mm:ss",
+				"example": "YYYY-MM-DDThh:mm:ssZ",
 				"schema": {
 					"type": "string"
 				},
@@ -133,57 +153,58 @@
 					"productInformation": [
 						{
 							"product": "Protheus",
+							"required": false,
+							"note": "Data de atualização da ultima requisição.",
 							"available": true,
-							"note": "",
-							"minimalVersion": ""
+							"canUpdate": false
 						},
 						{
 							"product": "RM",
-							"available": true,
+							"required": false,
 							"note": "Data de atualização da ultima requisição.",
-							"minimalVersion": "12.1.28"
+							"available": true,
+							"canUpdate": false
 						},
 						{
-							"product": "Datasul",
-							"available": true,
+							"product": "DataSul",
+							"required": false,
 							"note": "Data de atualização da ultima requisição.",
-							"minimalVersion": "12.1.28"
+							"available": true,
+							"canUpdate": false
 						}
 					]
 				}
 			},
-			"compayId":{
+			"companyId": {
 				"name": "companyId",
-				"in": "query",
-				"required": true,
 				"description": "Código da Empresa",
-				"example": "",
+				"type": "string",
 				"schema": {
 					"type": "string"
 				},
-				"x-totvs": {
-					"productInformation": [
-						{
-							"product": "Protheus",
-							"available": true,
-							"note": "",
-							"minimalVersion": ""
-						},
-						{
-							"product": "RM",
-							"available": true,
-							"note": "",
-							"minimalVersion": ""
-						},
-						{
-							"product": "Datasul",
-							"available": true,
-							"note": "será recebido o código da empresa, relacionado para",
-							"minimalVersion": "12.1.28"
-						}
-					]
-				}
-			
+				"x-totvs": [
+					{
+						"product": "Protheus",
+						"required": true,
+						"note": "será recebido o código da empresa para filtro no queryresult",
+						"available": true,
+						"canUpdate": false
+					},
+					{
+						"product": "RM",
+						"required": false,
+						"note": "será recebido o código da empresa para realização de filtro ",
+						"available": true,
+						"canUpdate": false
+					},
+					{
+						"product": "Datasul",
+						"required": true,
+						"note": "será recebido o código da empresa, relacionado para ",
+						"available": true,
+						"canUpdate": false
+					}
+				]
 			}
 		},
 		"schemas": {}
