@@ -32,7 +32,7 @@
           "product": "DATASUL",
           "contact": "fabio.abrao@totvs.com.br",
           "description": "Product Owner RH - Datasul",
-          "adapter": ""
+          "adapter": "fpefd561"
         }
       ]
     }
@@ -85,7 +85,8 @@
             {
               "product": "DATASUL",
               "available": true,
-              "field": "",
+              "note": "Código da empresa + código da função",
+              "field": "RH_ESTAB.CDN_EMPRESA|CARGO_BASIC.CDN_CARGO_BASIC",
               "type": "string",
               "required": true
             }
@@ -115,10 +116,10 @@
             },
             {
               "product": "DATASUL",
-              "field": "",
+              "field": "RH_ESTAB.CDN_EMPRESA",
               "required": true,
-              "type": "integer",
-              "length": 2,
+              "type": "character",
+              "length": 3,
               "available": true,
               "canUpdate": false
             }
@@ -145,10 +146,10 @@
             },
             {
               "product": "DATASUL",
-              "field": "",
+              "field": "RH_ESTAB.CDN_ESTAB",
               "required": true,
-              "type": "integer",
-              "length": 2,
+              "type": "character",
+              "length": 5,
               "available": true,
               "canUpdate": false
             }
@@ -178,10 +179,10 @@
             },
             {
               "product": "DATASUL",
-              "field": "PFUNCAO.CODIGO",
+              "field": "CARGO_BASIC.CDN_CARGO_BASIC",
               "required": true,
-              "type": "varchar",
-              "length": "tamanho máximo de 10",
+              "type": "interger",
+              "length": "tamanho máximo de 6",
               "available": true,
               "canUpdate": false
             }
@@ -211,10 +212,10 @@
             },
             {
               "product": "DATASUL",
-              "field": "PFUNCAO.NOME",
+              "field": "CARGO_BASIC.DES_CARGO_BASIC",
               "required": false,
-              "type": "varchar",
-              "length": "tamanho máximo de 100",
+              "type": "character",
+              "length": "30",
               "available": true,
               "canUpdate": true
             }
@@ -244,10 +245,10 @@
             },
             {
               "product": "DATASUL",
-              "field": "PFUNCAO.CBO",
+              "field": "CARGO_BASIC.COD_CLASSIF_OCUPAC",
               "required": false,
-              "type": "varchar",
-              "length": "tamanho máximo de 8",
+              "type": "character",
+              "length": "6",
               "available": true,
               "canUpdate": true
             }
