@@ -1,5 +1,5 @@
 {
-	"$schema": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/LeaveOfAbsenceTypes/v1/1_000/jsonschema/schemas/LeaveOfAbsenceTypes_1_000.json#",
+	"$schema": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/LeaveOfAbsenceTypes/V1/1_000/jsonschema/schemas/LeaveOfAbsenceTypes_1_000.json#",
 	"info": {
 		"description": "API para a entidade Tipos de Afastamento (LeaveOfAbsenceTypes) para produtos TOTVS",
 		"version": "1.000",
@@ -19,51 +19,72 @@
 				{
 					"product": "RM",
 					"contact": "rm_FW@totvs.com.br",
-                    "description": "Listagem de Tipos de Afastamento",
-                    "adapter" : "FopParamsESocialAfastData"
-                },
-                {
+					"description": "Listagem de Tipos de Afastamento",
+					"adapter": "LeaveOfAbsenceTypesController"
+				},
+				{
 					"product": "Protheus",
 					"contact": "rplyra@totvs.com.br",
 					"description": "Listagem de Tipos de Afastamento",
-                    "adapter" : ""
+					"adapter": ""
 				},
 				{
 					"product": "Datasul",
 					"contact": "fabio.abrao@totvs.com.br",
 					"description": "Listagem de Tipos de Afastamento",
-                    "adapter" : "fpefd561"
-				}                
+					"adapter": "fpefd561"
+				}
 			]
 		}
 	},
 	"definitions": {
-		"LeaveOfAbsenceTypesInfo": {
+		"PagedLeaveOfAbsenceTypes": {
+			"type": "object",
+			"allOf": [
+				{
+					"$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/definitions/Paging"
+				},
+				{
+					"$ref": "#/definitions/LeaveOfAbsenceTypes"
+				}
+			]
+		},
+		"LeaveOfAbsenceTypes": {
+			"type": "object",
+			"properties": {
+				"items": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/LeaveOfAbsenceTypeInfo"
+					}
+				}
+			}
+		},
+		"LeaveOfAbsenceTypeInfo": {
 			"type": "object",
 			"description": "Informações dos Tipos de Afastamento",
 			"properties": {
 				"id": {
-					"description": "Código do afastamento",
+					"description": "Código idetificador do tipo de afastamento",
 					"type": "string",
 					"x-totvs": [
 						{
-                            "product": "RM",
-                            "field": "PCODAFAST.CODCLIENTE",
-                            "available": true,
-                            "note": "Código do afastamento",							
-                            "type": "varchar",
-                            "length": 1,
+							"product": "RM",
+							"field": "PESOCIALPARAMAFAST.CODCOLIGADA | PCODAFAST.CODCLIENTE",
+							"available": true,
+							"note": "Código do afastamento",
+							"type": "varchar",
+							"length": "1",
 							"required": true
 						},
 						{
 							"product": "DATASUL",
-							"field" : "rh_estab.cdn_empresa | sit_afast.cdn_sit_afast_func",
+							"field": "rh_estab.cdn_empresa | sit_afast.cdn_sit_afast_func",
 							"available": true,
-							"note": "Código do afastamento",							
-                            "type": "varchar",
-                            "length": 1,
+							"note": "Código do afastamento",
+							"type": "varchar",
+							"length": 1,
 							"required": true
-						
 						}
 					]
 				},
@@ -74,11 +95,10 @@
 					"x-totvs": [
 						{
 							"product": "RM",
-							"field": "não possui campo físico na tabela",
+							"field": "PESOCIALPARAMAFAST.CODCOLIGADA",
 							"required": true,
-							"type": "",
-							"length": "",
-							"note": "",
+							"type": "integer",
+							"length": "2",
 							"available": true,
 							"canUpdate": false
 						},
@@ -101,11 +121,8 @@
 						{
 							"product": "RM",
 							"field": "não possui campo físico na tabela",
-							"required": true,
-							"type": "",
-							"length": "",
-							"note": "",
-							"available": true,
+							"required": false,
+							"available": false,
 							"canUpdate": false
 						},
 						{
@@ -127,20 +144,21 @@
 					"x-totvs": [
 						{
 							"product": "RM",
-                            "field": "PCODAFAST.CODCLIENTE",
-                            "available": true,
-                            "note": "Código do afastamento",							
-                            "type": "varchar",
-                            "length": 1,
-							"required": true
+							"field": "PCODAFAST.CODCLIENTE",
+							"available": true,
+							"note": "Código do afastamento",
+							"type": "varchar",
+							"length": "1",
+							"required": true,
+							"canUpdate": false
 						},
 						{
 							"product": "DATASUL",
-                            "field": "sit_afast.cdn_sit_afast_func",
-                            "available": true,
-                            "note": "Código do afastamento",							
-                            "type": "string",
-                            "length": "5",
+							"field": "sit_afast.cdn_sit_afast_func",
+							"available": true,
+							"note": "Código do afastamento",
+							"type": "string",
+							"length": "5",
 							"required": true
 						}
 					]
@@ -150,23 +168,24 @@
 					"description": "Nome do Tipo de Afastamento",
 					"x-totvs": [
 						{
-                            "product": "RM",
-                            "field": "PCODAFAST.DESCRICAO",
-                            "available": true,
-                            "note": "Descrição do Tipo de Afastamento",							
-                            "type": "varchar",
-                            "length": 50,
-							"required": true
-                        },
+							"product": "RM",
+							"field": "PCODAFAST.DESCRICAO",
+							"available": true,
+							"note": "Descrição do Tipo de Afastamento",
+							"type": "varchar",
+							"length": "50",
+							"required": false,
+							"canUpdate": true
+						},
 						{
-                            "product": "DATASUL",
-                            "field": "sit_afast.des_sit_afast_func",
-                            "available": true,
-                            "note": "Descrição do Tipo de Afastamento",							
-                            "type": "varchar",
-                            "length": 30,
+							"product": "DATASUL",
+							"field": "sit_afast.des_sit_afast_func",
+							"available": true,
+							"note": "Descrição do Tipo de Afastamento",
+							"type": "varchar",
+							"length": 30,
 							"required": true
-                        }
+						}
 					]
 				},
 				"EsocialLeaveCode": {
@@ -176,10 +195,10 @@
 					"x-totvs": [
 						{
 							"product": "RM",
-							"field": "PESOCIALMOTAFAS.CODCLIENTE",
+							"field": "PESOCIALPARAMAFAST.MOTIVOEFD",
 							"required": true,
 							"type": "varchar",
-							"length": "tamanho máximo de 10",
+							"length": "2",
 							"available": true,
 							"canUpdate": true
 						},
@@ -193,7 +212,7 @@
 							"canUpdate": true
 						}
 					]
-				}				
+				}
 			}
 		}
 	}
