@@ -43,9 +43,9 @@
 				},
 				{
 					"product": "Datasul",
-					"contact": "triberh.progress.squad.pagadoria@totvs.com.br",
+					"contact": "fabio.abrao@totvs.com.br",
 					"description": "Listagem de Turnos de Trabalho",
-          "adapter" : ""
+          "adapter" : "FPEFD561"
 				}                
 			]
 		}
@@ -75,7 +75,7 @@
               "product": "Datasul",
               "available": true,
               "note": "Este verbo esta disponivel com todos os parametros",
-              "minimalVersion": ""
+              "minimalVersion": "12.1.28"
 						}
 					]
 				},
@@ -168,7 +168,7 @@
 						{
 						"product": "Datasul",
             "available": false,
-            "minimalVersion": "12.1.25"
+            "minimalVersion": "12.1.28"
             }
           ]
         }
@@ -197,8 +197,8 @@
                 },
                 {
                   "product": "Datasul",
-                  "field": "",
-                  "required": false,
+                  "field": "turno_trab_categ_sal.cdn_empresa",
+                  "required": true,
                   "available": true,
                   "canUpdate": false
                 }
@@ -230,7 +230,8 @@
                   "product": "Datasul",
                   "field": "",
                   "required": false,
-                  "available": true,
+				  "note": "Não Será tratado pela Datasul",
+                  "available": false,
                   "canUpdate": false
                 }
               ]
