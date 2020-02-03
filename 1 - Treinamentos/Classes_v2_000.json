@@ -39,8 +39,8 @@
         {
           "product": "RM",
           "contact": "rm_FW@totvs.com.br",
-          "description": "Listagem das turmas"
-          "adapter": ""
+          "description": "Listagem das turmas",
+          "adapter": "ClassesController"
         },
         {
           "product": "Datasul",
@@ -108,13 +108,13 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/schemas/Positions_1_000.json#/definitions/PositionsInfo"
+                  "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/Classes/V2/2_000/jsonschema/schemas/Classes_2_000.json#/definitions/PagedClasses"
                 }
               }
             }
           },
           "400": {
-            "description": "Erro no momento da listagem dos registros de Função.",
+            "description": "Erro na exibição dos registros.",
             "content": {
               "application/json": {
                 "schema": {
@@ -142,114 +142,112 @@
                 }
               }
             }
-          },
-          "components": {
-            "parameters": {
-              "dateModified": {
-                "name": "datemodified",
-                "in": "query",
-                "required": false,
-                "description": "Data da ultima atualização do registro.",
-                "example": "YYYY-MM-DDThh:mm:ssZ",
-                "schema": {
-                  "type": "string"
-                },
-                "x-totvs": {
-                  "productInformation": [
-                    {
-                      "product": "Protheus",
-                      "available": false,
-                      "note": "Data de atualização da ultima requisição.",
-                      "minimalVersion": "12.1.25"
-                    },
-                    {
-                      "product": "RM",
-                      "available": false,
-                      "note": "Data de atualização da ultima requisição.",
-                      "minimalVersion": "12.1.25"
-                    },
-                    {
-                      "product": "Datasul",
-                      "available": false,
-                      "note": "Data de atualização da ultima requisição.",
-                      "minimalVersion": "12.1.25"
-                    }
-                  ]
-                }
-              },
-              "companyId": {
-                "name": "companyid",
-                "description": "Código da Empresa",
-                "type": "string",
-                "schema": {
-                  "type": "string"
-                },
-                "x-totvs": [
-                  {
-                    "product": "Protheus",
-                    "field": "",
-                    "required": true,
-                    "note": "será recebido o código da empresa para filtro no queryresult",
-                    "available": true,
-                    "canUpdate": false
-                  },
-                  {
-                    "product": "RM",
-                    "field": "",
-                    "required": false,
-                    "note": "será recebido o código da empresa, relacionado para ",
-                    "available": true,
-                    "canUpdate": false
-                  },
-                  {
-                    "product": "Datasul",
-                    "field": "",
-                    "required": false,
-                    "note": "será recebido o código da empresa, relacionado para ",
-                    "available": true,
-                    "canUpdate": false
-                  }
-                ]
-              },
-              "branchId": {
-                "description": "Código da Filial",
-                "type": "string",
-                "schema": {
-                  "type": "string"
-                },
-                "x-totvs": [
-                  {
-                    "product": "Protheus",
-                    "field": "",
-                    "required": true,
-                    "note": "Será recebido o código da filial, para filtro no queryresult",
-                    "available": true,
-                    "canUpdate": false
-                  },
-                  {
-                    "product": "RM",
-                    "field": "",
-                    "required": false,
-                    "note": "Não Será tratado pelo RM",
-                    "available": false,
-                    "canUpdate": false
-                  },
-                  {
-                    "product": "Datasul",
-                    "field": "",
-                    "required": false,
-                    "note": "Será recebido o código da variável",
-                    "available": true,
-                    "canUpdate": false
-                  }
-                ]
-              }
-            },
-            "schemas": {}
-          }
+          }          
         }
       }
     }
-  }
+  },
+  "components": {
+		"parameters": {
+			"dateModified": {
+				"name": "dateModified",
+				"in": "query",
+				"required": false,
+				"description": "Data da ultima atualização do registro.",
+				"example": "YYYY-MM-DDThh:mm:ssZ",
+				"schema": {
+					"type": "string"
+				},
+				"x-totvs": {
+					"productInformation": [
+						{
+							"product": "Protheus",
+							"required": false,
+							"note": "Data de atualização da ultima requisição.",
+							"available": true,
+							"canUpdate": false
+						},
+						{
+							"product": "RM",
+							"required": false,
+							"note": "Data de atualização da ultima requisição.",
+							"available": true,
+							"canUpdate": false
+						},
+						{
+							"product": "DataSul",
+							"required": false,
+							"note": "Data de atualização da ultima requisição.",
+							"available": true,
+							"canUpdate": false
+						}
+					]
+				}
+			},
+			"companyId": {
+				"name": "companyId",
+				"description": "Código da Empresa",
+				"type": "string",
+				"schema": {
+					"type": "string"
+				},
+				"x-totvs": [
+					{
+						"product": "Protheus",
+						"required": true,
+						"note": "Será recebido o código da empresa para filtro no queryresult",
+						"available": true,
+						"canUpdate": false
+					},
+					{
+						"product": "RM",
+						"required": false,
+						"note": "Será recebido o código da empresa para realização de filtro",
+						"available": true,
+						"canUpdate": false
+					},
+					{
+						"product": "Datasul",
+						"required": true,
+						"note": "Será recebido o código da empresa para realização de filtro",
+						"available": true,
+						"canUpdate": false
+					}
+				]
+      },
+      "branchId": {
+        "name": "branchId",
+        "description": "Código da Filial",
+        "type": "string",
+        "schema": {
+          "type": "string"
+        },
+        "x-totvs": [
+          {
+            "product": "Protheus",
+            "required": true,
+            "note": "Será recebido o código da filial, para filtro no queryresult",
+            "available": true,
+            "canUpdate": false
+          },
+          {
+            "product": "RM",
+            "required": false,
+            "note": "Não será tratado pelo RM",
+            "available": false,
+            "canUpdate": false
+          },
+          {
+            "product": "Datasul",
+            "required": false,
+            "note": "Será recebido o código da variável",
+            "available": true,
+            "canUpdate": false
+          }
+        ]
+      }
+		},
+		"schemas": {}
+	}
 }
      
