@@ -1,0 +1,206 @@
+{
+	"openapi": "3.0.1",
+	"servers": [
+		{
+			"description": "API para a entidade Tipos de Estabilidade (StabilityType) para produtos TOTVS",
+			"url": "{{host}}/api/rh/v1",
+			"variables": {
+				"serverUrl": {
+					"default": "localhost"
+				},
+				"serverHttpPort": {
+					"default": "8051"
+				}
+			}
+		}
+	],
+	"info": {
+		"description": "API para a entidade Tipos de Estabilidade (StabilityType) para produtos TOTVS",
+		"version": "1.000",
+		"title": "Tipos de Estabilidade",
+		"contact": {
+			"name": "T-Talk",
+			"url": "API.Totvs.com.br",
+			"email": "comiteintegracao@totvs.com.br"
+		},
+		"x-totvs": {
+			"messageDocumentation": {
+				"name": "StabilityType",
+				"description": "Tipos de Estabilidade",
+				"segment": "Recursos Humanos"
+			},
+			"productInformation": [
+				{
+					"product": "RM",
+					"contact": "rm_FW@totvs.com.br",
+					"description": "Listagem de Tipos de Estabilidade",
+					"adapter": "StabilityTypeController"
+				},
+				{
+					"product": "Protheus",
+					"contact": "rplyra@totvs.com.br",
+					"description": "Listagem de Tipos de Estabilidade",
+					"adapter": ""
+				},
+				{
+					"product": "Datasul",
+					"contact": "fabio.abrao@totvs.com.br",
+					"description": "Listagem de Tipos de Estabilidade",
+					"adapter": ""
+				}
+			]
+		}
+	},
+	"paths": {
+		"/stabilitytype": {
+			"get": {
+				"tags": [
+					"StabilityType"
+				],
+				"summary": "Retorna todas os Tipos de Estabilidade cadastrados na base",
+				"x-totvs": {
+					"productInformation": [
+						{
+							"product": "RM",
+							"available": true,
+							"note": "Este verbo esta disponível com todos os parâmetros",
+							"minimalVersion": "12.1.28"
+						}
+					]
+				},
+				"description": "Retorna todos os tipos de Estabilidade",
+				"operationId": "getAll",
+				"parameters": [
+					{
+						"$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/parameters/Authorization"
+					},
+					{
+						"$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/parameters/Page"
+					},
+					{
+						"$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/parameters/PageSize"
+					},
+					{
+						"$ref": "#/components/parameters/dateModified"
+					},
+					{
+						"$ref": "#/components/parameters/companyId"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Operação realizada com sucesso",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/StabilityType/V1/1_000/jsonschema/schemas/StabilityType_1_000.json#/definitions/PagedStabilityType"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Erro na exibição dos registros",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/definitions/ErrorModel"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Nenhum registro localizado.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/definitions/ErrorModel"
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Erro no acesso ao EndPoint.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/definitions/ErrorModel"
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"components": {
+		"parameters": {
+			"dateModified": {
+				"name": "dateModified",
+				"in": "query",
+				"required": false,
+				"description": "Data da ultima atualização do registro.",
+				"example": "YYYY-MM-DDThh:mm:ssZ",
+				"schema": {
+					"type": "string"
+				},
+				"x-totvs": {
+					"productInformation": [
+						{
+							"product": "Protheus",
+							"required": false,
+							"note": "Data de atualização da ultima requisição.",
+							"available": true,
+							"canUpdate": false
+						},
+						{
+							"product": "RM",
+							"required": false,
+							"note": "Data de atualização da ultima requisição.",
+							"available": true,
+							"canUpdate": false
+						},
+						{
+							"product": "DataSul",
+							"required": false,
+							"note": "Data de atualização da ultima requisição.",
+							"available": true,
+							"canUpdate": false
+						}
+					]
+				}
+			},
+			"companyId": {
+				"name": "companyId",
+				"description": "Código da Empresa",
+				"type": "string",
+				"schema": {
+					"type": "string"
+				},
+				"x-totvs": [
+					{
+						"product": "Protheus",
+						"required": true,
+						"note": "será recebido o código da empresa para filtro no queryresult",
+						"available": true,
+						"canUpdate": false
+					},
+					{
+						"product": "RM",
+						"required": false,
+						"note": "será recebido o código da empresa para realização de filtro ",
+						"available": true,
+						"canUpdate": false
+					},
+					{
+						"product": "Datasul",
+						"required": true,
+						"note": "será recebido o código da empresa, relacionado para ",
+						"available": true,
+						"canUpdate": false
+					}
+				]
+			}
+		},
+		"schemas": {}
+	}
+}
