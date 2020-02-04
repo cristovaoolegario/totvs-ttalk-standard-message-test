@@ -1,246 +1,252 @@
 {
-	"openapi": "3.0.1",
-	"servers": [{
-      "description": "API para cadastro de Turnos para produtos TOTVS - Mensagem global utilizando o conceito REST/JSON",
-			"url": "{{host}}/api/rh/v1",
-      "variables":{
-				"serverUrl": {
-					"default": "localhost"
-				},
-        "serverHttpPort":{
-					"default": "8051"
-				}
-			}
-		}
-	],
-	"info": {
+  "openapi": "3.0.1",
+  "servers": [
+    {
+      "description": "API para cadastro de Turnos de Trabalhos para produtos TOTVS - Mensagem global utilizando o conceito REST/JSON",
+      "url": "{{host}}/api/rh/v1",
+      "variables": {
+        "serverUrl": {
+          "default": "localhost"
+        },
+        "serverHttpPort": {
+          "default": "8051"
+        }
+      }
+    }
+  ],
+  "info": {
     "description": "API para cadastro de Turnos para produtos TOTVS - Mensagem global utilizando o conceito REST/JSON",
-		"version": "1.000",
-		"title": "Turnos de Trabalho",
-		"contact": {
-			"name": "T-Talk",
+    "version": "1.000",
+    "title": "Turnos de Trabalho",
+    "contact": {
+      "name": "T-Talk",
       "url": "https://api.totvs.com.br",
-			"email": "comiteintegracao@totvs.com.br"
-		},
-		"x-totvs": {
-			"messageDocumentation": {
-				"name": "WorkingShift",
-				"description": "Turnos de Trabalho",
-				"segment": "Recursos Humanos"
-			},
-			"productInformation": [
-				{
-					"product": "RM",
-					"contact": "rm_FW@totvs.com.br",
+      "email": "comiteintegracao@totvs.com.br"
+    },
+    "x-totvs": {
+      "messageDocumentation": {
+        "name": "WorkingShift",
+        "description": "Turnos de Trabalho",
+        "segment": "Recursos Humanos"
+      },
+      "productInformation": [
+        {
+          "product": "RM",
+          "contact": "rm_FW@totvs.com.br",
           "description": "Listagem de Turnos de Trabalho",
-          "adapter" : "PtoHorarioData"
+          "adapter": "WorkingShiftController"
         },
         {
-					"product": "Protheus",
-					"contact": "marcia.moura@totvs.com.br",
-					"description": "Listagem de Turnos de Trabalho",
-          "adapter" : "PONA080API.PRW"
-				},
-				{
-					"product": "Datasul",
-					"contact": "fabio.abrao@totvs.com.br",
-					"description": "Listagem de Turnos de Trabalho",
-          "adapter" : "FPEFD561"
-				}                
-			]
-		}
-	},
-	"paths": {
-		"/workingShift": {
-			"get": {
-				"tags": [
-					"WorkingShift"
-				],
-        "summary": "Retorna todos os registros da entidade Turno de Trabalho cadastrados no sistema",
-				"x-totvs": {
-					"productInformation": [
-						{
+          "product": "Protheus",
+          "contact": "marcia.moura@totvs.com.br",
+          "description": "Listagem de Turnos de Trabalho",
+          "adapter": "PONA080API.PRW"
+        },
+        {
+          "product": "Datasul",
+          "contact": "fabio.abrao@totvs.com.br",
+          "description": "Listagem de Turnos de Trabalho",
+          "adapter": "FPEFD561"
+        }
+      ]
+    }
+  },
+  "paths": {
+    "/workingshift": {
+      "get": {
+        "tags": [
+          "WorkingShift"
+        ],
+        "summary": "Retorna todos os registros da entidade Turnos de Trabalho cadastrados no sistema",
+        "x-totvs": {
+          "productInformation": [
+            {
               "product": "Protheus",
               "available": true,
               "note": "Este verbo esta disponivel com todos os parametros",
               "minimalVersion": ""
             },
             {
-							"product": "RM",
-							"available": true,
-							"note": "Este verbo esta disponível com todos os parâmetros",
-							"minimalVersion": "12.1.28"
+              "product": "RM",
+              "available": true,
+              "note": "Este verbo esta disponível com todos os parâmetros",
+              "minimalVersion": "12.1.28"
             },
             {
               "product": "Datasul",
               "available": true,
               "note": "Este verbo esta disponivel com todos os parametros",
               "minimalVersion": "12.1.28"
-						}
-					]
-				},
-				"description": "Retorna todos os Turnos de Trabalho",
-				"operationId": "getAll",
-				"parameters": [
-					{
-						"$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/parameters/Authorization"
-					},
-					{
-						"$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/parameters/Page"
-					},
-					{
-						"$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/parameters/PageSize"
-                    },
-                    {
-                        "$ref": "#/components/parameters/dateModified"
+            }
+          ]
+        },
+        "description": "Retorna todos os Turnos de Trabalho",
+        "operationId": "getAll",
+        "parameters": [
+          {
+            "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/parameters/Authorization"
+          },
+          {
+            "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/parameters/Page"
+          },
+          {
+            "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/parameters/PageSize"
+          },
+          {
+            "$ref": "#/components/parameters/dateModified"
           },
           {
             "$ref": "#/components/parameters/companyId"
           },
           {
             "$ref": "#/components/parameters/branchId"
-                    }
-				],
-				"responses": {
-					"200": {
-            "description": "Operação realizada com sucesso.",
-						"content": {
-						"application/json": {
-						"schema": {
-            "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/schemas/WorkingShift_1_000.json#/definitions/WorkingShiftInfo"
-						}
-					}
-				}
-				},
-					"400": {
-          "description": "Erro no momento da listagem dos registros de Função.",
-					"content": {
-						"application/json": {
-						"schema": {
-						"$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/definitions/ErrorModel"
-						}
-					}
-				}
-        },
-          "404": {
-          "description": "Nenhum registro localizado.",
-          "content": {
-          "application/json": {
-          "schema": {
-          "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/definitions/ErrorModel"
           }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operação realizada com sucesso.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/schemas/WorkingShift_1_000.json#/definitions/PagedWorkingShifts"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro no momento da listagem dos registros de Função.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/definitions/ErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Nenhum registro localizado.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/definitions/ErrorModel"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro no acesso ao EndPoint.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/definitions/ErrorModel"
+                }
+              }
+            }
+          }          
         }
       }
-      },
-      "500": {
-      "description": "Erro no acesso ao EndPoint.",
-      "content": {
-      "application/json": {
-      "schema": {
-      "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/definitions/ErrorModel"
-			}
-			}
-		}
-	},
-	"components": {
-		"parameters": {
-			"dateModified": {
-        "name": "datemodified",
-				"in": "query",
-				"required": false,
-				"description": "Data da ultima atualização do registro.",
-				"example": "YYYY-MM-DDThh:mm:ss",
-				"schema": {
-				  "type": "string"
-				},
-				"x-totvs": {
-					"productInformation": [
-						{
-						"product": "Protheus",
-            "available": true,
-            "minimalVersion": "12.1.25"
-						},
-						{
-						"product": "RM",
-						"available": true,
-						"minimalVersion": "12.1.28"
-						},
-						{
-						"product": "Datasul",
-            "available": false,
-            "minimalVersion": "12.1.28"
+    }
+  },
+  "components": {
+    "parameters": {
+      "dateModified": {
+        "name": "dateModified",
+        "in": "query",
+        "required": false,
+        "description": "Data da ultima atualização do registro.",
+        "example": "YYYY-MM-DDThh:mm:ssZ",
+        "schema": {
+          "type": "string"
+        },
+        "x-totvs": {
+          "productInformation": [
+            {
+              "product": "Protheus",
+              "required": false,
+              "note": "Data de atualização da ultima requisição.",
+              "available": true,
+              "canUpdate": false
+            },
+            {
+              "product": "RM",
+              "required": false,
+              "note": "Data de atualização da ultima requisição.",
+              "available": true,
+              "canUpdate": false
+            },
+            {
+              "product": "DataSul",
+              "required": false,
+              "note": "Data de atualização da ultima requisição.",
+              "available": true,
+              "canUpdate": false
             }
           ]
         }
-        },
-        "companyId": {
-        "name": "companyid",
+      },
+      "companyId": {
+        "name": "companyId",
         "description": "Código da Empresa",
         "type": "string",
         "schema": {
-        "type": "string"
+          "type": "string"
         },
         "x-totvs": [
-                {
-                  "product": "Protheus",
-                  "field": "",
-                  "required": true,
-        			    "available": true,
-                  "canUpdate": false
-                },
-                {
-                  "product": "RM",
-                  "field": "",
-                  "required": false,
-                  "available": true,
-                  "canUpdate": false
-                },
-                {
-                  "product": "Datasul",
-                  "field": "turno_trab_categ_sal.cdn_empresa",
-                  "required": true,
-                  "available": true,
-                  "canUpdate": false
-                }
-              ]
-            },
-            "branchId": {
-              "description": "Código da Filial",
-              "type": "string",
-              "schema": {
-                "type": "string"
-              },
-              "x-totvs": [
-                {
-                  "product": "Protheus",
-                  "field": "",
-                  "required": true,
-                  "available": true,
-                  "canUpdate": false
-                },
-                {
-                  "product": "RM",
-                  "field": "",
-                  "required": false,
-                  "note": "Não Será tratado pelo RM",
-                  "available": false,
-                  "canUpdate": false
-                },
-                {
-                  "product": "Datasul",
-                  "field": "",
-                  "required": false,
-				  "note": "Não Será tratado pela Datasul",
-                  "available": false,
-                  "canUpdate": false
-                }
-              ]
-			      }
-		      },
-		"schemas": {}
-	      }
+          {
+            "product": "Protheus",
+            "required": true,
+            "note": "será recebido o código da empresa para filtro no queryresult",
+            "available": true,
+            "canUpdate": false
+          },
+          {
+            "product": "RM",
+            "required": false,
+            "note": "será recebido o código da empresa para realização de filtro ",
+            "available": true,
+            "canUpdate": false
+          },
+          {
+            "product": "Datasul",
+            "required": true,
+            "note": "será recebido o código da empresa, relacionado para ",
+            "available": true,
+            "canUpdate": false
+          }
+        ]
+      },
+      "branchId": {
+        "name": "branchId",
+        "description": "Código da Filial",
+        "type": "string",
+        "schema": {
+          "type": "string"
+        },
+        "x-totvs": [
+          {
+            "product": "Protheus",
+            "required": true,
+            "note": "Será recebido o código da filial, para filtro no queryresult",
+            "available": true,
+            "canUpdate": false
+          },
+          {
+            "product": "RM",
+            "required": false,
+            "note": "Não será tratado pelo RM",
+            "available": false,
+            "canUpdate": false
+          },
+          {
+            "product": "Datasul",
+            "required": false,
+            "note": "Não será recebido pelo DataSul",
+            "available": true,
+            "canUpdate": false
+          }
+        ]
       }
-    }
+    },
+    "schemas": {}
   }
-}
 }
