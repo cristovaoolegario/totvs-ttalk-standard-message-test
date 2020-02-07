@@ -32,7 +32,7 @@
           "product": "DataSul",
           "contact": "fabio.abrao@totvs.com.br",
           "description": "Listagem de Treinamentos",
-          "adapter": ""
+          "adapter": "FPEFDd561"
         }
       ]
     }
@@ -85,7 +85,7 @@
             {
               "product": "DATASUL",
               "available": true,
-              "field": "",
+              "field": "RH_ESTAB.CDN_EMPRESA | CURSO_TREIN.CDN_CURSO_TREIN",
               "type": "string",
               "required": true
             }
@@ -115,10 +115,10 @@
             },
             {
               "product": "DATASUL",
-              "field": "",
+              "field": "RH_ESTAB.CDN_EMPRESA",
               "required": true,
-              "type": "integer",
-              "length": 2,
+              "type": "character",
+              "length": 3,
               "available": true,
               "canUpdate": false
             }
@@ -144,10 +144,10 @@
             },
             {
               "product": "DATASUL",
-              "field": "",
+              "field": "RH_ESTAB.CDN_ESTAB",
               "required": true,
-              "type": "integer",
-              "length": 2,
+              "type": "character",
+              "length": 3,
               "available": true,
               "canUpdate": false
             }
@@ -178,10 +178,10 @@
             },
             {
               "product": "DATASUL",
-              "field": "",
+              "field": "CURSO_TREIN.CDN_CURSO_TREIN",
               "required": true,
-              "type": "varchar",
-              "length": "",
+              "type": "integer",
+              "length": "7",
               "available": true,
               "canUpdate": false
             }
@@ -211,10 +211,11 @@
             },
             {
               "product": "DATASUL",
-              "field": "PFUNCAO.NOME",
+              "field": "CURSO_TREIN.DES_CURSO_TREIN",
               "required": false,
               "type": "varchar",
               "available": true,
+			  "length": 40,
               "canUpdate": true
             }
           ]
@@ -243,10 +244,10 @@
             },
             {
               "product": "DATASUL",
-              "field": "",
+              "field": "SPED_CURSO_TREIN.CDN_CURSO_TREIN_SPED",
               "required": false,
-              "type": "varchar",
-              "length": "",
+              "type": "integer",
+              "length": "4",
               "available": true,
               "canUpdate": true
             }
