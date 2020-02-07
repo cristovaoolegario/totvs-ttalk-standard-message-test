@@ -44,9 +44,9 @@
         },
         {
           "product": "Datasul",
-          "contact": "",
-          "description": "",
-          "adapter": ""
+          "contact": "fabio.abrao@totvs.com.br",
+          "description": "Listagem dos Treinamentos",
+          "adapter": "FPEFD561"
         }
       ]
     }
@@ -76,7 +76,7 @@
               "product": "Datasul",
               "available": true,
               "note": "Este verbo esta disponivel com todos os parametros",
-              "minimalVersion": ""
+              "minimalVersion": "12.1.28"
             }
           ]
         },
@@ -240,7 +240,7 @@
           {
             "product": "Datasul",
             "required": false,
-            "note": "Será recebido o código da variável",
+            "note": "Não será tratado pelo Datasul",
             "available": true,
             "canUpdate": false
           }
