@@ -46,7 +46,7 @@
 					"product": "Datasul",
 					"contact": "fabio.abrao@totvs.com.br",
 					"description": "Listagem de Tipos de Estabilidade",
-					"adapter": ""
+					"adapter": "fpefd561"
 				}
 			]
 		}
@@ -65,7 +65,14 @@
 							"available": true,
 							"note": "Este verbo esta disponível com todos os parâmetros",
 							"minimalVersion": "12.1.28"
+						},
+						{
+							"product": "DATASUL",
+							"available": true,
+							"note": "Este verbo esta disponível com todos os parâmetros",
+							"minimalVersion": "12.1.28"
 						}
+						
 					]
 				},
 				"description": "Retorna todos os tipos de Estabilidade",
