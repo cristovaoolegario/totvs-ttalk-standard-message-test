@@ -3,16 +3,16 @@
 	"info": {
 		"description": "API para a entidade de tipo de abono (AllowanceType) para produtos TOTVS",
 		"version": "1.000",
-		"title": "Tipo de Abono",
+		"title": "AllowanceTypes",
 		"contact": {
 			"name": "T-Talk",
-			"url": "API.Totvs.com.br",
+      "url": "https://api.totvs.com.br",
 			"email": "comiteintegracao@totvs.com.br"
 		},
 		"x-totvs": {
 			"messageDocumentation": {
 				"name": "AllowanceTypes",
-				"description": "Tipo de Abono",
+				"description": "Tipos de Abono",
 				"segment": "Recursos Humanos"
 			},
 			"productInformation": [
@@ -22,7 +22,13 @@
 					"description": "Listagem dos tipos de abonos"
 				},
 				{
-					"product": "DataSul",
+					"product": "PROTHEUS",
+					"contact": "marcia.moura@totvs.com.br",
+					"description": "Cadastro de Tipos de Abono/Justificativa",
+					"adapter": "PONA050API.PRW"
+        		},
+        		{
+          			"product": "DATASUL",
 					"contact": "fabio.abrao@totvs.com.br",
 					"description": "Listagem dos tipos de abonos"
 				}
@@ -55,7 +61,7 @@
 				"CompanyCode": {
 					"type": "string",
 					"example": "1",
-					"description": "C贸digo da Empresa",
+					"description": "C骴igo da Empresa",
 					"x-totvs": [
 						{
 							"product": "RM",
@@ -64,6 +70,14 @@
 							"type": "integer",
 							"available": true,
 							"length": 1,
+							"canUpdate": false
+						},
+						{
+							"product": "PROTHEUS",
+							"field": "TMP.EMPRESA",
+							"required": true,
+							"type": "string",
+							"available": true,
 							"canUpdate": false
 						},
 						{
@@ -79,7 +93,7 @@
 				"Code": {
 					"type": "string",
 					"example": "0007",
-					"description": "C贸digo do tipo abono",
+					"description": "C骴igo do tipo abono",
 					"x-totvs": [
 						{
 							"product": "RM",
@@ -87,6 +101,13 @@
 							"required": true,
 							"type": "string",
 							"length": 5,
+							"available": true
+						},
+						{
+							"product": "PROTHEUS",
+							"field": "P6_CODIGO",
+							"required": true,
+							"type": "string",
 							"available": true
 						},
 						{
@@ -101,8 +122,8 @@
 				},
 				"Description": {
 					"type": "string",
-					"example": "Tipo de abono",
-					"description": "C贸digo do tipo abono",
+					"example": "ABONO INTEGRAL",
+					"description": "C骴igo do tipo abono",
 					"x-totvs": [
 						{
 							"product": "RM",
@@ -110,6 +131,13 @@
 							"required": false,
 							"type": "string",
 							"length": 30,
+							"available": true
+						},
+						{
+							"product": "PROTHEUS",
+							"field": "P6_DESC",
+							"required": false,
+							"type": "string",
 							"available": true
 						},
 						{
@@ -129,15 +157,22 @@
 						{
 							"product": "RM",
 							"available": true,
-							"note": "C贸digo do Tipo de Abono",
+							"note": "C骴igo do Tipo de Abono",
 							"field": "allowancetype_id",
+							"type": "string",
+							"required": true
+						},
+						{
+							"product": "Protheus",
+							"available": true,
+							"field": "TMP.EMP | SP6.P6_FILIAL | SP6.P6_CODIGO",
 							"type": "string",
 							"required": true
 						},
 						{
 							"product": "DataSul",
 							"available": true,
-							"note": "C贸digo do Tipo de Abono",
+							"note": "C骴igo do Tipo de Abono",
 							"field": "RH_ESTAB.CDN_EMPRESA | SIT_AFAST.CDN_SIT_AFAST_FUNC",
 							"type": "string",
 							"required": true
@@ -146,13 +181,21 @@
 				},
 				"BranchId": {
 					"type": "string",
-					"description": "C贸digo da Filial",
+					"description": "C骴igo da Filial",
 					"x-totvs": [
 						{
 							"product": "RM",
 							"available": true,
-							"note": "C贸digo da Filial",
+							"note": "C骴igo da Filial",
 							"field": "allowancetype_id",
+							"type": "string",
+							"required": true
+						},
+						{
+							"product": "PROTHEUS",
+							"available": true,
+							"note": "C骴igo da Filial",
+							"field": "P6_FILIAL",
 							"type": "string",
 							"required": true
 						},
