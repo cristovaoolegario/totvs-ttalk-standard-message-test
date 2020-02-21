@@ -2,7 +2,7 @@
 	"openapi": "3.0.1",
 	"servers": [
 		{
-			"description": "API para a entidade de tipo de abono (AllowanceType) para produtos TOTVS",
+			"description": "API para a entidade de tipo de abono (AllowanceType) para produtos TOTVS - Mensagem global utilizando o conceito REST/JSON",
 			"url": "{{host}}/api/rh/v1",
 			"variables": {
 				"serverUrl": {
@@ -20,17 +20,23 @@
 		"title": "Tipo de Abono",
 		"contact": {
 			"name": "T-Talk",
-			"url": "API.Totvs.com.br",
+            "url": "https://api.totvs.com.br",
 			"email": "comiteintegracao@totvs.com.br"
 		},
 		"x-totvs": {
 			"messageDocumentation": {
 				"name": "AllowanceType",
-				"description": "Tipo de Abono",
+				"description": "Tipos de Abono utilizado no processo de calculo de Ponto.",
 				"segment": "Recursos Humanos"
 			},
 			"productInformation": [
 				{
+                   "product": "Protheus",
+                   "contact": "marcia.moura@totvs.com.br",
+                   "description": "Listagem dos tipos de abonos",
+                   "adapter": "PONA050API.PRW"
+                },
+                {
 					"product": "RM",
 					"contact": "rm_FW@totvs.com.br",
 					"description": "Listagem dos tipos de abonos"
@@ -54,6 +60,12 @@
 			"x-totvs": {
 				"productInformation": [
 					{
+                      "product": "Protheus",
+                      "available": true,
+                      "note": "Este verbo esta disponivel com todos os parametros",
+                      "minimalVersion": "12.1.25"
+                    },
+                    {
 						"product": "RM",
 						"available": true,
 						"note": "Este verbo esta disponivel com todos parametros",
@@ -83,7 +95,7 @@
 			],
 			"responses": {
 				"200": {
-					"description": "Operação executada com sucesso",
+					"description": "Operacao executada com sucesso",
 					"content": {
 						"application/json": {
 							"schema": {
@@ -92,8 +104,28 @@
 						}
 					}
 				},
+				"400": {
+					"description": "Erro no momento da listagem dos registros de Funcao.",
+					"content": {
+					  "application/json": {
+						"schema": {
+						  "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/definitions/ErrorModel"
+						}
+					  }
+					}
+				  },
+				  "404": {
+					"description": "Nenhum registro localizado.",
+					"content": {
+					  "application/json": {
+						"schema": {
+						  "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/definitions/ErrorModel"
+						}
+					  }
+					}
+				  },
 				"500": {
-					"description": "Erro na execução da operação",
+					"description": "Erro na execucao da operacao",
 					"content": {
 						"application/json": {
 							"schema": {
@@ -111,7 +143,7 @@
                 "name": "datemodified",
                 "in": "query",
                 "required": false,
-                "description": "Data da ultima atualização do registro.",
+                "description": "Data da ultima atualizacao do registro.",
                 "example": "YYYY-MM-DDThh:mm:ssZ",
                 "schema": {
                   "type": "string"
@@ -121,19 +153,19 @@
                     {
                       "product": "Protheus",
                       "available": false,
-                      "note": "Data de atualização da ultima requisição.",
+                      "note": "Data de atualizacao da ultima requisicao.",
                       "minimalVersion": "12.1.25"
                     },
                     {
                       "product": "RM",
                       "available": false,
-                      "note": "Data de atualização da ultima requisição.",
+                      "note": "Data de atualizacao da ultima requisicao.",
                       "minimalVersion": "12.1.25"
                     },
                     {
                       "product": "Datasul",
                       "available": false,
-                      "note": "Data de atualização da ultima requisição.",
+                      "note": "Data de atualizacao da ultima requisicao.",
                       "minimalVersion": "12.1.28"
                     }
                   ]
@@ -141,7 +173,7 @@
               },
               "companyId": {
                 "name": "companyid",
-                "description": "Código da Empresa",
+                "description": "C�digo da Empresa",
                 "type": "string",
                 "schema": {
                   "type": "string"
@@ -151,7 +183,7 @@
                     "product": "Protheus",
                     "field": "",
                     "required": true,
-                    "note": "será recebido o código da empresa para filtro no queryresult",
+                    "note": "Sera recebido o codigo da empresa para filtro no queryresult",
                     "available": true,
                     "canUpdate": false
                   },
@@ -159,7 +191,7 @@
                     "product": "RM",
                     "field": "",
                     "required": false,
-                    "note": "será recebido o código da empresa, relacionado para ",
+                    "note": "sera recebido o codigo da empresa, relacionado para ",
                     "available": true,
                     "canUpdate": false
                   },
@@ -167,12 +199,43 @@
                     "product": "Datasul",
                     "field": "",
                     "required": true,
-                    "note": "será recebido o código da empresa, relacionado para ",
+                    "note": "sera recebido o codigo da empresa, relacionado para ",
                     "available": true,
                     "canUpdate": false
                   }
                 ]
-              }
+			  },
+			  "branchId": {
+				"name": "branchId",
+				"description": "C�digo da Filial",
+				"type": "string",
+				"schema": {
+				  "type": "string"
+				},
+				"x-totvs": [
+				  {
+					"product": "Protheus",
+					"required": true,
+					"note": "Ser� recebido o c�digo da filial, para filtro no queryresult",
+					"available": true,
+					"canUpdate": false
+				  },
+				  {
+					"product": "RM",
+					"required": false,
+					"note": "Nao ser� tratado pelo RM",
+					"available": false,
+					"canUpdate": false
+				  },
+				  {
+					"product": "Datasul",
+					"required": false,
+					"note": "Nao ser� recebido pelo DataSul",
+					"available": true,
+					"canUpdate": false
+				  }
+				]
+			}				
 		},
 		"schemas": {}
 	}
