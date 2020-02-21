@@ -2,7 +2,7 @@
 	"openapi": "3.0.1",
 	"servers": [
 		{
-			"description": "API para a entidade Tipos de Afastamento (LeaveOfAbsenceTypes) para produtos TOTVS",
+			"description": "API para a entidade Tipos de Afastamento (LeaveOfAbsenceTypes) para produtos TOTVS - Mensagem global utilizando o conceito REST/JSON",
 			"url": "{{host}}/api/rh/v1",
 			"variables": {
 				"serverUrl": {
@@ -20,7 +20,7 @@
 		"title": "Tipos de afastamento",
 		"contact": {
 			"name": "T-Talk",
-			"url": "API.Totvs.com.br",
+			"url": "https://api.totvs.com.br",
 			"email": "comiteintegracao@totvs.com.br"
 		},
 		"x-totvs": {
@@ -31,19 +31,19 @@
 			},
 			"productInformation": [
 				{
+                   "product": "Protheus",
+                   "contact": "marcia.moura@totvs.com.br",
+                   "description": "Listagem dos tipos de abonos",
+                   "adapter": "PONA050API.PRW"
+                },
+                {
 					"product": "RM",
 					"contact": "rm_FW@totvs.com.br",
 					"description": "Listagem de Tipos de Afastamento",
 					"adapter": "LeaveOfAbsenceTypesController"
 				},
 				{
-					"product": "Protheus",
-					"contact": "rplyra@totvs.com.br",
-					"description": "Listagem de Tipos de Afastamento",
-					"adapter": ""
-				},
-				{
-					"product": "Datasul",
+					"product": "DataSul",
 					"contact": "fabio.abrao@totvs.com.br",
 					"description": "Listagem de Tipos de Afastamento",
 					"adapter": "fpefd561"
@@ -61,23 +61,33 @@
 				"x-totvs": {
 					"productInformation": [
 						{
+                      "product": "Protheus",
+                      "available": true,
+                      "note": "Este verbo esta disponivel com todos os parametros",
+                      "minimalVersion": "12.1.25"
+                    	},
+						{
 							"product": "RM",
 							"available": true,
-							"note": "Este verbo esta disponível com todos os parâmetros",
+							"note": "Este verbo esta disponivel com todos os parametros",
 							"minimalVersion": "12.1.28"
 						},
 						{
 							"product": "DATASUL",
 							"available": true,
-							"note": "Este verbo esta disponível com todos os parâmetros",
+							"note": "Este verbo esta disponivel com todos os parametros",
 							"minimalVersion": "12.1.28"
 						}
 					]
 				},
 				"description": "Retorna todos os tipos de afastamento",
 				"operationId": "getAll",
+				
 				"parameters": [
 					{
+					"$ref": "#/components/parameters/id"
+				},
+				{
 						"$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/parameters/Authorization"
 					},
 					{
@@ -95,7 +105,7 @@
 				],
 				"responses": {
 					"200": {
-						"description": "Operação realizada com sucesso",
+						"description": "Operacao realizada com sucesso",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -105,7 +115,7 @@
 						}
 					},
 					"400": {
-						"description": "Erro na exibição dos registros",
+						"description": "Erro na exibicao dos registros",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -144,7 +154,7 @@
 				"name": "dateModified",
 				"in": "query",
 				"required": false,
-				"description": "Data da ultima atualização do registro.",
+				"description": "Data da ultima atualizacao do registro.",
 				"example": "YYYY-MM-DDThh:mm:ssZ",
 				"schema": {
 					"type": "string"
@@ -154,21 +164,21 @@
 						{
 							"product": "Protheus",
 							"required": false,
-							"note": "Data de atualização da ultima requisição.",
+							"note": "Data de atualizacao da ultima requisicao.",
 							"available": true,
 							"canUpdate": false
 						},
 						{
 							"product": "RM",
 							"required": false,
-							"note": "Data de atualização da ultima requisição.",
+							"note": "Data de atualizacao da ultima requisicao.",
 							"available": true,
 							"canUpdate": false
 						},
 						{
 							"product": "DataSul",
 							"required": false,
-							"note": "Data de atualização da ultima requisição.",
+							"note": "Data de atualizacao da ultima requisicao.",
 							"available": true,
 							"canUpdate": false
 						}
@@ -177,7 +187,7 @@
 			},
 			"companyId": {
 				"name": "companyId",
-				"description": "Código da Empresa",
+				"description": "Codigo da Empresa",
 				"type": "string",
 				"schema": {
 					"type": "string"
@@ -185,22 +195,57 @@
 				"x-totvs": [
 					{
 						"product": "Protheus",
+                    	"field": "",
 						"required": true,
-						"note": "será recebido o código da empresa para filtro no queryresult",
+						"note": "Sera recebido o codigo da empresa para filtro no queryresult",
 						"available": true,
 						"canUpdate": false
 					},
 					{
 						"product": "RM",
+                    	"field": "",
 						"required": false,
-						"note": "será recebido o código da empresa para realização de filtro ",
+						"note": "sera recebido o codigo da empresa para realizacao de filtro ",
 						"available": true,
 						"canUpdate": false
 					},
 					{
 						"product": "Datasul",
+                    	"field": "",
 						"required": true,
-						"note": "será recebido o código da empresa, relacionado para ",
+						"note": "sera recebido o codigo da empresa, relacionado para ",
+
+                    "available": true,
+                    "canUpdate": false
+                  }
+                ]
+			  },
+			  "branchId": {
+				"name": "branchId",
+				"description": "Codigo da Filial",
+				"type": "string",
+				"schema": {
+				  "type": "string"
+				},
+				"x-totvs": [
+				  {
+					"product": "Protheus",
+					"required": true,
+					"note": "Sera recebido o codigo da filial, para filtro no queryresult",
+					"available": true,
+					"canUpdate": false
+				  },
+				  {
+					"product": "RM",
+					"required": false,
+					"note": "Nao sera tratado pelo RM",
+					"available": false,
+					"canUpdate": false
+				  },
+				  {
+					"product": "Datasul",
+					"required": false,
+					"note": "Nao sera recebido pelo DataSul",
 						"available": true,
 						"canUpdate": false
 					}

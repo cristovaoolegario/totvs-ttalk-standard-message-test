@@ -87,6 +87,12 @@
 					"$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/parameters/Authorization"
 				},
 				{
+						"$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/parameters/Page"
+					},
+					{
+						"$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/parameters/PageSize"
+					},
+					{
 					"$ref": "#/components/parameters/dateModified"
 				},
 				{
@@ -140,7 +146,7 @@
 	"components": {
 		"parameters": {
 				"dateModified": {
-                "name": "datemodified",
+				"name": "dateModified",
                 "in": "query",
                 "required": false,
                 "description": "Data da ultima atualizacao do registro.",
@@ -172,8 +178,8 @@
                 }
               },
               "companyId": {
-                "name": "companyid",
-                "description": "Código da Empresa",
+				"name": "companyId",
+				"description": "Codigo da Empresa",
                 "type": "string",
                 "schema": {
                   "type": "string"
@@ -199,7 +205,8 @@
                     "product": "Datasul",
                     "field": "",
                     "required": true,
-                    "note": "sera recebido o codigo da empresa, relacionado para ",
+						"note": "sera recebido o codigo da empresa, relacionado para ",
+
                     "available": true,
                     "canUpdate": false
                   }
@@ -207,7 +214,7 @@
 			  },
 			  "branchId": {
 				"name": "branchId",
-				"description": "Código da Filial",
+				"description": "Codigo da Filial",
 				"type": "string",
 				"schema": {
 				  "type": "string"
@@ -216,21 +223,21 @@
 				  {
 					"product": "Protheus",
 					"required": true,
-					"note": "Será recebido o código da filial, para filtro no queryresult",
+					"note": "Sera recebido o codigo da filial, para filtro no queryresult",
 					"available": true,
 					"canUpdate": false
 				  },
 				  {
 					"product": "RM",
 					"required": false,
-					"note": "Nao será tratado pelo RM",
+					"note": "Nao sera tratado pelo RM",
 					"available": false,
 					"canUpdate": false
 				  },
 				  {
 					"product": "Datasul",
 					"required": false,
-					"note": "Nao será recebido pelo DataSul",
+					"note": "Nao sera recebido pelo DataSul",
 					"available": true,
 					"canUpdate": false
 				  }
