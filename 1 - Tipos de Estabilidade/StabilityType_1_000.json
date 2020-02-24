@@ -3,10 +3,10 @@
 	"info": {
 		"description": "API para a entidade Tipos de Estabilidade (StabilityType) para produtos TOTVS",
 		"version": "1.000",
-		"title": "Tipos de Estabilidade",
+		"title": "StabilityTypes",
 		"contact": {
 			"name": "T-Talk",
-			"url": "API.Totvs.com.br",
+            "url": "https://api.totvs.com.br",
 			"email": "comiteintegracao@totvs.com.br"
 		},
 		"x-totvs": {
@@ -23,10 +23,10 @@
 					"adapter": "StabilityTypesController"
 				},
 				{
-					"product": "Protheus",
-					"contact": "rplyra@totvs.com.br",
-					"description": "Listagem de Tipos de Estabilidade",
-					"adapter": ""
+					"product": "PROTHEUS",
+					"contact": "marcia.moura@totvs.com.br",
+					"description": "Cadastro de Tipos de Estabilidade",
+					"adapter": "GPES053API.PRW"
 				},
 				{
 					"product": "Datasul",
@@ -62,10 +62,10 @@
 		},
 		"StabilityTypeInfo": {
 			"type": "object",
-			"description": "Informações dos Tipos de Estabilidade",
+			"description": "Informacoes dos Tipos de Estabilidade",
 			"properties": {
 				"id": {
-					"description": "Código idetificador do tipo de Estabilidade",
+					"description": "Codigo idetificador do tipo de Estabilidade",
 					"type": "string",
 					"x-totvs": [
 						{
@@ -75,6 +75,13 @@
 							"note": "Código do Tipo de Estabilidade",
 							"type": "varchar",
 							"length": "1",
+							"required": true
+						},						{
+							"product": "PROTHEUS",
+							"field": "TMP.EMPRESA | RCC.RCC_FILIAL | RCC.TP_ESTB |  RCC.DSCEST",
+							"available": true,
+							"note": "Codigo do Tipo de Estabilidade",
+							"type": "varchar",
 							"required": true
 						},
 						{
@@ -91,13 +98,20 @@
 				"CompanyId": {
 					"type": "string",
 					"example": "1",
-					"description": "Código da Empresa",
+					"description": "Codigo da Empresa",
 					"x-totvs": [
 						{
 							"product": "RM",
 							"field": "Não possui campo físico na tabela",
 							"required": false,
 							"available": false,
+							"canUpdate": false
+						},
+						{
+							"product": "PROTHEUS",
+							"field": "TMP.EMPRESA",
+							"required": true,
+							"available": true,
 							"canUpdate": false
 						},
 						{
@@ -111,11 +125,18 @@
 				},
 				"BranchId": {
 					"type": "string",
-					"description": "Código da Filial",
+					"description": "Codigo da Filial",
 					"x-totvs": [
 						{
 							"product": "RM",
 							"field": "Não possui campo físico na tabela",
+							"required": false,
+							"available": false,
+							"canUpdate": false
+						},
+						{
+							"product": "PROTHEUS",
+							"field": "RCC_FILIAL",
 							"required": false,
 							"available": false,
 							"canUpdate": false
@@ -145,6 +166,15 @@
 							"canUpdate": false
 						},
 						{
+							"product": "PROTHEUS",
+							"field": "RCC.TPESTB",
+							"available": true,
+							"note": "Codigo do Tipo de Estabilidade",
+							"type": "varchar",
+							"required": true,
+							"canUpdate": false
+						},
+						{
 							"product": "DATASUL",
 							"field": "motiv_estabil.cdn_motiv_estabil_func",
 							"available": true,
@@ -169,6 +199,15 @@
 							"type": "varchar",
 							"length": "80",
 							"required": false,
+							"canUpdate": true
+						},
+						{
+							"product": "PROTHEUS",
+							"field": "RCC.MOTEST",
+							"available": true,
+							"note": "Descricao do Tipo de Estabilidade",
+							"type": "varchar",
+							"required": true,
 							"canUpdate": true
 						},
 						{

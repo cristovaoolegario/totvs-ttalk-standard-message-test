@@ -111,7 +111,7 @@
 					}
 				},
 				"400": {
-					"description": "Erro no momento da listagem dos registros de Funcao.",
+					"description": "Erro no momento da listagem dos registros.",
 					"content": {
 					  "application/json": {
 						"schema": {
@@ -131,7 +131,7 @@
 					}
 				  },
 				"500": {
-					"description": "Erro na execucao da operacao",
+						"description": "Erro no acesso ao EndPoint.",
 					"content": {
 						"application/json": {
 							"schema": {
