@@ -33,8 +33,8 @@
 				{
                    "product": "Protheus",
                    "contact": "marcia.moura@totvs.com.br",
-                   "description": "Listagem dos tipos de abonos",
-                   "adapter": "PONA050API.PRW"
+                   "description": "Listagem de Tipos de Afastamento",
+                   "adapter": "GPE430API.PRW"
                 },
                 {
 					"product": "RM",
@@ -61,10 +61,10 @@
 				"x-totvs": {
 					"productInformation": [
 						{
-                      "product": "Protheus",
-                      "available": true,
-                      "note": "Este verbo esta disponivel com todos os parametros",
-                      "minimalVersion": "12.1.25"
+							"product": "Protheus",
+							"available": true,
+							"note": "Este verbo esta disponivel com todos os parametros",
+							"minimalVersion": "12.1.25"
                     	},
 						{
 							"product": "RM",
