@@ -34,7 +34,7 @@
                    "product": "Protheus",
                    "contact": "marcia.moura@totvs.com.br",
                    "description": "Listagem de Tipos de Afastamento",
-                   "adapter": "GPE430API.PRW"
+                   "adapter": "GPEA430API.PRW"
                 },
                 {
 					"product": "RM",
