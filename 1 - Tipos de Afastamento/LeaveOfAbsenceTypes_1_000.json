@@ -24,9 +24,9 @@
 				},
 				{
 					"product": "Protheus",
-					"contact": "rplyra@totvs.com.br",
+					"contact": "marcia.moura@totvs.com.br",
 					"description": "Listagem de Tipos de Afastamento",
-					"adapter": ""
+					"adapter": "GPEA430API.PRW"
 				},
 				{
 					"product": "Datasul",
@@ -62,26 +62,35 @@
 		},
 		"LeaveOfAbsenceTypeInfo": {
 			"type": "object",
-			"description": "Informações dos Tipos de Afastamento",
+			"description": "Informacoes dos Tipos de Afastamento",
 			"properties": {
 				"id": {
-					"description": "Código idetificador do tipo de afastamento",
+					"description": "Codigo idetificador do tipo de afastamento",
 					"type": "string",
 					"x-totvs": [
 						{
 							"product": "RM",
 							"field": "PESOCIALPARAMAFAST.CODCOLIGADA | PCODAFAST.CODCLIENTE",
 							"available": true,
-							"note": "Código do afastamento",
+							"note": "Codigo do afastamento",
 							"type": "varchar",
 							"length": "1",
+							"required": true
+						},
+						{
+							"product": "Protheus",
+							"field": "TMP.EMP | RCM.RCM_FILIAL | RCM.RCM_TIPO",
+							"available": true,
+							"note": "Codigo do afastamento",
+							"type": "varchar",
+							"length": 1,
 							"required": true
 						},
 						{
 							"product": "DATASUL",
 							"field": "rh_estab.cdn_empresa | sit_afast.cdn_sit_afast_func",
 							"available": true,
-							"note": "Código do afastamento",
+							"note": "Codigo do afastamento",
 							"type": "varchar",
 							"length": 1,
 							"required": true
@@ -91,7 +100,7 @@
 				"CompanyCode": {
 					"type": "string",
 					"example": "1",
-					"description": "Código da Empresa",
+					"description": "Codigo da Empresa",
 					"x-totvs": [
 						{
 							"product": "RM",
@@ -103,12 +112,20 @@
 							"canUpdate": false
 						},
 						{
+							"product": "PROTHEUS",
+							"field": "TMP.EMPRESA",
+							"required": true,
+							"type": "string",
+							"available": true,
+							"canUpdate": false
+						},
+						{
 							"product": "DATASUL",
 							"field": "",
 							"required": true,
 							"type": "string",
 							"length": "",
-							"note": "será recebido o código da empresa, relacionado para",
+							"note": "Sera recebido o Codigo da empresa, relacionado para",
 							"available": true,
 							"canUpdate": false
 						}
@@ -116,22 +133,30 @@
 				},
 				"BranchId": {
 					"type": "string",
-					"description": "Código da Filial",
+					"description": "Codigo da Filial",
 					"x-totvs": [
 						{
 							"product": "RM",
-							"field": "não possui campo físico na tabela",
+							"field": "Nao possui campo fisico na tabela",
 							"required": false,
 							"available": false,
 							"canUpdate": false
 						},
 						{
+							"product": "PROTHEUS",
+							"note": "Codigo da Filial",
+							"field": "RCM_FILIAL",
+							"type": "string",
+							"required": true,
+							"available": true							
+						},
+						{
 							"product": "DATASUL",
-							"field": "não possui campo físico na tabela",
+							"field": "Nao possui campo fisico na tabela",
 							"required": false,
 							"type": "",
 							"length": "",
-							"note": "Não Será tratadp pelo DATASUL",
+							"note": "Nao Sera tratadp pelo DATASUL",
 							"available": true,
 							"canUpdate": false
 						}
@@ -140,23 +165,32 @@
 				"LeaveOfAbsenceCode": {
 					"type": "string",
 					"example": "1",
-					"description": "Código do Tipo de Afastamento",
+					"description": "Codigo do Tipo de Afastamento",
 					"x-totvs": [
 						{
 							"product": "RM",
 							"field": "PCODAFAST.CODCLIENTE",
 							"available": true,
-							"note": "Código do afastamento",
+							"note": "Codigo do afastamento",
 							"type": "varchar",
 							"length": "1",
 							"required": true,
 							"canUpdate": false
 						},
 						{
+							"product": "PROTHEUS",
+							"field": "RCM_TIPO",
+							"available": true,
+							"note": "Codigo do afastamento",
+							"type": "string",
+							"length": "3",
+							"required": true
+						},
+						{
 							"product": "DATASUL",
 							"field": "sit_afast.cdn_sit_afast_func",
 							"available": true,
-							"note": "Código do afastamento",
+							"note": "Codigo do afastamento",
 							"type": "string",
 							"length": "5",
 							"required": true
@@ -171,17 +205,26 @@
 							"product": "RM",
 							"field": "PCODAFAST.DESCRICAO",
 							"available": true,
-							"note": "Descrição do Tipo de Afastamento",
+							"note": "Descricao do Tipo de Afastamento",
 							"type": "varchar",
 							"length": "50",
 							"required": false,
 							"canUpdate": true
 						},
 						{
+							"product": "PROTHEUS",
+							"field": "RCM_DESCRI",
+							"available": true,
+							"note": "Descricao do Tipo de Afastamento",
+							"type": "varchar",
+							"length": 75,
+							"required": true
+						},
+						{
 							"product": "DATASUL",
 							"field": "sit_afast.des_sit_afast_func",
 							"available": true,
-							"note": "Descrição do Tipo de Afastamento",
+							"note": "Descricao do Tipo de Afastamento",
 							"type": "varchar",
 							"length": 30,
 							"required": true
@@ -191,7 +234,7 @@
 				"EsocialLeaveCode": {
 					"type": "string",
 					"example": "01",
-					"description": "Código de Afastamento do Esocial",
+					"description": "Codigo de Afastamento do Esocial",
 					"x-totvs": [
 						{
 							"product": "RM",
@@ -203,11 +246,20 @@
 							"canUpdate": true
 						},
 						{
+							"product": "PROTHEUS",
+							"field": "RCM_TPEFD",
+							"required": true,
+							"type": "varchar",
+							"length": "2",
+							"available": true,
+							"canUpdate": true
+						},
+						{
 							"product": "DATASUL",
 							"field": "sped_sit_afast.cod_motiv_afast",
 							"required": true,
 							"type": "varchar",
-							"length": "tamanho máximo de 3",
+							"length": "tamanho maximo de 3",
 							"available": true,
 							"canUpdate": true
 						}
