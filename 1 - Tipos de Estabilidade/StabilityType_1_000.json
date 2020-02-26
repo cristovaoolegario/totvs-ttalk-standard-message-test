@@ -203,7 +203,7 @@
 						},
 						{
 							"product": "PROTHEUS",
-							"field": "RCC.MOTEST",
+							"field": "RCC.DSCEST",
 							"available": true,
 							"note": "Descricao do Tipo de Estabilidade",
 							"type": "varchar",
