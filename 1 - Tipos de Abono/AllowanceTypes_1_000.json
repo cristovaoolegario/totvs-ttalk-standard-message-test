@@ -58,10 +58,10 @@
 		"AllowanceTypesInfo": {
 			"type": "object",
 			"properties": {
-				"CompanyCode": {
+				"companyCode": {
 					"type": "string",
 					"example": "1",
-					"description": "C骴igo da Empresa",
+					"description": "C贸digo da Empresa",
 					"x-totvs": [
 						{
 							"product": "RM",
@@ -90,10 +90,10 @@
 						}
 					]
 				},
-				"Code": {
+				"code": {
 					"type": "string",
 					"example": "0007",
-					"description": "C骴igo do tipo abono",
+					"description": "C贸digo do tipo abono",
 					"x-totvs": [
 						{
 							"product": "RM",
@@ -120,10 +120,10 @@
 						}
 					]
 				},
-				"Description": {
+				"description": {
 					"type": "string",
 					"example": "ABONO INTEGRAL",
-					"description": "C骴igo do tipo abono",
+					"description": "Descri莽茫o do Tipo de Abono",
 					"x-totvs": [
 						{
 							"product": "RM",
@@ -157,7 +157,7 @@
 						{
 							"product": "RM",
 							"available": true,
-							"note": "C骴igo do Tipo de Abono",
+							"note": "C贸digo do Tipo de Abono",
 							"field": "allowancetype_id",
 							"type": "string",
 							"required": true
@@ -172,21 +172,21 @@
 						{
 							"product": "DataSul",
 							"available": true,
-							"note": "C骴igo do Tipo de Abono",
+							"note": "C贸digo do Tipo de Abono",
 							"field": "RH_ESTAB.CDN_EMPRESA | SIT_AFAST.CDN_SIT_AFAST_FUNC",
 							"type": "string",
 							"required": true
 						}
 					]
 				},
-				"BranchId": {
+				"branchId": {
 					"type": "string",
-					"description": "C骴igo da Filial",
+					"description": "C贸digo da Filial",
 					"x-totvs": [
 						{
 							"product": "RM",
 							"available": true,
-							"note": "C骴igo da Filial",
+							"note": "C贸digo da Filial",
 							"field": "allowancetype_id",
 							"type": "string",
 							"required": true
@@ -194,7 +194,7 @@
 						{
 							"product": "PROTHEUS",
 							"available": true,
-							"note": "C骴igo da Filial",
+							"note": "C贸digo da Filial",
 							"field": "P6_FILIAL",
 							"type": "string",
 							"required": true

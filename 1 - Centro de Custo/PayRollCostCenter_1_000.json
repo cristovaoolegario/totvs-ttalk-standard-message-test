@@ -91,7 +91,7 @@
             }
           ]
 				},
-				"CompanyCode": {
+				"companyCode": {
 					"type": "string",
 					"example": "01",
 					"description": "Código da Empresa",
@@ -124,7 +124,7 @@
             }
           ]
 				},
-				"BranchId": {
+				"branchId": {
 					"type": "string",
                     "description": "Código da Filial",
                     "example": "1",
@@ -160,7 +160,7 @@
             }
           ]
 				},
-				"Code": {
+				"code": {
 					"type": "string",					
                     "description": "Código do Centro de Custo da Folha de Pagamento",
                     "example": "01",
@@ -196,7 +196,7 @@
             }
           ]
 				},
-				"Name": {
+				"name": {
 					"type": "string",
           "description": "Nome do Centro de Custo da Folha de Pagamento",
           "example" : "Administrativo",

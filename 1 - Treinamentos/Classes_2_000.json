@@ -91,7 +91,7 @@
             }
           ]
         },
-        "CompanyId": {
+        "companyCode": {
           "type": "string",
           "example": "1",
           "description": "Código da Empresa",
@@ -124,7 +124,7 @@
             }
           ]
         },
-        "BranchId": {
+        "branchId": {
           "type": "string",
           "description": "Código da Filial",
           "x-totvs": [
@@ -153,7 +153,7 @@
             }
           ]
         },
-        "ClassCode": {
+        "classCode": {
           "type": "string",
           "example": "1",
           "description": "Código da turma",
@@ -187,7 +187,7 @@
             }
           ]
         },
-        "Name": {
+        "name": {
           "type": "string",
           "example": "CURSO 001",
           "description": "Nome da Turma",
@@ -220,7 +220,7 @@
             }
           ]
         },
-        "EsocialTrainingCode": {
+        "esocialTrainingCode": {
           "type": "string",
           "example": "08320",
           "description": "Código eSocial",

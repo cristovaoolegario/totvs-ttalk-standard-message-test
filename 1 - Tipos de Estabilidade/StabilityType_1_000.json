@@ -95,7 +95,7 @@
 						}
 					]
 				},
-				"CompanyId": {
+				"companyCode": {
 					"type": "string",
 					"example": "1",
 					"description": "Codigo da Empresa",
@@ -123,7 +123,7 @@
 						}
 					]
 				},
-				"BranchId": {
+				"branchId": {
 					"type": "string",
 					"description": "Codigo da Filial",
 					"x-totvs": [
@@ -150,7 +150,7 @@
 						}
 					]
 				},
-				"StabilityCode": {
+				"stabilityCode": {
 					"type": "string",
 					"example": "1",
 					"description": "Código do Tipo de Estabilidade",
@@ -187,7 +187,7 @@
 						
 					]
 				},
-				"Name": {
+				"name": {
 					"type": "string",
 					"description": "Nome do Tipo de Estabilidade",
 					"x-totvs": [
