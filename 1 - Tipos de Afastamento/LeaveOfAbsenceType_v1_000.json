@@ -185,8 +185,8 @@
 					]
 				}
 			},
-			"companyId": {
-				"name": "companyId",
+			"companyCode": {
+				"name": "companyCode",
 				"description": "Codigo da Empresa",
 				"type": "string",
 				"schema": {

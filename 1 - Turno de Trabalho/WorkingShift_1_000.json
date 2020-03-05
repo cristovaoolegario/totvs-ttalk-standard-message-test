@@ -100,7 +100,7 @@
 						}
 					]
 				},
-				"CompanyId": {
+				"companyCode": {
 					"type": "string",
 					"example": "01",
 					"description": "Código da Empresa",
@@ -133,7 +133,7 @@
 						}
 					]
 				},
-				"BranchId": {
+				"branchId": {
 					"type": "string",
 					"description": "Código da Filial",
 					"example": "1",
@@ -164,7 +164,7 @@
 						}
 					]
 				},
-				"WorkingShiftCode": {
+				"workingShiftCode": {
 					"type": "string",
 					"description": "Código do Turno de trabalho",
 					"example": "0001",
@@ -197,7 +197,7 @@
 						}
 					]
 				},
-				"Name": {
+				"name": {
 					"type": "string",
 					"description": "Descrição do Horário",
 					"example": "Horário 08:00 12:00 14:00 18:00 sem Intervalo de Refeição.",
@@ -229,7 +229,7 @@
 						}
 					]
 				},
-				"MonthlyWorkLoad": {
+				"monthlyWorkLoad": {
 					"type": "string",
 					"description": "Carga de trabalho mensal",
 					"example": "40:00",
