@@ -131,7 +131,7 @@
 						}
 					]
 				},
-				"BranchId": {
+				"branchId": {
 					"type": "string",
 					"description": "Codigo da Filial",
 					"x-totvs": [
@@ -162,7 +162,7 @@
 						}
 					]
 				},
-				"LeaveOfAbsenceCode": {
+				"leaveOfAbsenceCode": {
 					"type": "string",
 					"example": "1",
 					"description": "Codigo do Tipo de Afastamento",
@@ -197,7 +197,7 @@
 						}
 					]
 				},
-				"Name": {
+				"name": {
 					"type": "string",
 					"description": "Nome do Tipo de Afastamento",
 					"x-totvs": [
@@ -231,7 +231,7 @@
 						}
 					]
 				},
-				"EsocialLeaveCode": {
+				"esocialLeaveCode": {
 					"type": "string",
 					"example": "01",
 					"description": "Codigo de Afastamento do Esocial",
