@@ -164,7 +164,7 @@
 						}
 					]
 				},
-				"workingShiftCode": {
+				"workShiftCode": {
 					"type": "string",
 					"description": "Código do Turno de trabalho",
 					"example": "0001",
@@ -229,7 +229,7 @@
 						}
 					]
 				},
-				"monthlyWorkLoad": {
+				"monthlyWorkingHours": {
 					"type": "string",
 					"description": "Carga de trabalho mensal",
 					"example": "40:00",
