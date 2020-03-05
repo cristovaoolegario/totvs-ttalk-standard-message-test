@@ -100,7 +100,7 @@
 						}
 					]
 				},
-				"companyCode": {
+				"companyId": {
 					"type": "string",
 					"example": "01",
 					"description": "Código da Empresa",

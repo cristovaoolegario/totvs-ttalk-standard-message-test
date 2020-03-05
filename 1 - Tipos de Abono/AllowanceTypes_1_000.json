@@ -58,7 +58,7 @@
 		"AllowanceTypesInfo": {
 			"type": "object",
 			"properties": {
-				"companyCode": {
+				"companyId": {
 					"type": "string",
 					"example": "1",
 					"description": "Código da Empresa",
