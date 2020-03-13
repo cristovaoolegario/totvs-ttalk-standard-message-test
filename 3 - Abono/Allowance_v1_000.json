@@ -1,0 +1,265 @@
+{
+    "openapi": "3.0.1",
+    "servers": [
+        {
+            "description": "API para a entidade de Abono para produtos TOTVS - Mensagem global utilizando o conceito REST/JSON",
+            "url": "{{host}}/api/rh/v1",
+            "variables": {
+                "serverUrl": {
+                    "default": "localhost"
+                },
+                "serverHttpPort": {
+                    "default": "8051"
+                }
+            }
+        }
+    ],
+    "info": {
+        "description": "API para a entidade de Abono para produtos TOTVS",
+        "version": "1.000",
+        "title": "Abono",
+        "contact": {
+            "name": "T-Talk",
+            "url": "https://api.totvs.com.br",
+            "email": "comiteintegracao@totvs.com.br"
+        },
+        "x-totvs": {
+            "messageDocumentation": {
+                "name": "AllowanceControl",
+                "description": "Abono utilizado no processo de calculo de Ponto.",
+                "segment": "Recursos Humanos"
+            },
+            "productInformation": [
+                {
+                    "product": "Protheus",
+                    "contact": "marcia.moura@totvs.com.br",
+                    "adapter": ""
+                },
+                {
+                    "product": "RM",
+                    "contact": "donaldson.nunes@totvs.com.br",
+                    "adapter": "AllowanceControlController"
+                },
+                {
+                    "product": "DataSul",
+                    "contact": "fabio.abrao@totvs.com.br",
+                    "adapter": ""
+                }
+            ]
+        }
+    },
+    "paths": {
+        "/allowanceControl": {
+            "post": {
+                "tags": [
+                    "AllowanceControl"
+                ],
+                "summary": "Cadastra um novo abono na base de dados",
+                "x-totvs": {
+                    "productInformation": [
+                        {
+                            "product": "RM",
+                            "available": true,
+                            "note": "Este verbo esta disponivel com todos parametros",
+                            "minimalVersion": "12.1.28"
+                        }
+                    ]
+                },
+                "parameters": [
+                    {
+                        "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/parameters/Authorization"
+                    }
+                ],
+                "description": "Cadastra um novo abono na base de dados",
+                "operationId": "postAllowanceControl",
+                "requestBody": {
+                    "description": "Objeto para atualizar o registro na tabela de Abono",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/Allowance/V1/1_000/jsonschema/schemas/Allowance_1_000.json##/definitions/AllowanceSave"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/Allowance/V1/1_000/jsonschema/schemas/AllowanceTypes_1_000.json#/definitions/AllowanceTypesInfo"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erro no momento da listagem dos registros.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/definitions/ErrorModel"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Erro no acesso ao EndPoint.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/definitions/ErrorModel"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/allowanceControl/{id}": {
+            "put": {
+                "tags": [
+                    "AllowanceControl"
+                ],
+                "summary": "Atualiza um abono na base de dados",
+                "x-totvs": {
+                    "productInformation": [
+                        {
+                            "product": "RM",
+                            "available": true,
+                            "note": "Este verbo esta disponivel com todos parametros",
+                            "minimalVersion": "12.1.28"
+                        }
+                    ]
+                },
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/allowanceId"
+                    },
+                    {
+                        "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/parameters/Authorization"
+                    }
+                ],
+                "description": "Atualiza um abono na base de dados",
+                "operationId": "putAllowanceControl",
+                "requestBody": {
+                    "description": "Objeto para atualizar o registro na tabela de Abono",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/Allowance/V1/1_000/jsonschema/schemas/Allowance_1_000.json##/definitions/AllowanceSave"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Atualizado com sucesso.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/Allowance/V1/1_000/jsonschema/schemas/Allowance_1_000.json#/definitions/AllowanceInfo"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erro no momento da listagem do registro.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/definitions/ErrorModel"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Erro no acesso ao EndPoint.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/definitions/ErrorModel"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "AllowanceControl"
+                ],
+                "summary": "Deleta um abono na base de dados",
+                "x-totvs": {
+                    "productInformation": [
+                        {
+                            "product": "RM",
+                            "available": true,
+                            "note": "Este verbo esta disponivel com todos parametros",
+                            "minimalVersion": "12.1.28"
+                        }
+                    ]
+                },
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/allowanceId"
+                    },
+                    {
+                        "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/parameters/Authorization"
+                    }
+                ],
+                "description": "Deleta um abono na base de dados",
+                "operationId": "deleteAllowanceControl",
+                "responses": {
+                    "204": {
+                        "description": "Atualizado com sucesso."
+                    },
+                    "400": {
+                        "description": "Erro no momento da listagem do registro.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/definitions/ErrorModel"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Erro no acesso ao EndPoint.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/definitions/ErrorModel"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "parameters": {
+            "allowanceId": {
+                "name": "allowanceId",
+                "required": false,
+                "description": "Código identificador do registro.",
+                "example": "1 | 1 | 1",
+                "schema": {
+                    "type": "string"
+                },
+                "x-totvs": {
+                    "productInformation": [
+                        {
+                            "product": "RM",
+                            "available": false,
+                            "note": "Código identificador do registro.",
+                            "minimalVersion": "12.1.25"
+                        }
+                    ]
+                }
+            }
+        },
+        "schemas": {}
+    }
+}

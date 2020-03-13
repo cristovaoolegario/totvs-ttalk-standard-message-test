@@ -1,0 +1,276 @@
+{
+    "$schema": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/Allowance/V1/1_000/jsonschema/schemas/Allowance_1_000.json#",
+    "info": {
+        "description": "Abonos dos funcionários dos produtos TOTVS",
+        "version": "1.000",
+        "title": "Allowance",
+        "contact": {
+            "name": "T-Talk",
+            "url": "https://api.totvs.com.br",
+            "email": "comiteintegracao@totvs.com.br"
+        },
+        "x-totvs": {
+            "messageDocumentation": {
+                "name": "Allowance",
+                "description": "Dados de abonos",
+                "segment": "Recursos Humanos"
+            },
+            "productInformation": [
+                {
+                    "product": "Protheus",
+                    "contact": "marcia.moura@totvs.com.br",
+                    "description": "Product Owner RH - Protheus",
+                    "adapter": ""
+                },
+                {
+                    "product": "RM",
+                    "contact": "donaldson.nunes@totvs.com.br",
+                    "description": "Product Owner PTO - RM",
+                    "adapter": "AllowanceController"
+                },
+                {
+                    "product": "Datasul",
+                    "contact": "fabio.abrao@totvs.com.br",
+                    "description": "Product Owner RH - Datasul",
+                    "adapter": ""
+                }
+            ]
+        }
+    },
+    "definitions": {
+        "PagedAllowance": {
+            "description": "Coleção de abonos paginados",
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/definitions/Paging"
+                },
+                {
+                    "$ref": "#/definitions/Allowances"
+                }
+            ]
+        },
+        "Allowances": {
+            "description": "Coleção de abonos",
+            "type": "object",
+            "properties": {
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/AllowanceInfo"
+                    }
+                }
+            }
+        },
+        "AllowanceInfo": {
+            "description": "Objeto de abono com Id identificador",
+            "type": "object",
+            "allOf": [
+                {
+                    "id": {
+                        "description": "Chave única do registro de abono",
+                        "type": "string",
+                        "x-totvs": [
+                            {
+                                "product": "RM",
+                                "available": true,
+                                "field": "",
+                                "type": "string",
+                                "required": true
+                            },
+                            {
+                                "product": "PROTHEUS",
+                                "available": true,
+                                "field": "",
+                                "type": "string",
+                                "required": true
+                            },
+                            {
+                                "product": "DATASUL",
+                                "available": true,
+                                "field": "",
+                                "type": "string",
+                                "required": true
+                            }
+                        ]
+                    }
+                },
+                {
+                    "$ref": "#/definitions/AllowanceSave"
+                }
+            ]
+        },
+        "AllowanceSave": {
+            "description": "Objeto para persistência do abono",
+            "properties": {
+                "companyId": {
+                    "type": "string",
+                    "example": "01",
+                    "description": "Código da Empresa",
+                    "x-totvs": [
+                        {
+                            "product": "RM",
+                            "field": "",
+                            "available": true,
+                            "type": "integer",
+                            "length": 2,
+                            "required": true,
+                            "canUpdate": false
+                        }
+                    ]
+                },
+                "branchId": {
+                    "type": "string",
+                    "description": "Código da Filial",
+                    "example": "1",
+                    "x-totvs": [
+                        {
+                            "product": "RM",
+                            "field": "não possui campo físico na tabela",
+                            "required": true,
+                            "type": "",
+                            "length": "",
+                            "note": "",
+                            "available": true,
+                            "canUpdate": false
+                        }
+                    ]
+                },
+                "employeeId": {
+                    "type": "string",
+                    "description": "Código Identificador do Funcionário",
+                    "example": "01",
+                    "x-totvs": [
+                        {
+                            "product": "RM",
+                            "field": "",
+                            "required": true,
+                            "note": "Código Identificador do Funcionário",
+                            "type": "varchar",
+                            "available": true,
+                            "canUpdate": false
+                        }
+                    ]
+                },
+                "startDate": {
+                    "type": "date",
+                    "description": "Data inicial do abono.",
+                    "example": "2019-06-01",
+                    "x-totvs": [
+                        {
+                            "product": "RM",
+                            "field": "",
+                            "required": true,
+                            "note": "Data inicial do abono.",
+                            "type": "date",
+                            "available": true,
+                            "canUpdate": false
+                        }
+                    ]
+                },
+                "startTime": {
+                    "type": "string",
+                    "description": "Horário inicial do abono.",
+                    "example": "400:00",
+                    "x-totvs": [
+                        {
+                            "product": "RM",
+                            "field": "",
+                            "required": true,
+                            "note": "Horário inicial do abono.",
+                            "type": "varchar",
+                            "length": 6,
+                            "available": true,
+                            "canUpdate": false
+                        }
+                    ]
+                },
+                "endDate": {
+                    "type": "date",
+                    "description": "Data final do abono.",
+                    "example": "2019-06-02",
+                    "x-totvs": [
+                        {
+                            "product": "RM",
+                            "field": "",
+                            "required": true,
+                            "note": "Data final do abono.",
+                            "type": "date",
+                            "available": true,
+                            "canUpdate": false
+                        }
+                    ]
+                },
+                "endTime": {
+                    "type": "string",
+                    "description": "Horário final do abono.",
+                    "example": "400:00",
+                    "x-totvs": [
+                        {
+                            "product": "RM",
+                            "field": "",
+                            "required": true,
+                            "note": "Horário final do abono.",
+                            "type": "varchar",
+                            "length": 6,
+                            "available": true,
+                            "canUpdate": false
+                        }
+                    ]
+                },
+                "code": {
+                    "type": "string",
+                    "description": "Código do Abono",
+                    "example": "01",
+                    "x-totvs": [
+                        {
+                            "product": "RM",
+                            "field": "",
+                            "required": false,
+                            "note": "Código do Abono",
+                            "type": "varchar",
+                            "available": true,
+                            "canUpdate": false
+                        }
+                    ]
+                },
+                "justification": {
+                    "type": "string",
+                    "description": "Justificativa do Abono",
+                    "example": "Abono por atestado médico.",
+                    "x-totvs": [
+                        {
+                            "product": "RM",
+                            "field": "",
+                            "required": false,
+                            "note": "Justificativa do Abono",
+                            "type": "varchar",
+                            "length": 200,
+                            "available": true,
+                            "canUpdate": false
+                        },
+                        {
+                            "product": "PROTHEUS",
+                            "field": "",
+                            "required": false,
+                            "note": "Justificativa do Abono",
+                            "type": "string",
+                            "available": true,
+                            "canUpdate": false
+                        },
+                        {
+                            "product": "DATASUL",
+                            "field": "RH_CCUSTO.DES_RH_CCUSTO",
+                            "required": false,
+                            "note": "Justificativa do Abono",
+                            "type": "character",
+                            "length": 40,
+                            "available": true,
+                            "canUpdate": false
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}
