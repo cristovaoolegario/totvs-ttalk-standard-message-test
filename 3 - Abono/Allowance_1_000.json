@@ -248,25 +248,6 @@
                             "length": 200,
                             "available": true,
                             "canUpdate": false
-                        },
-                        {
-                            "product": "PROTHEUS",
-                            "field": "",
-                            "required": false,
-                            "note": "Justificativa do Abono",
-                            "type": "string",
-                            "available": true,
-                            "canUpdate": false
-                        },
-                        {
-                            "product": "DATASUL",
-                            "field": "RH_CCUSTO.DES_RH_CCUSTO",
-                            "required": false,
-                            "note": "Justificativa do Abono",
-                            "type": "character",
-                            "length": 40,
-                            "available": true,
-                            "canUpdate": false
                         }
                     ]
                 }
