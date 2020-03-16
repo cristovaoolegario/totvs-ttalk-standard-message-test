@@ -1,0 +1,207 @@
+{
+	"$schema": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/StabilityControl/V1/1_000/jsonschema/schemas/StabilityControl_1_000.json#",
+	"info": {
+		"description": "Controle de Estabilidade (StabilityControl) para produtos TOTVS",
+		"version": "1.000",
+		"title": "StabilityControl",
+		"contact": {
+			"name": "T-Talk",
+			"url": "https://api.totvs.com.br",
+			"email": "comiteintegracao@totvs.com.br"
+		},
+		"x-totvs": {
+			"messageDocumentation": {
+				"name": "StabilityControl",
+				"description": "Estabilidade",
+				"segment": "Recursos Humanos"
+			},
+			"productInformation": [
+                {
+                    "product": "Protheus",
+                    "contact": "marcia.moura@totvs.com.br",
+                    "description": "Product Owner RH - Protheus",
+                    "adapter": ""
+                },
+                {
+                    "product": "RM",
+                    "contact": "donaldson.nunes@totvs.com.br",
+                    "description": "Product Owner PTO - RM",
+                    "adapter": "StabilityControl"
+                },
+                {
+                    "product": "Datasul",
+                    "contact": "fabio.abrao@totvs.com.br",
+                    "description": "Product Owner RH - Datasul",
+                    "adapter": ""
+                }
+			]
+		}
+	},
+	"definitions": {
+		"PagedStabilityControl": {
+			"description": "Período de Estabilidade",
+			"type": "object",
+			"allOf": [
+				{
+					"$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/definitions/Paging"
+				},
+				{
+					"$ref": "#/definitions/StabilityControl"
+				}
+			]
+		},
+		"StabilityControl": {
+			"description": "Período de Estabilidade",
+			"type": "object",
+			"properties": {
+				"items": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/StabilityControlInfo"
+					}
+				}
+			}
+		},
+		"StabilityControlInfo": {
+			"description": "Objeto de Período de Estabilidade com ID Identificador",
+			"type": "object",
+			"allOf": [
+                {
+                    "id": {
+                        "description": "Chave única do registro de Período de Estabilidade",
+                        "type": "string",
+                        "x-totvs": [
+                            {
+                                "product": "RM",
+                                "available": true,
+                                "field": "",
+                                "type": "string",
+                                "required": true
+                            },
+							{
+								"product": "PROTHEUS",
+								"field": "TMP.EMPRESA|RFX.RFX_FILIAL|RFX.RFX_MAT|RFX.RFX_DATAI|RFX.RFX_TPESTB",
+								"available": true,
+								"note": "Período de Estabilidade da Matrícula",
+								"type": "varchar",
+								"length": "1",
+								"required": true,
+								"canUpdate": false
+							},
+                            {
+                                "product": "DATASUL",
+                                "available": true,
+                                "field": "",
+                                "type": "string",
+                                "required": true
+                            }
+                        ]
+                    }
+                },
+                {
+                    "$ref": "#/definitions/StabilitySave"
+                }
+            ]
+		},
+		
+		"StabilitySave": {
+            "description": "Objeto para Período de Estabilidade",
+            "properties": {
+				"companyId": {
+					"type": "string",
+					"example": "T1",
+					"description": "Código da Empresa",
+					"x-totvs": [
+						{
+							"product": "PROTHEUS",
+							"field": "TMP.EMPRESA",
+							"available": true,
+							"type": "string",
+							"required": true,
+							"canUpdate": false
+						}
+					]
+				},
+				"branchId": {
+					"type": "string",
+					"description": "Código da Filial",
+					"example": "D MG 01",
+					"x-totvs": [
+						{
+							"product": "PROTHEUS",
+							"field": "RFX.RFX_FILIAL",
+							"required": true,
+							"type": "string",
+							"available": true,
+							"canUpdate": false
+						}
+					]
+				},
+				"employeeId": {
+					"type": "string",
+					"description": "Código Identificador do Funcionário",
+					"example": "000001",
+					"x-totvs": [
+						{
+							"product": "PROTHEUS",
+							"field": "RFX.RFX_MAT",
+							"required": true,
+							"type": "varchar",
+							"available": true,
+							"canUpdate": false
+						}
+					]
+				},
+				"startDate": {
+					"type": "string",
+					"format": "date",
+					"description": "Data de Início",
+					"example": "20200101",
+					"x-totvs": [
+						{
+							"product": "PROTHEUS",
+							"field": "RFX.RFX_DATAI",
+							"required": true,
+							"type": "date",
+							"available": true,
+							"canUpdate":  true
+						}
+					]
+				},
+				"endDate": {
+					"type": "string",
+					"format": "date",
+					"description": "Data de Término",
+					"example": "20200115",
+					"x-totvs": [
+						{
+							"product": "PROTHEUS",
+							"field": "RFX.RFX_DATAF",
+							"required": false,
+							"type": "date",
+							"available": true,
+							"canUpdate": true
+						}
+					]
+				},
+				"stabilityCode": {
+					"type": "string",
+					"description": "Tipo de Estabilidade",
+					"example": "001",
+					"x-totvs": [
+						{
+							"product": "PROTHEUS",
+							"field": "RFX.RFX_TPESTB",
+							"required": false,
+							"type": "varchar",
+							"available": true,
+							"canUpdate": false
+						}
+					]
+				}
+            }
+        }
+    }
+}
+
+
