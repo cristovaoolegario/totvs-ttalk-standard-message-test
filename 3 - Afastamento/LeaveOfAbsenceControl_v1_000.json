@@ -1,0 +1,265 @@
+{
+    "openapi": "3.0.1",
+    "servers": [
+        {
+            "description": "API para a entidade de Afastamento para produtos TOTVS - Mensagem global utilizando o conceito REST/JSON",
+            "url": "{{host}}/api/rh/v1",
+            "variables": {
+                "serverUrl": {
+                    "default": "localhost"
+                },
+                "serverHttpPort": {
+                    "default": "8051"
+                }
+            }
+        }
+    ],
+    "info": {
+        "description": "API para a entidade de Afastamento para produtos TOTVS",
+        "version": "1.000",
+        "title": "Afastamento",
+        "contact": {
+            "name": "T-Talk",
+            "url": "https://api.totvs.com.br",
+            "email": "comiteintegracao@totvs.com.br"
+        },
+        "x-totvs": {
+            "messageDocumentation": {
+                "name": "LeaveOfAbsenceControl",
+                "description": "Afastamentos do funcionário.",
+                "segment": "Recursos Humanos"
+            },
+            "productInformation": [
+                {
+                    "product": "Protheus",
+                    "contact": "marcia.moura@totvs.com.br",
+                    "adapter": ""
+                },
+                {
+                    "product": "RM",
+                    "contact": "donaldson.nunes@totvs.com.br",
+                    "adapter": "LeaveOfAbsenceControlController"
+                },
+                {
+                    "product": "DataSul",
+                    "contact": "fabio.abrao@totvs.com.br",
+                    "adapter": ""
+                }
+            ]
+        }
+    },
+    "paths": {
+        "/leaveOfAbsenceControl": {
+            "post": {
+                "tags": [
+                    "LeaveOfAbsenceControl"
+                ],
+                "summary": "Cadastra um novo Afastamento na base de dados",
+                "x-totvs": {
+                    "productInformation": [
+                        {
+                            "product": "RM",
+                            "available": true,
+                            "note": "Este verbo esta disponivel com todos parametros",
+                            "minimalVersion": "12.1.28"
+                        }
+                    ]
+                },
+                "parameters": [
+                    {
+                        "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/parameters/Authorization"
+                    }
+                ],
+                "description": "Cadastra um novo Afastamento na base de dados",
+                "operationId": "postLeaveOfAbsenceControl",
+                "requestBody": {
+                    "description": "Objeto para criar o registro na tabela de Afastamento",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/LeaveOfAbsenceControl/V1/1_000/jsonschema/schemas/LeaveOfAbsenceControl_1_000.json##/definitions/LeaveOfAbsenceSave"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/LeaveOfAbsenceControl/V1/1_000/jsonschema/schemas/LeaveOfAbsenceControl_1_000.json#/definitions/LeaveOfAbsenceInfo"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erro no momento da listagem dos registros.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/definitions/ErrorModel"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Erro no acesso ao EndPoint.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/definitions/ErrorModel"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/leaveOfAbsenceControl/{id}": {
+            "put": {
+                "tags": [
+                    "LeaveOfAbsenceControl"
+                ],
+                "summary": "Atualiza um Afastamento na base de dados",
+                "x-totvs": {
+                    "productInformation": [
+                        {
+                            "product": "RM",
+                            "available": true,
+                            "note": "Este verbo esta disponivel com todos parametros",
+                            "minimalVersion": "12.1.28"
+                        }
+                    ]
+                },
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/leaveOfAbsenceId"
+                    },
+                    {
+                        "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/parameters/Authorization"
+                    }
+                ],
+                "description": "Atualiza um Afastamento na base de dados",
+                "operationId": "putLeaveOfAbsenceControl",
+                "requestBody": {
+                    "description": "Objeto para atualizar o registro na tabela de Afastamento",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/LeaveOfAbsenceControl/V1/1_000/jsonschema/schemas/LeaveOfAbsenceControl_1_000.json##/definitions/LeaveOfAbsenceSave"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Created.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/LeaveOfAbsenceControl/V1/1_000/jsonschema/schemas/LeaveOfAbsenceControl_1_000.json#/definitions/LeaveOfAbsenceInfo"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erro no momento da listagem do registro.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/definitions/ErrorModel"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Erro no acesso ao EndPoint.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/definitions/ErrorModel"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "LeaveOfAbsenceControl"
+                ],
+                "summary": "Deleta um Afastamento na base de dados",
+                "x-totvs": {
+                    "productInformation": [
+                        {
+                            "product": "RM",
+                            "available": true,
+                            "note": "Este verbo esta disponivel com todos parametros",
+                            "minimalVersion": "12.1.28"
+                        }
+                    ]
+                },
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/leaveOfAbsenceId"
+                    },
+                    {
+                        "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/parameters/Authorization"
+                    }
+                ],
+                "description": "Deleta um Afastamento na base de dados",
+                "operationId": "deleteLeaveOfAbsenceControl",
+                "responses": {
+                    "204": {
+                        "description": "No content."
+                    },
+                    "400": {
+                        "description": "Erro no momento da listagem do registro.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/definitions/ErrorModel"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Erro no acesso ao EndPoint.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/definitions/ErrorModel"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "parameters": {
+            "leaveOfAbsenceId": {
+                "name": "leaveOfAbsenceId",
+                "required": false,
+                "description": "Código identificador do registro.",
+                "example": "1 | 1 | 1",
+                "schema": {
+                    "type": "string"
+                },
+                "x-totvs": {
+                    "productInformation": [
+                        {
+                            "product": "RM",
+                            "available": true,
+                            "note": "Código identificador do registro.",
+                            "minimalVersion": "12.1.28"
+                        }
+                    ]
+                }
+            }
+        },
+        "schemas": {}
+    }
+}
