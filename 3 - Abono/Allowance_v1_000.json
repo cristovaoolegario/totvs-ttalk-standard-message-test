@@ -212,7 +212,7 @@
                 "operationId": "deleteAllowanceControl",
                 "responses": {
                     "204": {
-                        "description": "Atualizado com sucesso."
+                        "description": "No content."
                     },
                     "400": {
                         "description": "Erro no momento da listagem do registro.",
