@@ -1,0 +1,265 @@
+{
+  "openapi": "3.0.1",
+  "servers": [
+    {
+      "description": "API para Controle de Estabilidade para produtos TOTVS - Mensagem global utilizando o conceito REST/JSON",
+      "url": "{{host}}/api/rh/v1",
+      "variables": {
+        "serverUrl": {
+          "default": "localhost"
+        },
+        "serverHttpPort": {
+          "default": "8051"
+        }
+      }
+    }
+  ],
+  "info": {
+    "description": "API para Controle de Estabilidade TOTVS - Mensagem global utilizando o conceito REST/JSON",
+    "version": "1.000",
+    "title": "Controle de Estabilidade",
+    "contact": {
+      "name": "T-Talk",
+      "url": "https://api.totvs.com.br",
+      "email": "comiteintegracao@totvs.com.br"
+    },
+    "x-totvs": {
+      "messageDocumentation": {
+        "name": "StabilityControl",
+        "description": "Controle de Estabilidade",
+        "segment": "Recursos Humanos"
+      },
+      "productInformation": [
+        {
+          "product": "Protheus",
+          "contact": "marcia.moura@totvs.com.br",
+          "adapter": "StabilityControlControler"
+        },
+        {
+            "product": "RM",
+            "contact": "donaldson.nunes@totvs.com.br",
+            "adapter": "StabilityControlControler"
+        },
+        {
+            "product": "DataSul",
+            "contact": "fabio.abrao@totvs.com.br",
+            "adapter": "StabilityControlControler"
+        }
+      ]
+    }
+  },
+  "paths": {
+    "/stabilityControl": {
+        "post": {
+            "tags": [
+                "StabilityControl"
+            ],
+            "summary": "Cadastra um novo Controle de Estabilidade",
+            "x-totvs": {
+                "productInformation": [
+                    {
+                        "product": "PROTHEUS",
+                        "available": true,
+                        "note": "Este verbo esta disponivel com todos parametros",
+                        "minimalVersion": "12.1.30"
+                    }
+                ]
+            },
+            "parameters": [
+                {
+                    "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/parameters/Authorization"
+                }
+            ],
+            "description": "Cadastra um novo Controle de Estabilidade na base de dados",
+            "operationId": "postStabilityControl",
+            "requestBody": {
+                "description": "Objeto para atualizar o registro na tabela de Estabilidade",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/StabilityControl/V1/1_000/jsonschema/schemas/StabilityControl_1_000.json##/definitions/StabilitySave"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "201": {
+                    "description": "Created.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/StabilityControl/V1/1_000/jsonschema/schemas/StabilityControl_1_000.json#/definitions/StabilityControlInfo"
+                            }
+                        }
+                    }
+                },
+                "400": {
+                    "description": "Erro no momento da listagem do registro.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/definitions/ErrorModel"
+                            }
+                        }
+                    }
+                },
+                "500": {
+                    "description": "Erro no acesso ao EndPoint.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/definitions/ErrorModel"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "/stabilityControl/{id}": {
+        "put": {
+            "tags": [
+                "StabilityControl"
+            ],
+            "summary": "Atualiza o Controle de Estabilidade na base de dados",
+            "x-totvs": {
+                "productInformation": [
+                    {
+                        "product": "PROTHEUS",
+                        "available": true,
+                        "note": "Este verbo esta disponivel com todos parametros",
+                        "minimalVersion": "12.1.28"
+                    }
+                ]
+            },
+            "parameters": [
+                {
+                    "$ref": "#/components/parameters/id"
+                },
+                {
+                    "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/parameters/Authorization"
+                }
+            ],
+            "description": "Atualiza o Controle de Estabilidade na base de dados",
+            "operationId": "putStabilityControl",
+            "requestBody": {
+                "description": "Objeto para atualizar o registro na tabela de Controle de Estabilidade",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/StabilityControl/V1/1_000/jsonschema/schemas/StabilityControl_1_000.json##/definitions/StabilityControlSave"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "200": {
+                    "description": "Atualizado com sucesso.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/StabilityControl/V1/1_000/jsonschema/schemas/StabilityControl_1_000.json#/definitions/StabilityControlInfo"
+                            }
+                        }
+                    }
+                },
+                "400": {
+                    "description": "Erro no momento da listagem do registro.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/definitions/ErrorModel"
+                            }
+                        }
+                    }
+                },
+                "500": {
+                    "description": "Erro no acesso ao EndPoint.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/definitions/ErrorModel"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "delete": {
+            "tags": [
+                "StabilityControl"
+            ],
+            "summary": "Deleta um Controle de Estabilidade",
+            "x-totvs": {
+                "productInformation": [
+                    {
+                        "product": "PROTHEUS",
+                        "available": true,
+                        "note": "Este verbo esta disponivel com todos parametros",
+                        "minimalVersion": "12.1.30"
+                    }
+                ]
+            },
+            "parameters": [
+                {
+                    "$ref": "#/components/parameters/Id"
+                },
+                {
+                    "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/parameters/Authorization"
+                }
+            ],
+            "description": "Deleta um Controle de Estabilidade",
+            "operationId": "deleteStabilityControl",
+            "responses": {
+                "204": {
+                    "description": "No content."
+                },
+                "400": {
+                    "description": "Erro na execução da operação.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/definitions/ErrorModel"
+                            }
+                        }
+                    }
+                },
+                "500": {
+                    "description": "Erro no acesso ao EndPoint.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/definitions/ErrorModel"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+},
+"components": {
+    "parameters": {
+        "id": {
+            "name": "id",
+            "required": false,
+            "description": "Código identificador do registro.",
+            "example": "T1 | D MG 01 | 000001 | 20200115 | S01",
+            "schema": {
+                "type": "string"
+            },
+            "x-totvs": {
+                "productInformation": [
+                    {
+                        "product": "PROTHEUS",
+                        "available": false,
+                        "note": "Código identificador do registro.",
+                        "minimalVersion": "12.1.25"
+                    }
+                ]
+            }
+        }
+    },
+    "schemas": {}
+}
+}
