@@ -1,0 +1,149 @@
+{
+    "openapi": "3.0.1",
+    "servers": [
+        {
+            "description": "API para a entidade de Adicionais para produtos TOTVS - Mensagem global utilizando o conceito REST/JSON",
+            "url": "{{host}}/api/rh/v1",
+            "variables": {
+                "serverUrl": {
+                    "default": "localhost"
+                },
+                "serverHttpPort": {
+                    "default": "8051"
+                }
+            }
+        }
+    ],
+    "info": {
+        "description": "API para a entidade de Adicionais para produtos TOTVS",
+        "version": "1.000",
+        "title": "Adicionais",
+        "contact": {
+            "name": "T-Talk",
+            "url": "https://api.totvs.com.br",
+            "email": "comiteintegracao@totvs.com.br"
+        },
+        "x-totvs": {
+            "messageDocumentation": {
+                "name": "Additional",
+                "description": "Adicionais do funcionário.",
+                "segment": "Recursos Humanos"
+            },
+            "productInformation": [
+                {
+                    "product": "Protheus",
+                    "contact": "marcia.moura@totvs.com.br",
+                    "adapter": ""
+                },
+                {
+                    "product": "RM",
+                    "contact": "donaldson.nunes@totvs.com.br",
+                    "adapter": "LeaveOfAbsenceControlController"
+                },
+                {
+                    "product": "DataSul",
+                    "contact": "fabio.abrao@totvs.com.br",
+                    "adapter": ""
+                }
+            ]
+        }
+    },
+    "paths": {
+        "/additional/{id}": {
+            "put": {
+                "tags": [
+                    "Additional"
+                ],
+                "summary": "Atualiza Adicionais do funcionario na base de dados",
+                "x-totvs": {
+                    "productInformation": [
+                        {
+                            "product": "PROTHEUS",
+                            "available": true,
+                            "note": "Este verbo esta disponivel com todos parametros",
+                            "minimalVersion": "12.1.25"
+                        }
+                    ]
+                },
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/additional"
+                    },
+                    {
+                        "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/parameters/Authorization"
+                    }
+                ],
+                "description": "Atualiza adicional do funcionario na base de dados",
+                "operationId": "putAdditional",
+                "requestBody": {
+                    "description": "Objeto para atualizar o registro de adicionais no cadastro de funcionario",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/Additional/V1/1_000/jsonschema/schemas/Additional_1_000.json##/definitions/AdditionalSave"
+								
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Created.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/Additional/V1/1_000/jsonschema/schemas/Additional_1_000.json#/definitions/AdditionalInfo"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erro no momento da listagem do registro.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/definitions/ErrorModel"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Erro no acesso ao EndPoint.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/definitions/ErrorModel"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            
+        }
+    },
+    "components": {
+        "parameters": {
+            "AdditionalId": {
+                "name": "AdditionalId",
+                "required": false,
+                "description": "Código identificador do registro.",
+                "example": "T1 | D MG 01 | 000001 ",
+                "schema": {
+                    "type": "string"
+                },
+                "x-totvs": {
+                    "productInformation": [
+                        {
+                            "product": "PROTHEUS",
+                            "available": true,
+                            "note": "Código identificador do registro.",
+                            "minimalVersion": "12.1.25"
+                        }
+                    ]
+                }
+            }
+        },
+        "schemas": {}
+    }
+}
