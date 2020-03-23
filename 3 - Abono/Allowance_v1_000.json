@@ -33,7 +33,7 @@
                 {
                     "product": "Protheus",
                     "contact": "marcia.moura@totvs.com.br",
-                    "adapter": ""
+                    "adapter": "PONA350API"
                 },
                 {
                     "product": "RM",
@@ -62,6 +62,12 @@
                             "available": true,
                             "note": "Este verbo esta disponivel com todos parametros",
                             "minimalVersion": "12.1.28"
+                        },
+                        {
+                            "product": "PROTHEUS",
+                            "available": true,
+                            "note": "Este verbo esta disponivel com todos parametros",
+                            "minimalVersion": "12.1.23"
                         }
                     ]
                 },
@@ -129,6 +135,12 @@
                             "available": true,
                             "note": "Este verbo esta disponivel com todos parametros",
                             "minimalVersion": "12.1.28"
+                        },
+                        {
+                            "product": "PROTHEUS",
+                            "available": true,
+                            "note": "Este verbo esta disponivel com todos parametros",
+                            "minimalVersion": "12.1.23"
                         }
                     ]
                 },
@@ -197,6 +209,12 @@
                             "available": true,
                             "note": "Este verbo esta disponivel com todos parametros",
                             "minimalVersion": "12.1.28"
+                        },
+                        {
+                            "product": "PROTHEUS",
+                            "available": true,
+                            "note": "Este verbo esta disponivel com todos parametros",
+                            "minimalVersion": "12.1.23"
                         }
                     ]
                 },
@@ -211,6 +229,16 @@
                 "description": "Deleta um abono na base de dados",
                 "operationId": "deleteAllowanceControl",
                 "responses": {
+                    "200": {
+                        "description": "Operacao realizada com sucesso.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/Allowance/V1/1_000/jsonschema/schemas/Allowance_1_000.json#/definitions/AllowanceInfo"
+                                }
+                            }
+                        }
+                    },
                     "204": {
                         "description": "No content."
                     },
@@ -244,7 +272,7 @@
                 "name": "allowanceId",
                 "required": false,
                 "description": "Código identificador do registro.",
-                "example": "1 | 1 | 1",
+                "example": "TMP.EMPRESA+|RF0.RF0_FILIAL|RF0.RF0_DTPREI|RF0.RF0_HORINI|SRA.EMPRESA|SRA.RA_FILIAL|SRA.RA_MAT",
                 "schema": {
                     "type": "string"
                 },
@@ -255,6 +283,12 @@
                             "available": false,
                             "note": "Código identificador do registro.",
                             "minimalVersion": "12.1.25"
+                        },
+                        {
+                            "product": "PROTHEUS",
+                            "available": false,
+                            "note": "Codigo identificador do registro.",
+                            "minimalVersion": "12.1.23"
                         }
                     ]
                 }
