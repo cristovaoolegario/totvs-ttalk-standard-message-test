@@ -214,6 +214,16 @@
                 "204": {
                     "description": "No content."
                 },
+                "200": {
+                    "description": "Atualizado com sucesso.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/StabilityControl/V1/1_000/jsonschema/schemas/StabilityControl_1_000.json#/definitions/StabilityControlInfo"
+                            }
+                        }
+                    }
+                },
                 "400": {
                     "description": "Erro na execução da operação.",
                     "content": {
