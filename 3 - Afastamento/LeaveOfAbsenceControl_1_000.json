@@ -74,7 +74,7 @@
                             {
                                 "product": "RM",
                                 "available": true,
-                                "field": "",
+                                "field": "PFHSTAFT.CODCOLIGADA|PFHSTAFT.DTINICIO|PFUNC.CODCOLIGADA|PFUNC.CHAPA",
                                 "type": "string",
                                 "required": true
                             }
@@ -96,7 +96,7 @@
                     "x-totvs": [
                         {
                             "product": "RM",
-                            "field": "",
+                            "field": "PFHSTAFT.CODCOLIGADA",
                             "available": true,
                             "type": "integer",
                             "length": 2,
@@ -129,7 +129,7 @@
                     "x-totvs": [
                         {
                             "product": "RM",
-                            "field": "",
+                            "field": "PFUNC.CODCOLIGADA|PFUNC.CHAPA",
                             "required": true,
                             "note": "Código Identificador do Funcionário",
                             "type": "varchar",
@@ -145,7 +145,7 @@
                     "x-totvs": [
                         {
                             "product": "RM",
-                            "field": "",
+                            "field": "PFHSTAFT.DTINICIO",
                             "required": true,
                             "note": "Data inicial do afastamento.",
                             "type": "date",
@@ -161,7 +161,7 @@
                     "x-totvs": [
                         {
                             "product": "RM",
-                            "field": "",
+                            "field": "PFHSTAFT.DTINICIO",
                             "required": true,
                             "note": "Horário inicial do afastamento.",
                             "type": "varchar",
@@ -178,7 +178,7 @@
                     "x-totvs": [
                         {
                             "product": "RM",
-                            "field": "",
+                            "field": "PFHSTAFT.DTFINAL",
                             "required": false,
                             "note": "Data final do afastamento.",
                             "type": "date",
@@ -194,7 +194,7 @@
                     "x-totvs": [
                         {
                             "product": "RM",
-                            "field": "",
+                            "field": "PFHSTAFT.DTFINAL",
                             "required": false,
                             "note": "Horário final do afastamento.",
                             "type": "varchar",
@@ -207,11 +207,11 @@
                 "leaveOfAbsenceCode": {
                     "type": "string",
                     "description": "Código do afastamento",
-                    "example": "01",
+                    "example": "T01",
                     "x-totvs": [
                         {
                             "product": "RM",
-                            "field": "",
+                            "field": "PFHSTAFT.TIPO + PFHSTAFT.MOTIVO",
                             "required": false,
                             "note": "Código do afastamento",
                             "type": "varchar",
@@ -227,7 +227,7 @@
                     "x-totvs": [
                         {
                             "product": "RM",
-                            "field": "",
+                            "field": "PFHSTAFT.CODCID",
                             "required": false,
                             "note": "CID - Classificação Internacional de Doenças e Problemas Relacionados à Saúde",
                             "type": "varchar",
@@ -243,7 +243,7 @@
                     "x-totvs": [
                         {
                             "product": "RM",
-                            "field": "",
+                            "field": "VPROFISSIONALSAUDE.NUMEROREGISTRO",
                             "required": false,
                             "note": "Número Conselho de Classe",
                             "type": "varchar",
@@ -259,7 +259,7 @@
                     "x-totvs": [
                         {
                             "product": "RM",
-                            "field": "",
+                            "field": "VPROFISSIONALSAUDE.NOMEPROFISSIONAL",
                             "required": false,
                             "note": "Nome Médico",
                             "type": "varchar",
@@ -275,7 +275,7 @@
                     "x-totvs": [
                         {
                             "product": "RM",
-                            "field": "",
+                            "field": "VPROFISSIONALSAUDE.CODUFREGISTRO",
                             "required": false,
                             "note": "Código da UF do Conselho de Classe",
                             "type": "varchar",
@@ -291,7 +291,7 @@
                     "x-totvs": [
                         {
                             "product": "RM",
-                            "field": "",
+                            "field": "VPROFISSIONALSAUDE.CODORGAOCLASSE",
                             "required": false,
                             "note": "Tipo Órgão de Classe",
                             "type": "varchar",
@@ -307,7 +307,7 @@
                     "x-totvs": [
                         {
                             "product": "RM",
-                            "field": "",
+                            "field": "PFHSTAFT.TIPOACIDENTETRANSITO",
                             "required": false,
                             "note": "Tipo de Acidente",
                             "type": "varchar",
