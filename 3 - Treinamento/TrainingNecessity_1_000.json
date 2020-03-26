@@ -1,0 +1,203 @@
+{
+    "$schema": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/TrainingNecessity/V1/1_000/jsonschema/schemas/TrainingNecessity_1_000.json#",
+    "info": {
+        "description": "Necessidade de Treinamento dos produtos TOTVS",
+        "version": "1.000",
+        "title": "TrainingNecessityControl",
+        "contact": {
+            "name": "T-Talk",
+            "url": "https://api.totvs.com.br",
+            "email": "comiteintegracao@totvs.com.br"
+        },
+        "x-totvs": {
+            "messageDocumentation": {
+                "name": "TrainingNecessityControl",
+                "description": "Dados de necessidade de treinamento",
+                "segment": "Recursos Humanos"
+            },
+            "productInformation": [
+                {
+                    "product": "Protheus",
+                    "contact": "marcia.moura@totvs.com.br",
+                    "description": "Product Owner RH - Protheus",
+                    "adapter": "TRMA010API"
+                },
+                {
+                    "product": "RM",
+                    "contact": "donaldson.nunes@totvs.com.br",
+                    "description": "Product Owner PTO - RM",
+                    "adapter": "TrainingNecessityController"
+                },
+                {
+                    "product": "Datasul",
+                    "contact": "fabio.abrao@totvs.com.br",
+                    "description": "Product Owner RH - Datasul",
+                    "adapter": ""
+                }
+            ]
+        }
+    },
+    "definitions": {
+        "PagedTrainingNecessity": {
+            "description": "Colecao de necessidades de treinamento paginados",
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/definitions/Paging"
+                },
+                {
+                    "$ref": "#/definitions/Trainings"
+                }
+            ]
+        },
+        "Trainings": {
+            "description": "Colecao de necessidades de treinamento",
+            "type": "object",
+            "properties": {
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/TrainingNecessityInfo"
+                    }
+                }
+            }
+        },
+        "TrainingNecessityInfo": {
+            "description": "Objeto treinamento com Id identificador",
+            "type": "object",
+            "allOf": [
+                {
+                    "id": {
+                        "description": "Chave unica do registro de treinamento",
+                        "type": "string",
+                        "x-totvs": [
+                            {
+                                "product": "RM",
+                                "available": true,
+                                "field": "ATREINAMENTOFUNCIONARIO.CODCOLIGADA|ATREINAMENTOFUNCIONARIO.ID",
+                                "type": "string",
+                                "required": true
+                            },
+                            {
+                                "product": "PROTHEUS",
+                                "available": true,
+                                "field": "TMP.EMPRESA|RA3.RA3_FILIAL|RA3.RA3_MAT|RA3.RA3_CURSO",
+                                "type": "string",
+                                "required": true
+                            },
+                            {
+                                "product": "DATASUL",
+                                "available": true,
+                                "field": "",
+                                "type": "string",
+                                "required": true
+                            }
+                        ]
+                    }
+                },
+                {
+                    "$ref": "#/definitions/TrainingNecessitySave"
+                }
+            ]
+        },
+        "TrainingNecessitySave": {
+            "description": "Objeto para persistencia necessidade de treinamento",
+            "properties": {
+                "companyId": {
+                    "type": "string",
+                    "example": "01",
+                    "description": "Codigo da Empresa",
+                    "x-totvs": [
+                        {
+                            "product": "RM",
+                            "field": "ATREINAMENTOFUNCIONARIO.CODCOLIGADA",
+                            "available": true,
+                            "type": "integer",
+                            "length": 2,
+                            "required": true,
+                            "canUpdate": false
+                        },
+                        {
+                            "product": "PROTHEUS",
+                            "field": "TMP.EMPRESA",
+                            "available": true,
+                            "type": "string",
+                            "required": true,
+                            "canUpdate": false
+                        }
+                    ]
+                },
+                "branchId": {
+                    "type": "string",
+                    "description": "Codigo da Filial",
+                    "example": "1",
+                    "x-totvs": [
+                        {
+                            "product": "RM",
+                            "field": "não possui campo físico na tabela",
+                            "required": true,
+                            "type": "",
+                            "length": "",
+                            "available": true,
+                            "canUpdate": false
+                        },
+                        {
+                            "product": "PROTHUES",
+                            "field": "RA3.RA3_FILIAL",
+                            "required": true,
+                            "type": "",
+                            "available": true,
+                            "canUpdate": false
+                        }
+                    ]
+                },
+                "employeeId": {
+                    "type": "string",
+                    "description": "Codigo Identificador do Funcionario",
+                    "example": "EE|FF|01",
+                    "x-totvs": [
+                        {
+                            "product": "RM",
+                            "field": "PFUNC.CODCOLIGADA|PFUNC.CHAPA",
+                            "required": true,
+                            "type": "varchar",
+                            "available": true,
+                            "canUpdate": false
+                        },
+                        {
+                            "product": "PROTHEUS",
+                            "field": "TMP.EMPRESA|SRA.RA_FILIAL|SRA.RA_MAT",
+                            "required": true,
+                            "type": "varchar",
+                            "available": true,
+                            "canUpdate": false
+                        }
+                    ]
+                },                
+                "trainingNecessityCode": {
+                    "type": "string",
+                    "description": "Codigo da Necessidade de Treinamento",
+                    "example": "EE|FF|0001",
+                    "x-totvs": [
+                        {
+                            "product": "RM",
+                            "field": "ATRAININGNECESSITY.CODIGO",
+                            "required": false,
+                            "type": "varchar",
+                            "available": true,
+                            "canUpdate": false
+                        },
+                        {
+                            "product": "PROTHEUS",
+                            "field": "TMP.EMPRESA|RA3.RA3_FILIAL|RA3.RA3_CURSO",
+                            "required": false,
+                            "type": "varchar",
+                            "available": true,
+                            "canUpdate": false
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}
