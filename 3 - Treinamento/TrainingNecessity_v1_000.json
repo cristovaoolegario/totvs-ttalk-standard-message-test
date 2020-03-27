@@ -1,0 +1,299 @@
+{
+    "openapi": "3.0.1",
+    "servers": [
+        {
+            "description": "API para a entidade de Necessidade de Treinamento para produtos TOTVS - Mensagem global utilizando o conceito REST/JSON",
+            "url": "{{host}}/api/rh/v1",
+            "variables": {
+                "serverUrl": {
+                    "default": "localhost"
+                },
+                "serverHttpPort": {
+                    "default": "8051"
+                }
+            }
+        }
+    ],
+    "info": {
+        "description": "API para a entidade de Necessidade de Treinamento para produtos TOTVS",
+        "version": "1.000",
+        "title": "Necessidade de Treinamento",
+        "contact": {
+            "name": "T-Talk",
+            "url": "https://api.totvs.com.br",
+            "email": "comiteintegracao@totvs.com.br"
+        },
+        "x-totvs": {
+            "messageDocumentation": {
+                "name": "TrainingNecessityControl",
+                "description": "Necessidade de treinamento utilizado no processo de solicitação de treinamento.",
+                "segment": "Recursos Humanos"
+            },
+            "productInformation": [
+                {
+                    "product": "Protheus",
+                    "contact": "marcia.moura@totvs.com.br",
+                    "adapter": "TRMA010API"
+                },
+                {
+                    "product": "RM",
+                    "contact": "donaldson.nunes@totvs.com.br",
+                    "adapter": "TrainingNecessityControlController"
+                },
+                {
+                    "product": "DataSul",
+                    "contact": "fabio.abrao@totvs.com.br",
+                    "adapter": ""
+                }
+            ]
+        }
+    },
+    "paths": {
+        "/trainingNecessityControl": {
+            "post": {
+                "tags": [
+                    "TrainingNecessityControl"
+                ],
+                "summary": "Cadastra um novo necessidade de treinamento na base de dados",
+                "x-totvs": {
+                    "productInformation": [
+                        {
+                            "product": "RM",
+                            "available": true,
+                            "note": "Este verbo esta disponivel com todos parametros",
+                            "minimalVersion": "12.1.28"
+                        },
+                        {
+                            "product": "PROTHEUS",
+                            "available": true,
+                            "note": "Este verbo esta disponivel com todos parametros",
+                            "minimalVersion": "12.1.23"
+                        }
+                    ]
+                },
+                "parameters": [
+                    {
+                        "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/parameters/Authorization"
+                    }
+                ],
+                "description": "Cadastra um novo necessidade de treinamento na base de dados",
+                "operationId": "postTrainingNecessityControl",
+                "requestBody": {
+                    "description": "Objeto para atualizar o registro na tabela Solicitação de Treinamento",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/TrainingNecessity/V1/1_000/jsonschema/schemas/TrainingNecessity_1_000.json##/definitions/TrainingNecessitySave"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/TrainingNecessity/V1/1_000/jsonschema/schemas/TrainingNecessityTypes_1_000.json#/definitions/TrainingNecessityTypesInfo"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erro no momento da listagem dos registros.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/definitions/ErrorModel"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Erro no acesso ao EndPoint.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/definitions/ErrorModel"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/trainingNecessityControl/{id}": {
+            "put": {
+                "tags": [
+                    "TrainingNecessityControl"
+                ],
+                "summary": "Atualiza a necessidade de treinamento na base de dados",
+                "x-totvs": {
+                    "productInformation": [
+                        {
+                            "product": "RM",
+                            "available": true,
+                            "note": "Este verbo esta disponivel com todos parametros",
+                            "minimalVersion": "12.1.28"
+                        },
+                        {
+                            "product": "PROTHEUS",
+                            "available": true,
+                            "note": "Este verbo esta disponivel com todos parametros",
+                            "minimalVersion": "12.1.23"
+                        }
+                    ]
+                },
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/trainingNecessityId"
+                    },
+                    {
+                        "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/parameters/Authorization"
+                    }
+                ],
+                "description": "Atualiza a necessidade de treinamento na base de dados",
+                "operationId": "putTrainingNecessityControl",
+                "requestBody": {
+                    "description": "Objeto para atualizar o registro na tabela de Solicitação de Treinamento",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/TrainingNecessity/V1/1_000/jsonschema/schemas/TrainingNecessity_1_000.json##/definitions/TrainingNecessitySave"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Atualizado com sucesso.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/TrainingNecessity/V1/1_000/jsonschema/schemas/TrainingNecessity_1_000.json#/definitions/TrainingNecessityInfo"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erro no momento da listagem do registro.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/definitions/ErrorModel"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Erro no acesso ao EndPoint.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/definitions/ErrorModel"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "TrainingNecessityControl"
+                ],
+                "summary": "Deleta uma necessidade de treinamento na base de dados",
+                "x-totvs": {
+                    "productInformation": [
+                        {
+                            "product": "RM",
+                            "available": true,
+                            "note": "Este verbo esta disponivel com todos parametros",
+                            "minimalVersion": "12.1.28"
+                        },
+                        {
+                            "product": "PROTHEUS",
+                            "available": true,
+                            "note": "Este verbo esta disponivel com todos parametros",
+                            "minimalVersion": "12.1.23"
+                        }
+                    ]
+                },
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/trainingNecessityId"
+                    },
+                    {
+                        "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/parameters/Authorization"
+                    }
+                ],
+                "description": "Deleta uma necessidade de treinamento na base de dados",
+                "operationId": "deleteTrainingNecessityControl",
+                "responses": {
+                    "200": {
+                        "description": "Operacao realizada com sucesso.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/trainingNecessity/V1/1_000/jsonschema/schemas/TrainingNecessity_1_000.json#/definitions/TrainingNecessityInfo"
+                                }
+                            }
+                        }
+                    },
+                    "204": {
+                        "description": "No content."
+                    },
+                    "400": {
+                        "description": "Erro no momento da listagem do registro.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/definitions/ErrorModel"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Erro no acesso ao EndPoint.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/definitions/ErrorModel"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "parameters": {
+            "trainingNecessityId": {
+                "name": "trainingNecessityId",
+                "required": false,
+                "description": "Código identificador do registro.",
+                "example": "TMP.EMPRESA|RA3.RA3_FILIAL|RA3.RA3_CURSO",
+                "schema": {
+                    "type": "string"
+                },
+                "x-totvs": {
+                    "productInformation": [
+                        {
+                            "product": "RM",
+                            "available": false,
+                            "note": "Código identificador do registro.",
+                            "minimalVersion": "12.1.25"
+                        },
+                        {
+                            "product": "PROTHEUS",
+                            "available": false,
+                            "note": "Código identificador do registro.",
+                            "minimalVersion": "12.1.23"
+                        }
+                    ]
+                }
+            }
+        },
+        "schemas": {}
+    }
+}
