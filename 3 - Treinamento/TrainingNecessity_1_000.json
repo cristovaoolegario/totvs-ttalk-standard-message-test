@@ -81,7 +81,7 @@
                             {
                                 "product": "PROTHEUS",
                                 "available": true,
-                                "field": "TMP.EMPRESA|RA3.RA3_FILIAL|RA3.RA3_MAT|RA3.RA3_CURSO",
+                                "field": "TMP.EMPRESA|RA3.RA3_FILIAL|TMP.EMPRESA|SRA.RA_FILIAL|RA3.RA3_MAT|TMP.EMPRESA|RA1.RA1_FILIAL| RA3.RA3_CURSO",
                                 "type": "string",
                                 "required": true
                             },
@@ -189,7 +189,7 @@
                         },
                         {
                             "product": "PROTHEUS",
-                            "field": "TMP.EMPRESA|RA3.RA3_FILIAL|RA3.RA3_CURSO",
+                            "field": "TMP.EMPRESA|RA1.RA1_FILIAL|RA1.RA1_CURSO",
                             "required": false,
                             "type": "varchar",
                             "available": true,

@@ -272,7 +272,7 @@
                 "name": "trainingNecessityId",
                 "required": false,
                 "description": "Código identificador do registro.",
-                "example": "TMP.EMPRESA|RA3.RA3_FILIAL|RA3.RA3_CURSO",
+                "example": "TMP.EMPRESA|RA3.RA3_FILIAL|TMP.EMPRESA|SRA.RA_FILIAL|RA3.RA3_MAT|TMP.EMPRESA|RA1.RA1_FILIAL|RA3.RA3_CURSO",
                 "schema": {
                     "type": "string"
                 },
