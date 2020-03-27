@@ -120,7 +120,7 @@
 						}
 					]
 				},
-				"description": {
+				"name": {
 					"type": "string",
 					"example": "ABONO INTEGRAL",
 					"description": "Descrição do Tipo de Abono",
