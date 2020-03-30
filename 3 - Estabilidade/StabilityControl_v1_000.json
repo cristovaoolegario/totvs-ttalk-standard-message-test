@@ -215,7 +215,7 @@
                     "description": "No content."
                 },
                 "200": {
-                    "description": "Atualizado com sucesso.",
+                    "description": "Operação realizada com sucesso.",
                     "content": {
                         "application/json": {
                             "schema": {
