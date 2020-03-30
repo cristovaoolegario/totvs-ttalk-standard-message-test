@@ -74,7 +74,7 @@
                             {
                                 "product": "RM",
                                 "available": true,
-                                "field": "ATREINAMENTOFUNCIONARIO.CODCOLIGADA|ATREINAMENTOFUNCIONARIO.ID",
+                                "field": "VRNTREGDEMANDAS.CODCOLIGADA|VRNTREGDEMANDAS.DTREGISTRO|PFUNC.CODCOLIGADA|PFUNC.CHAPA|VTURMAS.CODCOLIGADA|VTURMAS.CODIGO|VRNTREGDEMANDAS.CODHABILIDADE",
                                 "type": "string",
                                 "required": true
                             },
@@ -110,7 +110,7 @@
                     "x-totvs": [
                         {
                             "product": "RM",
-                            "field": "ATREINAMENTOFUNCIONARIO.CODCOLIGADA",
+                            "field": "VRNTREGDEMANDAS.CODCOLIGADA",
                             "available": true,
                             "type": "integer",
                             "length": 2,
@@ -135,11 +135,8 @@
                         {
                             "product": "RM",
                             "field": "não possui campo físico na tabela",
-                            "required": true,
-                            "type": "",
-                            "length": "",
-                            "available": true,
-                            "canUpdate": false
+                            "required": false,
+                            "available": true
                         },
                         {
                             "product": "PROTHUES",
@@ -181,7 +178,7 @@
                     "x-totvs": [
                         {
                             "product": "RM",
-                            "field": "ATRAININGNECESSITY.CODIGO",
+                            "field": "VRNTREGDEMANDAS.CODCOLIGADA|VRNTREGDEMANDAS.CODHABILIDADE",
                             "required": false,
                             "type": "varchar",
                             "available": true,
@@ -194,6 +191,67 @@
                             "type": "varchar",
                             "available": true,
                             "canUpdate": false
+                        }
+                    ]
+                },                
+                "reason": {
+                    "type": "string",
+                    "description": "Motivo da necessidade de treinamento",
+                    "example": "97 - Risco; 98 - Cipa; 99 - Brigada",
+                    "x-totvs": [
+                        {
+                            "product": "RM",
+                            "field": "não possui campo físico na tabela",
+                            "required": false,
+                            "available": true
+                        },
+                        {
+                            "product": "PROTHEUS",
+                            "field": "não possui campo físico na tabela",
+                            "required": false,
+                            "available": true
+                        }
+                    ]
+                },                
+                "urgency": {
+                    "type": "string",
+                    "description": "Urgência da Necessidade de Treinamento",
+                    "example": "1-Indispensável / 2-Desejado / 3-Recomendado",
+                    "x-totvs": [
+                        {
+                            "product": "RM",
+                            "field": "VRNTREGDEMANDAS.CODNIVELHABIL",
+                            "required": false,
+                            "type": "varchar",
+                            "available": true,
+                            "canUpdate": false
+                        },
+                        {
+                            "product": "PROTHEUS",
+                            "field": "não possui campo físico na tabela",
+                            "required": false,
+                            "available": true
+                        }
+                    ]
+                },                
+                "hazardTechnicalResponsible": {
+                    "type": "string",
+                    "description": "Responsável pelo PPRA",
+                    "example": "",
+                    "x-totvs": [
+                        {
+                            "product": "RM",
+                            "field": "PFUNC.CODCOLIGADA|PFUNC.CHAPA",
+                            "required": false,
+                            "type": "varchar",
+                            "available": true,
+                            "canUpdate": false
+                        },
+                        {
+                            "product": "PROTHEUS",
+                            "field": "não possui campo físico na tabela",
+                            "required": false,
+                            "available": true
                         }
                     ]
                 }
