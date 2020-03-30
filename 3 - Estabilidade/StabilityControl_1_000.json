@@ -39,7 +39,7 @@
 	},
 	"definitions": {
 		"PagedStabilityControl": {
-			"description": "PerÌodo de Estabilidade",
+			"description": "Per√≠odo de Estabilidade",
 			"type": "object",
 			"allOf": [
 				{
@@ -51,7 +51,7 @@
 			]
 		},
 		"StabilityControl": {
-			"description": "PerÌodo de Estabilidade",
+			"description": "Per√≠odo de Estabilidade",
 			"type": "object",
 			"properties": {
 				"items": {
@@ -63,18 +63,18 @@
 			}
 		},
 		"StabilityControlInfo": {
-			"description": "Objeto de PerÌodo de Estabilidade com ID Identificador",
+			"description": "Objeto de Per√≠odo de Estabilidade com ID Identificador",
 			"type": "object",
 			"allOf": [
                 {
                     "id": {
-                        "description": "Chave ˙nica do registro de PerÌodo de Estabilidade",
+                        "description": "Chave √∫nica do registro de Per√≠odo de Estabilidade",
                         "type": "string",
                         "x-totvs": [
                             {
                                 "product": "RM",
                                 "available": true,
-                                "field": "",
+                                "field": "PESTABILIDADE.CODCOLIGADA|PESTABILIDADE.CODIGO",
                                 "type": "string",
                                 "required": true
                             },
@@ -82,7 +82,7 @@
 								"product": "PROTHEUS",
 								"field": "TMP.EMPRESA|RFX.RFX_FILIAL|TMP.EMPRESA|SRA.RA_FILIAL|SRA.RA_MAT|RFX.RFX_DATAI|TMP.EMPRESA|RCC.RCC_FILIAL|RCC.CONTEU",
 								"available": true,
-								"note": "PerÌodo de Estabilidade da MatrÌcula",
+								"note": "Per√≠odo de Estabilidade da Matr√≠cula",
 								"type": "varchar",
 								"length": "1",
 								"required": true,
@@ -105,13 +105,22 @@
 		},
 		
 		"StabilitySave": {
-            "description": "Objeto para PerÌodo de Estabilidade",
+            "description": "Objeto para Per√≠odo de Estabilidade",
             "properties": {
 				"companyId": {
 					"type": "string",
 					"example": "T1",
-					"description": "CÛdigo da Empresa",
+					"description": "C√≥digo da Empresa",
 					"x-totvs": [
+						{
+                            "product": "RM",
+                            "field": "PESTABILIDADE.CODCOLIGADA",
+                            "available": true,
+                            "type": "integer",
+                            "length": 2,
+                            "required": true,
+                            "canUpdate": false
+                        },
 						{
 							"product": "PROTHEUS",
 							"field": "TMP.EMPRESA",
@@ -124,9 +133,18 @@
 				},
 				"branchId": {
 					"type": "string",
-					"description": "CÛdigo da Filial",
+					"description": "C√≥digo da Filial",
 					"example": "D MG 01",
 					"x-totvs": [
+						{
+                            "product": "RM",
+                            "field": "n√£o possui campo f√≠sico na tabela",
+                            "required": true,
+                            "type": "",
+                            "length": "",
+                            "available": true,
+                            "canUpdate": false
+                        },
 						{
 							"product": "PROTHEUS",
 							"field": "RFX.RFX_FILIAL",
@@ -139,9 +157,17 @@
 				},
 				"employeeId": {
 					"type": "string",
-					"description": "CÛdigo Identificador do Funcion·rio",
+					"description": "C√≥digo Identificador do Funcion√°rio",
 					"example": "T1|D MG 01|000001",
 					"x-totvs": [
+						{
+                            "product": "RM",
+                            "field": "PFUNC.CODCOLIGADA|PFUNC.CHAPA",
+                            "required": true,
+                            "type": "varchar",
+                            "available": true,
+                            "canUpdate": false
+                        },
 						{
 							"product": "PROTHEUS",
 							"field": "TMP.EMPRESA|SRA.RA_FILIAL|SRA.RA_MAT",
@@ -155,9 +181,17 @@
 				"startDate": {
 					"type": "string",
 					"format": "date",
-					"description": "Data de InÌcio",
+					"description": "Data de In√≠cio",
 					"example": "YYYY-MM-DDTHH:MM:SS",
 					"x-totvs": [
+						{
+                            "product": "RM",
+                            "field": "PESTABILIDADE.DATAINICIO",
+                            "required": true,
+                            "type": "datetime",
+                            "available": true,
+                            "canUpdate": true
+                        },
 						{
 							"product": "PROTHEUS",
 							"field": "RFX.RFX_DATAI",
@@ -171,9 +205,17 @@
 				"endDate": {
 					"type": "string",
 					"format": "date",
-					"description": "Data de TÈrmino",
+					"description": "Data de T√©rmino",
 					"example": "YYYY-MM-DDTHH:MM:SS",
 					"x-totvs": [
+						{
+                            "product": "RM",
+                            "field": "PESTABILIDADE.DATAFIM",
+                            "required": true,
+                            "type": "datetime",
+                            "available": true,
+                            "canUpdate": true
+                        },
 						{
 							"product": "PROTHEUS",
 							"field": "RFX.RFX_DATAF",
@@ -189,6 +231,14 @@
 					"description": "Tipo de Estabilidade",
 					"example": "T1|D MG    |S01",
 					"x-totvs": [
+						{
+                            "product": "RM",
+                            "field": "PESTABILIDADE.CODMOTIVOESTABILIDADE",
+                            "required": true,
+                            "type": "varchar",
+                            "available": true,
+                            "canUpdate": true
+                        },
 						{
 							"product": "PROTHEUS",
 							"field": "TMP.EMPRESA|RCC.RCC_FILIAL|RCC.CONTEU",

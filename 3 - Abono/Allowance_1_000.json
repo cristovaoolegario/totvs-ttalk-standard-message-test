@@ -1,0 +1,325 @@
+{
+    "$schema": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/Allowance/V1/1_000/jsonschema/schemas/Allowance_1_000.json#",
+    "info": {
+        "description": "Abonos dos funcionarios dos produtos TOTVS",
+        "version": "1.000",
+        "title": "AllowanceControl",
+        "contact": {
+            "name": "T-Talk",
+            "url": "https://api.totvs.com.br",
+            "email": "comiteintegracao@totvs.com.br"
+        },
+        "x-totvs": {
+            "messageDocumentation": {
+                "name": "AllowanceControl",
+                "description": "Dados de abonos",
+                "segment": "Recursos Humanos"
+            },
+            "productInformation": [
+                {
+                    "product": "Protheus",
+                    "contact": "marcia.moura@totvs.com.br",
+                    "description": "Product Owner RH - Protheus",
+                    "adapter": "PONA350API"
+                },
+                {
+                    "product": "RM",
+                    "contact": "donaldson.nunes@totvs.com.br",
+                    "description": "Product Owner PTO - RM",
+                    "adapter": "AllowanceController"
+                },
+                {
+                    "product": "Datasul",
+                    "contact": "fabio.abrao@totvs.com.br",
+                    "description": "Product Owner RH - Datasul",
+                    "adapter": ""
+                }
+            ]
+        }
+    },
+    "definitions": {
+        "PagedAllowance": {
+            "description": "Colecao de abonos paginados",
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/definitions/Paging"
+                },
+                {
+                    "$ref": "#/definitions/Allowances"
+                }
+            ]
+        },
+        "Allowances": {
+            "description": "Colecao de abonos",
+            "type": "object",
+            "properties": {
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/AllowanceInfo"
+                    }
+                }
+            }
+        },
+        "AllowanceInfo": {
+            "description": "Objeto de abono com Id identificador",
+            "type": "object",
+            "allOf": [
+                {
+                    "id": {
+                        "description": "Chave unica do registro de abono",
+                        "type": "string",
+                        "x-totvs": [
+                            {
+                                "product": "RM",
+                                "available": true,
+                                "field": "AABONOFUNCIONARIO.CODCOLIGADA|AABONOFUNCIONARIO.ID",
+                                "type": "string",
+                                "required": true
+                            },
+                            {
+                                "product": "PROTHEUS",
+                                "available": true,
+                                "field": "TMP.EMPRESA|RF0.RF0_FILIAL|RF0.RF0_DTPREI|RF0.RF0_HORINI|TMP.EMPRESA|SRA.RA_FILIAL|SRA.RA_MAT",
+                                "type": "string",
+                                "required": true
+                            },
+                            {
+                                "product": "DATASUL",
+                                "available": true,
+                                "field": "",
+                                "type": "string",
+                                "required": true
+                            }
+                        ]
+                    }
+                },
+                {
+                    "$ref": "#/definitions/AllowanceSave"
+                }
+            ]
+        },
+        "AllowanceSave": {
+            "description": "Objeto para persistencia do abono",
+            "properties": {
+                "companyId": {
+                    "type": "string",
+                    "example": "01",
+                    "description": "Codigo da Empresa",
+                    "x-totvs": [
+                        {
+                            "product": "RM",
+                            "field": "AABONOFUNCIONARIO.CODCOLIGADA",
+                            "available": true,
+                            "type": "integer",
+                            "length": 2,
+                            "required": true,
+                            "canUpdate": false
+                        },
+                        {
+                            "product": "PROTHEUS",
+                            "field": "TMP.EMPRESA",
+                            "available": true,
+                            "type": "string",
+                            "required": true,
+                            "canUpdate": false
+                        }
+                    ]
+                },
+                "branchId": {
+                    "type": "string",
+                    "description": "Codigo da Filial",
+                    "example": "1",
+                    "x-totvs": [
+                        {
+                            "product": "RM",
+                            "field": "não possui campo físico na tabela",
+                            "required": true,
+                            "type": "",
+                            "length": "",
+                            "available": true,
+                            "canUpdate": false
+                        },
+                        {
+                            "product": "PROTHUES",
+                            "field": "RF0.RF0_FILIAL",
+                            "required": true,
+                            "type": "",
+                            "available": true,
+                            "canUpdate": false
+                        }
+                    ]
+                },
+                "employeeId": {
+                    "type": "string",
+                    "description": "Codigo Identificador do Funcionario",
+                    "example": "EE|FF|01",
+                    "x-totvs": [
+                        {
+                            "product": "RM",
+                            "field": "PFUNC.CODCOLIGADA|PFUNC.CHAPA",
+                            "required": true,
+                            "type": "varchar",
+                            "available": true,
+                            "canUpdate": false
+                        },
+                        {
+                            "product": "PROTHEUS",
+                            "field": "TMP.EMPRESA|SRA.RA_FILIAL|SRA.RA_MAT",
+                            "required": true,
+                            "type": "varchar",
+                            "available": true,
+                            "canUpdate": false
+                        }
+                    ]
+                },
+                "startDate": {
+                    "type": "datetime",
+                    "description": "Data inicial do abono.",
+                    "example": "YYYY-MM-DDTHH:MM:SS",
+                    "x-totvs": [
+                        {
+                            "product": "RM",
+                            "field": "AABONOFUNCIONARIO.DATAHORAINICIO",
+                            "required": true,
+                            "type": "datetime",
+                            "available": true,
+                            "canUpdate": false
+                        },
+                        {
+                            "product": "PROTHEUS",
+                            "field": "RF0.RF0_DTPREI",
+                            "required": true,
+                            "type": "datetime",
+                            "available": true,
+                            "canUpdate": false
+                        }
+                    ]
+                },
+                "startTime": {
+                    "type": "string",
+                    "description": "Horario inicial do abono.",
+                    "example": "40:00",
+                    "x-totvs": [
+                        {
+                            "product": "RM",
+                            "field": "AABONOFUNCIONARIO.DATAHORAINICIO",
+                            "required": true,
+                            "type": "varchar",
+                            "length": 5,
+                            "available": true,
+                            "canUpdate": false
+                        },
+                        {
+                            "product": "PROTHUES",
+                            "field": "RF0.RFO_HORINI",
+                            "required": true,
+                            "type": "varchar",
+                            "length": 5,
+                            "available": true,
+                            "canUpdate": false
+                        }
+                    ]
+                },
+                "endDate": {
+                    "type": "datetime",
+                    "description": "Data final do abono.",
+                    "example": "YYYY-MM-DDTHH:MM:SS",
+                    "x-totvs": [
+                        {
+                            "product": "RM",
+                            "field": "AABONOFUNCIONARIO.DATAHORAFIM",
+                            "required": true,
+                            "type": "datetime",
+                            "available": true,
+                            "canUpdate": false
+                        },
+                        {
+                            "product": "PROTHEUS",
+                            "field": "RF0.RF0_DTPREF",
+                            "required": true,
+                            "type": "datetime",
+                            "available": true,
+                            "canUpdate": false
+                        }
+                    ]
+                },
+                "endTime": {
+                    "type": "string",
+                    "description": "Horario final do abono.",
+                    "example": "40:00",
+                    "x-totvs": [
+                        {
+                            "product": "RM",
+                            "field": "AABONOFUNCIONARIO.DATAHORAFIM",
+                            "required": true,
+                            "type": "varchar",
+                            "length": 5,
+                            "available": true,
+                            "canUpdate": false
+                        },
+                        {
+                            "product": "PROTHEUS",
+                            "field": "RF0.RF0_HORFIM",
+                            "required": true,
+                            "type": "varchar",
+                            "length": 5,
+                            "available": true,
+                            "canUpdate": false
+                        }
+                    ]
+                },
+                "code": {
+                    "type": "string",
+                    "description": "Codigo do Abono",
+                    "example": "EE|FF|01",
+                    "x-totvs": [
+                        {
+                            "product": "RM",
+                            "field": "AABONO.CODIGO",
+                            "required": false,
+                            "type": "varchar",
+                            "available": true,
+                            "canUpdate": false
+                        },
+                        {
+                            "product": "PROTHEUS",
+                            "field": "TMP.EMPRESA|SP6.P6_FILIAL|SP6.P6_CODIGO",
+                            "required": false,
+                            "type": "varchar",
+                            "available": true,
+                            "canUpdate": false
+                        }
+                    ]
+                },
+                "justification": {
+                    "type": "string",
+                    "description": "Justificativa do Abono",
+                    "example": "Abono por atestado médico.",
+                    "x-totvs": [
+                        {
+                            "product": "RM",
+                            "field": "AABONOFUNCIONARIO.JUSTIFICATIVA",
+                            "required": false,
+                            "type": "varchar",
+                            "length": 200,
+                            "available": true,
+                            "canUpdate": false
+                        },
+                        {
+                            "product": "PROTHEUS",
+                            "field": "",
+                            "required": false,
+                            "type": "varchar",
+                            "length": 200,
+                            "note": "Esta informacao nao sera armazenada",
+                            "available": false,
+                            "canUpdate": false
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}

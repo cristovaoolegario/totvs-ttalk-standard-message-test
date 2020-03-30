@@ -1,0 +1,178 @@
+{
+  "$schema": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/Additional/V1/1_000/jsonschema/schemas/Additional_1_000.json#",
+  "info": {
+    "description": "Adicionais da Folha de Pagamento para produtos TOTVS",
+    "version": "1.000",
+    "title": "Additional",
+    "contact": {
+      "name": "T-Talk",
+      "url": "https://api.totvs.com.br",
+      "email": "comiteintegracao@totvs.com.br"
+    },
+    "x-totvs": {
+      "messageDocumentation": {
+        "name": "Additional",
+        "description": "Dados da folha de pagamento pertinente aos adicionais do funcionario",
+        "segment": "Recursos Humanos"
+      },
+      "productInformation": [
+        {
+          "product": "Protheus",
+          "contact": "marcia.moura@totvs.com.br",
+          "description": "Product Owner RH - Protheus",
+          "adapter": ""
+        }
+      ]
+    }
+  },
+  "definitions": {
+    "PagedAdditional": {
+      "description": "Adicionais do Funcionario",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/definitions/Paging"
+        },
+        {
+          "$ref": "#/definitions/AdditionalCollection"
+        }
+      ]
+    },
+    "AdditionalCollection": {
+      "description": "Adicionais do Funcionario",
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AdditionalInfo"
+          }
+        }
+      }
+    },
+    "AdditionalInfo": {
+      "description": "Adicional da Folha de Pagamento com código identificador",
+      "type": "object",
+      "allOf": [
+        {
+          "id": {
+            "description": "Código identificador do Adicional do Funcionario na Folha de Pagamento",
+            "type": "string",
+            "x-totvs": [
+              {
+                "product": "PROTHEUS",
+                "field": "TMP.EMP|RA_FILIAL|RA_MAT",
+                "available": true,
+                "type": "varchar",
+                "required": true
+              }
+            ]
+          }
+        },
+        {
+          "$ref": "#/definitions/AdditionalSave"
+        }
+      ]
+    },
+    "AdditionalSave": {
+      "description": "Objeto para persistência do Adicional da Folha de pagamento",
+      "properties": {
+        "companyCode": {
+          "type": "string",
+          "example": "01",
+          "description": "Código da Empresa",
+          "x-totvs": [
+            {
+              "product": "PROTHEUS",
+              "field": "TMP.EMP",
+              "available": true,
+              "type": "string",
+              "required": true,
+              "canUpdate": false
+            }
+          ]
+        },
+        "branchId": {
+          "type": "string",
+          "description": "Código da Filial",
+          "example": "1",
+          "x-totvs": [
+            {
+              "product": "PROTHEUS",
+              "field": "RA_FILIAL",
+              "required": true,
+              "type": "string",
+              "note": "",
+              "available": true,
+              "canUpdate": false
+            }
+          ]
+        },
+        "employeeId": {
+          "type": "string",
+          "description": "Matricula",
+          "example": "000001",
+          "x-totvs": [
+            {
+              "product": "PROTHEUS",
+              "field": "RA_MAT",
+              "required": true,
+              "note": "Matricula do Funcionario ",
+              "type": "varchar",
+              "available": true,
+              "canUpdate": false
+            }
+          ]
+        },
+        "unhealthyDegree": {
+          "type": "string",
+          "description": "Grau de Insalubridade",
+          "example": "1",
+          "x-totvs": [
+            {
+              "product": "PROTHEUS",
+              "field": "RA_ADCINS",
+              "required": false,
+              "note": "Grau de Insalubridade: Minimo, Medio ou Maximo",
+              "type": "string",
+              "available": true,
+              "canUpdate": false
+            }
+          ]
+        },
+        "dangerousness": {
+          "type": "string",
+          "description": "Periculosidade",
+          "example": "1",
+          "x-totvs": [
+            {
+              "product": "PROTHEUS",
+              "field": "RA_ADCPERI",
+              "required": false,
+              "note": "Grau de Periculosidade: 1-Sim e 2-Nao",
+              "type": "string",
+              "available": true,
+              "canUpdate": false
+            }
+          ]
+        },
+        "entryDate": {
+          "type": "date",
+          "description": "Data de entrada do adicional da folha de pagamento.",
+          "example": "2019-06-02",
+          "x-totvs": [
+            {
+              "product": "PROTHEUS",
+              "field": "",
+              "required": false,
+              "note": "Data final do afastamento.",
+              "type": "date",
+              "available": true,
+              "canUpdate": false
+            }
+          ]
+        }
+      }
+    }
+  }
+}

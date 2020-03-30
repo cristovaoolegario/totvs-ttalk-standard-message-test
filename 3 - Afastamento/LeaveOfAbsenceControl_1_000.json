@@ -1,0 +1,322 @@
+{
+    "$schema": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/LeaveOfAbsenceControl/V1/1_000/jsonschema/schemas/LeaveOfAbsenceControl_1_000.json#",
+    "info": {
+        "description": "Afastamento dos funcionários dos produtos TOTVS",
+        "version": "1.000",
+        "title": "LeaveOfAbsenceControl",
+        "contact": {
+            "name": "T-Talk",
+            "url": "https://api.totvs.com.br",
+            "email": "comiteintegracao@totvs.com.br"
+        },
+        "x-totvs": {
+            "messageDocumentation": {
+                "name": "LeaveOfAbsenceControl",
+                "description": "Dados de afastamento",
+                "segment": "Recursos Humanos"
+            },
+            "productInformation": [
+                {
+                    "product": "Protheus",
+                    "contact": "marcia.moura@totvs.com.br",
+                    "description": "Product Owner RH - Protheus",
+                    "adapter": ""
+                },
+                {
+                    "product": "RM",
+                    "contact": "donaldson.nunes@totvs.com.br",
+                    "description": "Product Owner PTO - RM",
+                    "adapter": ""
+                },
+                {
+                    "product": "Datasul",
+                    "contact": "fabio.abrao@totvs.com.br",
+                    "description": "Product Owner RH - Datasul",
+                    "adapter": ""
+                }
+            ]
+        }
+    },
+    "definitions": {
+        "PagedLeaveOfAbsence": {
+            "description": "Coleção de afastamentos paginados",
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/master/jsonschema/apis/types/totvsApiTypesBase.json#/definitions/Paging"
+                },
+                {
+                    "$ref": "#/definitions/LeaveOfAbsences"
+                }
+            ]
+        },
+        "LeaveOfAbsences": {
+            "description": "Coleção de afastamentos",
+            "type": "object",
+            "properties": {
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/LeaveOfAbsenceInfo"
+                    }
+                }
+            }
+        },
+        "LeaveOfAbsenceInfo": {
+            "description": "Objeto de afastamento com Id identificador",
+            "type": "object",
+            "allOf": [
+                {
+                    "id": {
+                        "description": "Chave única do registro de afastamento",
+                        "type": "string",
+                        "x-totvs": [
+                            {
+                                "product": "RM",
+                                "available": true,
+                                "field": "PFHSTAFT.CODCOLIGADA|PFHSTAFT.DTINICIO|PFUNC.CODCOLIGADA|PFUNC.CHAPA",
+                                "type": "string",
+                                "required": true
+                            }
+                        ]
+                    }
+                },
+                {
+                    "$ref": "#/definitions/LeaveOfAbsenceSave"
+                }
+            ]
+        },
+        "LeaveOfAbsenceSave": {
+            "description": "Objeto para persistência do afastamento",
+            "properties": {
+                "companyId": {
+                    "type": "string",
+                    "example": "01",
+                    "description": "Código da Empresa",
+                    "x-totvs": [
+                        {
+                            "product": "RM",
+                            "field": "PFHSTAFT.CODCOLIGADA",
+                            "available": true,
+                            "type": "integer",
+                            "length": 2,
+                            "required": true,
+                            "canUpdate": false
+                        }
+                    ]
+                },
+                "branchId": {
+                    "type": "string",
+                    "description": "Código da Filial",
+                    "example": "1",
+                    "x-totvs": [
+                        {
+                            "product": "RM",
+                            "field": "não possui campo físico na tabela",
+                            "required": false,
+                            "type": "",
+                            "length": "",
+                            "note": "",
+                            "available": true,
+                            "canUpdate": false
+                        }
+                    ]
+                },
+                "employeeId": {
+                    "type": "string",
+                    "description": "Código Identificador do Funcionário",
+                    "example": "01",
+                    "x-totvs": [
+                        {
+                            "product": "RM",
+                            "field": "PFUNC.CODCOLIGADA|PFUNC.CHAPA",
+                            "required": true,
+                            "note": "Código Identificador do Funcionário",
+                            "type": "varchar",
+                            "available": true,
+                            "canUpdate": false
+                        }
+                    ]
+                },
+                "startDate": {
+                    "type": "date",
+                    "description": "Data inicial do afastamento.",
+                    "example": "2019-06-01",
+                    "x-totvs": [
+                        {
+                            "product": "RM",
+                            "field": "PFHSTAFT.DTINICIO",
+                            "required": true,
+                            "note": "Data inicial do afastamento.",
+                            "type": "date",
+                            "available": true,
+                            "canUpdate": false
+                        }
+                    ]
+                },
+                "startTime": {
+                    "type": "string",
+                    "description": "Horário inicial do afastamento.",
+                    "example": "400:00",
+                    "x-totvs": [
+                        {
+                            "product": "RM",
+                            "field": "PFHSTAFT.DTINICIO",
+                            "required": true,
+                            "note": "Horário inicial do afastamento.",
+                            "type": "varchar",
+                            "length": 6,
+                            "available": true,
+                            "canUpdate": false
+                        }
+                    ]
+                },
+                "endDate": {
+                    "type": "date",
+                    "description": "Data final do afastamento.",
+                    "example": "2019-06-02",
+                    "x-totvs": [
+                        {
+                            "product": "RM",
+                            "field": "PFHSTAFT.DTFINAL",
+                            "required": false,
+                            "note": "Data final do afastamento.",
+                            "type": "date",
+                            "available": true,
+                            "canUpdate": false
+                        }
+                    ]
+                },
+                "endTime": {
+                    "type": "string",
+                    "description": "Horário final do afastamento.",
+                    "example": "400:00",
+                    "x-totvs": [
+                        {
+                            "product": "RM",
+                            "field": "PFHSTAFT.DTFINAL",
+                            "required": false,
+                            "note": "Horário final do afastamento.",
+                            "type": "varchar",
+                            "length": 6,
+                            "available": true,
+                            "canUpdate": false
+                        }
+                    ]
+                },
+                "leaveOfAbsenceCode": {
+                    "type": "string",
+                    "description": "Código do afastamento",
+                    "example": "T01",
+                    "x-totvs": [
+                        {
+                            "product": "RM",
+                            "field": "PFHSTAFT.TIPO + PFHSTAFT.MOTIVO",
+                            "required": false,
+                            "note": "Código do afastamento",
+                            "type": "varchar",
+                            "available": true,
+                            "canUpdate": false
+                        }
+                    ]
+                },
+                "internationalDiseaseClassification": {
+                    "type": "string",
+                    "description": "CID - Classificação Internacional de Doenças e Problemas Relacionados à Saúde",
+                    "example": "01",
+                    "x-totvs": [
+                        {
+                            "product": "RM",
+                            "field": "PFHSTAFT.CODCID",
+                            "required": false,
+                            "note": "CID - Classificação Internacional de Doenças e Problemas Relacionados à Saúde",
+                            "type": "varchar",
+                            "available": true,
+                            "canUpdate": false
+                        }
+                    ]
+                },
+                "classEntityRegistrationCode": {
+                    "type": "string",
+                    "description": "Número Conselho de Classe",
+                    "example": "01",
+                    "x-totvs": [
+                        {
+                            "product": "RM",
+                            "field": "VPROFISSIONALSAUDE.NUMEROREGISTRO",
+                            "required": false,
+                            "note": "Número Conselho de Classe",
+                            "type": "varchar",
+                            "available": true,
+                            "canUpdate": false
+                        }
+                    ]
+                },
+                "doctorName": {
+                    "type": "string",
+                    "description": "Nome Médico",
+                    "example": "Drauzio Varella",
+                    "x-totvs": [
+                        {
+                            "product": "RM",
+                            "field": "VPROFISSIONALSAUDE.NOMEPROFISSIONAL",
+                            "required": false,
+                            "note": "Nome Médico",
+                            "type": "varchar",
+                            "available": true,
+                            "canUpdate": false
+                        }
+                    ]
+                },
+                "classEntityState": {
+                    "type": "string",
+                    "description": "Código da UF do Conselho de Classe",
+                    "example": "MG",
+                    "x-totvs": [
+                        {
+                            "product": "RM",
+                            "field": "VPROFISSIONALSAUDE.CODUFREGISTRO",
+                            "required": false,
+                            "note": "Código da UF do Conselho de Classe",
+                            "type": "varchar",
+                            "available": true,
+                            "canUpdate": false
+                        }
+                    ]
+                },
+                "classEntity": {
+                    "type": "string",
+                    "description": "Tipo Órgão de Classe",
+                    "example": "1",
+                    "x-totvs": [
+                        {
+                            "product": "RM",
+                            "field": "VPROFISSIONALSAUDE.CODORGAOCLASSE",
+                            "required": false,
+                            "note": "Tipo Órgão de Classe",
+                            "type": "varchar",
+                            "available": true,
+                            "canUpdate": false
+                        }
+                    ]
+                },
+                "accidentClassification": {
+                    "type": "string",
+                    "description": "Tipo de Acidente",
+                    "example": "1",
+                    "x-totvs": [
+                        {
+                            "product": "RM",
+                            "field": "PFHSTAFT.TIPOACIDENTETRANSITO",
+                            "required": false,
+                            "note": "Tipo de Acidente",
+                            "type": "varchar",
+                            "available": true,
+                            "canUpdate": false
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}
