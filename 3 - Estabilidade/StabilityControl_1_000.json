@@ -80,7 +80,7 @@
                             },
 							{
 								"product": "PROTHEUS",
-								"field": "TMP.EMPRESA|RFX.RFX_FILIAL|RFX.RFX_MAT|RFX.RFX_DATAI|RFX.RFX_TPESTB",
+								"field": "TMP.EMPRESA|RFX.RFX_FILIAL|TMP.EMPRESA|SRA.RA_FILIAL|SRA.RA_MAT|RFX.RFX_DATAI|TMP.EMPRESA|RCC.RCC_FILIAL|RCC.CONTEU",
 								"available": true,
 								"note": "Período de Estabilidade da Matrícula",
 								"type": "varchar",
@@ -158,7 +158,7 @@
 				"employeeId": {
 					"type": "string",
 					"description": "Código Identificador do Funcionário",
-					"example": "000001",
+					"example": "T1|D MG 01|000001",
 					"x-totvs": [
 						{
                             "product": "RM",
@@ -170,7 +170,7 @@
                         },
 						{
 							"product": "PROTHEUS",
-							"field": "RFX.RFX_MAT",
+							"field": "TMP.EMPRESA|SRA.RA_FILIAL|SRA.RA_MAT",
 							"required": true,
 							"type": "varchar",
 							"available": true,
@@ -182,7 +182,7 @@
 					"type": "string",
 					"format": "date",
 					"description": "Data de Início",
-					"example": "20200101",
+					"example": "YYYY-MM-DDTHH:MM:SS",
 					"x-totvs": [
 						{
                             "product": "RM",
@@ -206,7 +206,7 @@
 					"type": "string",
 					"format": "date",
 					"description": "Data de Término",
-					"example": "20200115",
+					"example": "YYYY-MM-DDTHH:MM:SS",
 					"x-totvs": [
 						{
                             "product": "RM",
@@ -229,7 +229,7 @@
 				"stabilityCode": {
 					"type": "string",
 					"description": "Tipo de Estabilidade",
-					"example": "001",
+					"example": "T1|D MG    |S01",
 					"x-totvs": [
 						{
                             "product": "RM",
@@ -241,11 +241,11 @@
                         },
 						{
 							"product": "PROTHEUS",
-							"field": "RFX.RFX_TPESTB",
-							"required": false,
+							"field": "TMP.EMPRESA|RCC.RCC_FILIAL|RCC.CONTEU",
+							"required": true,
 							"type": "varchar",
 							"available": true,
-							"canUpdate": false
+							"canUpdate": true
 						}
 					]
 				}
