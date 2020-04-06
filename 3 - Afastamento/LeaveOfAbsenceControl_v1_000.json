@@ -26,14 +26,14 @@
         "x-totvs": {
             "messageDocumentation": {
                 "name": "LeaveOfAbsenceControl",
-                "description": "Afastamentos do funcionário.",
+                "description": "Afastamentos do funcionario.",
                 "segment": "Recursos Humanos"
             },
             "productInformation": [
                 {
                     "product": "Protheus",
                     "contact": "marcia.moura@totvs.com.br",
-                    "adapter": ""
+                    "adapter": "GPEA240API"
                 },
                 {
                     "product": "RM",
@@ -62,7 +62,13 @@
                             "available": true,
                             "note": "Este verbo esta disponivel com todos parametros",
                             "minimalVersion": "12.1.28"
-                        }
+                        },
+						{
+							"product": "Protheus",
+							"available": true,
+							"note": "Este verbo esta disponivel com todos os parametros",
+							"minimalVersion": "12.1.23"
+                    	},
                     ]
                 },
                 "parameters": [
@@ -129,6 +135,12 @@
                             "available": true,
                             "note": "Este verbo esta disponivel com todos parametros",
                             "minimalVersion": "12.1.28"
+                        },
+                        {
+                            "product": "PROTHEUS",
+                            "available": true,
+                            "note": "Este verbo esta disponivel com todos parametros",
+                            "minimalVersion": "12.1.23"
                         }
                     ]
                 },
@@ -197,6 +209,12 @@
                             "available": true,
                             "note": "Este verbo esta disponivel com todos parametros",
                             "minimalVersion": "12.1.28"
+                        },
+                        {
+                            "product": "PROTHEUS",
+                            "available": true,
+                            "note": "Este verbo esta disponivel com todos parametros",
+                            "minimalVersion": "12.1.23"
                         }
                     ]
                 },
@@ -211,6 +229,16 @@
                 "description": "Deleta um Afastamento na base de dados",
                 "operationId": "deleteLeaveOfAbsenceControl",
                 "responses": {
+					"200": {
+                        "description": "Operacao realizada com sucesso.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/trainingNecessity/V1/1_000/jsonschema/schemas/LeaveOfAbsenceControl_1_000.json#/definitions/LeaveOfAbsenceInfo"
+                                }
+                            }
+                        }
+                    },
                     "204": {
                         "description": "No content."
                     },
@@ -243,8 +271,8 @@
             "leaveOfAbsenceId": {
                 "name": "leaveOfAbsenceId",
                 "required": false,
-                "description": "Código identificador do registro.",
-                "example": "1 | 1 | 1",
+                "description": "Codigo identificador do registro.",
+                "example": "TMP.EMPRESA|SR8.R8_FILIAL|SR8.R8_SEQ|TMP.EMPRESA|SRA.RA_FILIAL|SRA.RA_MAT|TMP.EMPRESA|RCM.RCM_FILIAL|RCM.RCM_TIPO|SR8.R8_DATAINI|SR8.R8_DATAFIM ",
                 "schema": {
                     "type": "string"
                 },
@@ -253,8 +281,14 @@
                         {
                             "product": "RM",
                             "available": true,
-                            "note": "Código identificador do registro.",
+                            "note": "Codigo identificador do registro.",
                             "minimalVersion": "12.1.28"
+                        },
+                        {
+                            "product": "PROTHEUS",
+                            "available": false,
+                            "note": "Codigo identificador do registro.",
+                            "minimalVersion": "12.1.23"
                         }
                     ]
                 }

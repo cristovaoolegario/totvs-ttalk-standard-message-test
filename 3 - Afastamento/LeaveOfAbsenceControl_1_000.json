@@ -1,7 +1,7 @@
 {
     "$schema": "https://raw.githubusercontent.com/totvs/ttalk-standard-message/LeaveOfAbsenceControl/V1/1_000/jsonschema/schemas/LeaveOfAbsenceControl_1_000.json#",
     "info": {
-        "description": "Afastamento dos funcionários dos produtos TOTVS",
+        "description": "Afastamentos dos funcionários dos produtos TOTVS",
         "version": "1.000",
         "title": "LeaveOfAbsenceControl",
         "contact": {
@@ -12,7 +12,7 @@
         "x-totvs": {
             "messageDocumentation": {
                 "name": "LeaveOfAbsenceControl",
-                "description": "Dados de afastamento",
+                "description": "Dados de afastamentos",
                 "segment": "Recursos Humanos"
             },
             "productInformation": [
@@ -20,7 +20,7 @@
                     "product": "Protheus",
                     "contact": "marcia.moura@totvs.com.br",
                     "description": "Product Owner RH - Protheus",
-                    "adapter": ""
+                    "adapter": "GPEA240API"
                 },
                 {
                     "product": "RM",
@@ -39,7 +39,7 @@
     },
     "definitions": {
         "PagedLeaveOfAbsence": {
-            "description": "Coleção de afastamentos paginados",
+            "description": "Colecao de afastamentos paginados",
             "type": "object",
             "allOf": [
                 {
@@ -51,7 +51,7 @@
             ]
         },
         "LeaveOfAbsences": {
-            "description": "Coleção de afastamentos",
+            "description": "Colecao de afastamentos",
             "type": "object",
             "properties": {
                 "items": {
@@ -63,18 +63,25 @@
             }
         },
         "LeaveOfAbsenceInfo": {
-            "description": "Objeto de afastamento com Id identificador",
+            "description": "Objeto de afastamentos com Id identificador",
             "type": "object",
             "allOf": [
                 {
                     "id": {
-                        "description": "Chave única do registro de afastamento",
+                        "description": "Chave unica do registro de afastamentos",
                         "type": "string",
                         "x-totvs": [
                             {
                                 "product": "RM",
                                 "available": true,
                                 "field": "PFHSTAFT.CODCOLIGADA|PFHSTAFT.DTINICIO|PFUNC.CODCOLIGADA|PFUNC.CHAPA",
+                                "type": "string",
+                                "required": true
+                            },
+                            {
+                                "product": "PROTHEUS",
+                                "available": true,
+                                "field": "TMP.EMPRESA|SR8.R8_FILIAL|SR8.R8_SEQ|TMP.EMPRESA|SRA.RA_FILIAL|SRA.RA_MAT|TMP.EMPRESA|RCM.RCM_FILIAL|RCM.RCM_TIPO|SR8.R8_DATAINI|SR8.R8_DATAFIM",										
                                 "type": "string",
                                 "required": true
                             }
@@ -87,12 +94,12 @@
             ]
         },
         "LeaveOfAbsenceSave": {
-            "description": "Objeto para persistência do afastamento",
+            "description": "Objeto para persistência do afastamentos",
             "properties": {
                 "companyId": {
                     "type": "string",
                     "example": "01",
-                    "description": "Código da Empresa",
+                    "description": "Codigo da Empresa",
                     "x-totvs": [
                         {
                             "product": "RM",
@@ -102,21 +109,36 @@
                             "length": 2,
                             "required": true,
                             "canUpdate": false
+                        },
+						{
+                            "product": "PROTHEUS",
+                            "field": "TMP.EMPRESA",
+                            "available": true,
+                            "type": "string",
+                            "required": true,
+                            "canUpdate": false
                         }
                     ]
                 },
                 "branchId": {
                     "type": "string",
-                    "description": "Código da Filial",
+                    "description": "Codigo da Filial",
                     "example": "1",
                     "x-totvs": [
                         {
                             "product": "RM",
-                            "field": "não possui campo físico na tabela",
+                            "field": "nao possui campo fisico na tabela",
                             "required": false,
                             "type": "",
                             "length": "",
                             "note": "",
+                            "available": true,
+                            "canUpdate": false
+                        },{
+                            "product": "PROTHUES",
+                            "field": "SR8.SR8_FILIAL",
+                            "required": true,
+                            "type": "",
                             "available": true,
                             "canUpdate": false
                         }
@@ -124,14 +146,22 @@
                 },
                 "employeeId": {
                     "type": "string",
-                    "description": "Código Identificador do Funcionário",
+                    "description": "Codigo Identificador do Funcionário",
                     "example": "01",
                     "x-totvs": [
                         {
                             "product": "RM",
                             "field": "PFUNC.CODCOLIGADA|PFUNC.CHAPA",
                             "required": true,
-                            "note": "Código Identificador do Funcionário",
+                            "note": "Codigo Identificador do Funcionário",
+                            "type": "varchar",
+                            "available": true,
+                            "canUpdate": false
+                        },
+						{
+                            "product": "PROTHEUS",
+                            "field": "TMP.EMPRESA|SRA.RA_FILIAL|SRA.RA_MAT",
+                            "required": true,
                             "type": "varchar",
                             "available": true,
                             "canUpdate": false
@@ -141,7 +171,7 @@
                 "startDate": {
                     "type": "date",
                     "description": "Data inicial do afastamento.",
-                    "example": "2019-06-01",
+                    "example": "YYYY-MM-DDTHH:MM:SS",
                     "x-totvs": [
                         {
                             "product": "RM",
@@ -149,6 +179,15 @@
                             "required": true,
                             "note": "Data inicial do afastamento.",
                             "type": "date",
+                            "available": true,
+                            "canUpdate": false
+                        },						
+                        {
+                            "product": "PROTHEUS",
+                            "field": "SR8.R8_DATAINI",
+                            "required": true,
+							"note": "Data inicial do afastamento.",
+                            "type": "datetime",
                             "available": true,
                             "canUpdate": false
                         }
@@ -168,13 +207,22 @@
                             "length": 6,
                             "available": true,
                             "canUpdate": false
+                        },
+						{
+                            "product": "PROTHEUS",
+                            "field": "nao possui campo fisico na tabela",
+                            "required": true,
+                            "type": "",
+                            "length": "",
+                            "available": true,
+                            "canUpdate": false
                         }
                     ]
                 },
                 "endDate": {
                     "type": "date",
                     "description": "Data final do afastamento.",
-                    "example": "2019-06-02",
+                    "example": "YYYY-MM-DDTHH:MM:SS",
                     "x-totvs": [
                         {
                             "product": "RM",
@@ -182,6 +230,15 @@
                             "required": false,
                             "note": "Data final do afastamento.",
                             "type": "date",
+                            "available": true,
+                            "canUpdate": false
+                        },						
+                        {
+                            "product": "PROTHEUS",
+                            "field": "SR8.R8_DATAFIM",
+                            "required": true,
+							"note": "Data fim do afastamento.",
+                            "type": "datetime",
                             "available": true,
                             "canUpdate": false
                         }
@@ -201,19 +258,42 @@
                             "length": 6,
                             "available": true,
                             "canUpdate": false
+                        },
+						{
+                            "product": "PROTHEUS",
+                            "field": "nao possui campo fisico na tabela",
+                            "required": true,
+                            "type": "",
+                            "length": "",
+                            "available": true,
+                            "canUpdate": false
                         }
                     ]
                 },
                 "leaveOfAbsenceCode": {
                     "type": "string",
+<<<<<<< HEAD
+                    "description": "Codigo do afastamento",
+                    "example": "01",
+=======
                     "description": "Código do afastamento",
                     "example": "T01",
+>>>>>>> 3f36158ce662aa84bc058d47e7d7c38b5f09493e
                     "x-totvs": [
                         {
                             "product": "RM",
                             "field": "PFHSTAFT.TIPO + PFHSTAFT.MOTIVO",
                             "required": false,
-                            "note": "Código do afastamento",
+                            "note": "Codigo do afastamento",
+                            "type": "varchar",
+                            "available": true,
+                            "canUpdate": false
+                        },
+                        {
+                            "product": "PROTHEUS",
+                            "field": "TMP.EMPRESA|RCM.RCM_FILIAL|RCM.RCM_TIPO",
+                            "required": false,
+							"note": "Codigo do afastamento",
                             "type": "varchar",
                             "available": true,
                             "canUpdate": false
@@ -222,14 +302,23 @@
                 },
                 "internationalDiseaseClassification": {
                     "type": "string",
-                    "description": "CID - Classificação Internacional de Doenças e Problemas Relacionados à Saúde",
+                    "description": "CID - Classificacao Internacional de Doencas e Problemas Relacionados a Saude",
                     "example": "01",
                     "x-totvs": [
                         {
                             "product": "RM",
                             "field": "PFHSTAFT.CODCID",
                             "required": false,
-                            "note": "CID - Classificação Internacional de Doenças e Problemas Relacionados à Saúde",
+                            "note": "CID - Classificacao Internacional de Doencas e Problemas Relacionados a Saude",
+                            "type": "varchar",
+                            "available": true,
+                            "canUpdate": false
+                        },
+						{
+                            "product": "PROTHEUS",
+                            "field": "SR8.R8_CID",
+                            "required": false,
+                            "note": "CID - Classificacao Internacional de Doencas e Problemas Relacionados a Saude",
                             "type": "varchar",
                             "available": true,
                             "canUpdate": false
@@ -238,14 +327,23 @@
                 },
                 "classEntityRegistrationCode": {
                     "type": "string",
-                    "description": "Número Conselho de Classe",
+                    "description": "Numero Conselho de Classe",
                     "example": "01",
                     "x-totvs": [
                         {
                             "product": "RM",
                             "field": "VPROFISSIONALSAUDE.NUMEROREGISTRO",
                             "required": false,
-                            "note": "Número Conselho de Classe",
+                            "note": "Numero Conselho de Classe",
+                            "type": "varchar",
+                            "available": true,
+                            "canUpdate": false
+                        },
+						{
+                            "product": "PROTHEUS",
+                            "field": "SR8.R8_CRMMED",
+                            "required": false,
+                            "note": "Orgao de Classe",
                             "type": "varchar",
                             "available": true,
                             "canUpdate": false
@@ -254,15 +352,25 @@
                 },
                 "doctorName": {
                     "type": "string",
-                    "description": "Nome Médico",
+                    "description": "Nome Medico",
                     "example": "Drauzio Varella",
                     "x-totvs": [
                         {
                             "product": "RM",
                             "field": "VPROFISSIONALSAUDE.NOMEPROFISSIONAL",
                             "required": false,
-                            "note": "Nome Médico",
+                            "note": "Nome Medico",
                             "type": "varchar",
+                            "available": true,
+                            "canUpdate": false
+                        },
+						{
+                            "product": "PROTHEUS",
+                            "field": "SR8.R8_NMMED",
+                            "required": false,
+							"note": "Nome Medico",
+                            "type": "varchar",
+                            "length": "",
                             "available": true,
                             "canUpdate": false
                         }
@@ -270,14 +378,23 @@
                 },
                 "classEntityState": {
                     "type": "string",
-                    "description": "Código da UF do Conselho de Classe",
+                    "description": "Codigo da UF do Conselho de Classe",
                     "example": "MG",
                     "x-totvs": [
                         {
                             "product": "RM",
                             "field": "VPROFISSIONALSAUDE.CODUFREGISTRO",
                             "required": false,
-                            "note": "Código da UF do Conselho de Classe",
+                            "note": "Codigo da UF do Conselho de Classe",
+                            "type": "varchar",
+                            "available": true,
+                            "canUpdate": false
+                        },
+						{
+                            "product": "PROTHEUS",
+                            "field": "SR8.R8_UFCRM",
+                            "required": false,
+                            "note": "Cod. Unidade da Federacao",
                             "type": "varchar",
                             "available": true,
                             "canUpdate": false
@@ -286,15 +403,24 @@
                 },
                 "classEntity": {
                     "type": "string",
-                    "description": "Tipo Órgão de Classe",
+                    "description": "Tipo Orgao de Classe",
                     "example": "1",
                     "x-totvs": [
                         {
                             "product": "RM",
                             "field": "VPROFISSIONALSAUDE.CODORGAOCLASSE",
                             "required": false,
-                            "note": "Tipo Órgão de Classe",
+                            "note": "Tipo orgao de Classe",
                             "type": "varchar",
+                            "available": true,
+                            "canUpdate": false
+                        },
+						{
+                            "product": "PROTHEUS",
+                            "field": "SR8.R8_IDEOC",
+                            "required": true,
+                            "type": "",
+                            "length": "",
                             "available": true,
                             "canUpdate": false
                         }
@@ -311,6 +437,15 @@
                             "required": false,
                             "note": "Tipo de Acidente",
                             "type": "varchar",
+                            "available": true,
+                            "canUpdate": false
+                        },						
+						{
+                            "product": "PROTHEUS",
+                            "field": "nao possui campo fisico na tabela",
+                            "required": true,
+                            "type": "",
+                            "length": "",
                             "available": true,
                             "canUpdate": false
                         }
